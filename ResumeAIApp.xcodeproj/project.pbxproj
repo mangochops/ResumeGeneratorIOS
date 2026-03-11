@@ -14,6 +14,15 @@
 		04A0B7302F61838D00B4CB48 /* ResumeAIAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B72F2F61838D00B4CB48 /* ResumeAIAppTests.swift */; };
 		04A0B73A2F61838D00B4CB48 /* ResumeAIAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7392F61838D00B4CB48 /* ResumeAIAppUITests.swift */; };
 		04A0B73C2F61838D00B4CB48 /* ResumeAIAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B73B2F61838D00B4CB48 /* ResumeAIAppUITestsLaunchTests.swift */; };
+		04A0B7492F61846F00B4CB48 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7482F61846F00B4CB48 /* MainTabView.swift */; };
+		04A0B74B2F6184CB00B4CB48 /* Resume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B74A2F6184CB00B4CB48 /* Resume.swift */; };
+		04A0B74D2F6184F300B4CB48 /* ResumeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B74C2F6184F300B4CB48 /* ResumeViewModel.swift */; };
+		04A0B74F2F61852200B4CB48 /* ResumeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B74E2F61852100B4CB48 /* ResumeCard.swift */; };
+		04A0B7512F61856300B4CB48 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7502F61856300B4CB48 /* HomeView.swift */; };
+		04A0B7532F6185A900B4CB48 /* ResumeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7522F6185A900B4CB48 /* ResumeEditorView.swift */; };
+		04A0B7552F6185FD00B4CB48 /* CoverLetterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */; };
+		04A0B7572F61864000B4CB48 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7562F61864000B4CB48 /* SettingsView.swift */; };
+		04A0B7592F61868A00B4CB48 /* PDFService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7582F61868A00B4CB48 /* PDFService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +53,15 @@
 		04A0B7352F61838D00B4CB48 /* ResumeAIAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResumeAIAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A0B7392F61838D00B4CB48 /* ResumeAIAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeAIAppUITests.swift; sourceTree = "<group>"; };
 		04A0B73B2F61838D00B4CB48 /* ResumeAIAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeAIAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		04A0B7482F61846F00B4CB48 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		04A0B74A2F6184CB00B4CB48 /* Resume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resume.swift; sourceTree = "<group>"; };
+		04A0B74C2F6184F300B4CB48 /* ResumeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeViewModel.swift; sourceTree = "<group>"; };
+		04A0B74E2F61852100B4CB48 /* ResumeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeCard.swift; sourceTree = "<group>"; };
+		04A0B7502F61856300B4CB48 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		04A0B7522F6185A900B4CB48 /* ResumeEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeEditorView.swift; sourceTree = "<group>"; };
+		04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverLetterView.swift; sourceTree = "<group>"; };
+		04A0B7562F61864000B4CB48 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		04A0B7582F61868A00B4CB48 /* PDFService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +113,15 @@
 			isa = PBXGroup;
 			children = (
 				04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */,
+				04A0B7482F61846F00B4CB48 /* MainTabView.swift */,
+				04A0B74A2F6184CB00B4CB48 /* Resume.swift */,
+				04A0B74C2F6184F300B4CB48 /* ResumeViewModel.swift */,
+				04A0B74E2F61852100B4CB48 /* ResumeCard.swift */,
+				04A0B7502F61856300B4CB48 /* HomeView.swift */,
+				04A0B7522F6185A900B4CB48 /* ResumeEditorView.swift */,
+				04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */,
+				04A0B7562F61864000B4CB48 /* SettingsView.swift */,
+				04A0B7582F61868A00B4CB48 /* PDFService.swift */,
 				04A0B7202F61837E00B4CB48 /* ContentView.swift */,
 				04A0B7222F61838B00B4CB48 /* Assets.xcassets */,
 				04A0B7242F61838B00B4CB48 /* Preview Content */,
@@ -257,8 +284,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A0B74B2F6184CB00B4CB48 /* Resume.swift in Sources */,
+				04A0B7512F61856300B4CB48 /* HomeView.swift in Sources */,
+				04A0B7592F61868A00B4CB48 /* PDFService.swift in Sources */,
 				04A0B7212F61837E00B4CB48 /* ContentView.swift in Sources */,
+				04A0B74D2F6184F300B4CB48 /* ResumeViewModel.swift in Sources */,
+				04A0B7552F6185FD00B4CB48 /* CoverLetterView.swift in Sources */,
+				04A0B7572F61864000B4CB48 /* SettingsView.swift in Sources */,
+				04A0B7532F6185A900B4CB48 /* ResumeEditorView.swift in Sources */,
 				04A0B71F2F61837E00B4CB48 /* ResumeAIAppApp.swift in Sources */,
+				04A0B74F2F61852200B4CB48 /* ResumeCard.swift in Sources */,
+				04A0B7492F61846F00B4CB48 /* MainTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
