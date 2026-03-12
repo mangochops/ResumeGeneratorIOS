@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		047B69EF2F63167900DD44BD /* UserCv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69EE2F63167900DD44BD /* UserCv.swift */; };
+		047B69F12F6316A200DD44BD /* JobAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69F02F6316A200DD44BD /* JobAd.swift */; };
+		047B69F32F6316CB00DD44BD /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69F22F6316CB00DD44BD /* AIService.swift */; };
+		047B69F52F63170200DD44BD /* UploadJobAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69F42F63170200DD44BD /* UploadJobAdView.swift */; };
+		047B69F72F6317B800DD44BD /* TailoredResumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69F62F6317B800DD44BD /* TailoredResumeView.swift */; };
+		047B69F92F631B1E00DD44BD /* ActionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69F82F631B1E00DD44BD /* ActionCard.swift */; };
 		04A0B71F2F61837E00B4CB48 /* ResumeAIAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */; };
 		04A0B7212F61837E00B4CB48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7202F61837E00B4CB48 /* ContentView.swift */; };
 		04A0B7232F61838B00B4CB48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A0B7222F61838B00B4CB48 /* Assets.xcassets */; };
@@ -43,6 +49,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		047B69EE2F63167900DD44BD /* UserCv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCv.swift; sourceTree = "<group>"; };
+		047B69F02F6316A200DD44BD /* JobAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobAd.swift; sourceTree = "<group>"; };
+		047B69F22F6316CB00DD44BD /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
+		047B69F42F63170200DD44BD /* UploadJobAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadJobAdView.swift; sourceTree = "<group>"; };
+		047B69F62F6317B800DD44BD /* TailoredResumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TailoredResumeView.swift; sourceTree = "<group>"; };
+		047B69F82F631B1E00DD44BD /* ActionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCard.swift; sourceTree = "<group>"; };
 		04A0B71B2F61837E00B4CB48 /* ResumeAIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResumeAIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeAIAppApp.swift; sourceTree = "<group>"; };
 		04A0B7202F61837E00B4CB48 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +130,12 @@
 				04A0B74C2F6184F300B4CB48 /* ResumeViewModel.swift */,
 				04A0B74E2F61852100B4CB48 /* ResumeCard.swift */,
 				04A0B7502F61856300B4CB48 /* HomeView.swift */,
+				047B69EE2F63167900DD44BD /* UserCv.swift */,
+				047B69F02F6316A200DD44BD /* JobAd.swift */,
+				047B69F22F6316CB00DD44BD /* AIService.swift */,
+				047B69F82F631B1E00DD44BD /* ActionCard.swift */,
+				047B69F42F63170200DD44BD /* UploadJobAdView.swift */,
+				047B69F62F6317B800DD44BD /* TailoredResumeView.swift */,
 				04A0B7522F6185A900B4CB48 /* ResumeEditorView.swift */,
 				04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */,
 				04A0B7562F61864000B4CB48 /* SettingsView.swift */,
@@ -284,11 +302,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				047B69F12F6316A200DD44BD /* JobAd.swift in Sources */,
+				047B69F52F63170200DD44BD /* UploadJobAdView.swift in Sources */,
 				04A0B74B2F6184CB00B4CB48 /* Resume.swift in Sources */,
+				047B69F72F6317B800DD44BD /* TailoredResumeView.swift in Sources */,
 				04A0B7512F61856300B4CB48 /* HomeView.swift in Sources */,
 				04A0B7592F61868A00B4CB48 /* PDFService.swift in Sources */,
+				047B69EF2F63167900DD44BD /* UserCv.swift in Sources */,
 				04A0B7212F61837E00B4CB48 /* ContentView.swift in Sources */,
 				04A0B74D2F6184F300B4CB48 /* ResumeViewModel.swift in Sources */,
+				047B69F32F6316CB00DD44BD /* AIService.swift in Sources */,
+				047B69F92F631B1E00DD44BD /* ActionCard.swift in Sources */,
 				04A0B7552F6185FD00B4CB48 /* CoverLetterView.swift in Sources */,
 				04A0B7572F61864000B4CB48 /* SettingsView.swift in Sources */,
 				04A0B7532F6185A900B4CB48 /* ResumeEditorView.swift in Sources */,
