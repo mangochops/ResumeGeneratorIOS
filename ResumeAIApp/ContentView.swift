@@ -24,6 +24,12 @@ struct ContentView: View {
                     Text("AI Tools")
                 }
             
+            ResumeLibraryView()
+                .tabItem {
+                    Image(systemName: "doc.text")
+                    Text("Library")
+                }
+            
             SettingsView()
                 .tabItem {
                     Image(systemName: "gearshape.fill")

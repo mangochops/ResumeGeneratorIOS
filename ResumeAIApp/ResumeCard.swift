@@ -15,14 +15,14 @@ struct ResumeCard: View {
         
         VStack(alignment: .leading, spacing: 8) {
             
-            Text(resume.name)
+            Text(resume.title)
                 .font(.title3)
                 .fontWeight(.bold)
             
             Text(resume.title)
                 .foregroundColor(.gray)
             
-            Text(resume.summary)
+            Text(resume.content)
                 .font(.caption)
                 .lineLimit(2)
         }

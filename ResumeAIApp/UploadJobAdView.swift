@@ -25,6 +25,8 @@ struct UploadJobAdView: View {
                     
                     TextField("https://company.com/job", text: $jobLink)
                         .textFieldStyle(.roundedBorder)
+                        .font(.subheadline)
+                        .opacity(0.7)
                     
                     Text("OR paste job description")
                         .font(.headline)

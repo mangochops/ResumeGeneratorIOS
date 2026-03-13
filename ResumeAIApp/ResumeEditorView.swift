@@ -1,10 +1,3 @@
-//
-//  ResumeEditorView.swift
-//  ResumeAIApp
-//
-//  Created by mac on 3/11/26.
-//
-
 import SwiftUI
 
 struct ResumeEditorView: View {
@@ -15,24 +8,18 @@ struct ResumeEditorView: View {
     
     @State private var name = ""
     @State private var title = ""
-    @State private var summary = ""
+    @State private var content = ""
     
     var body: some View {
-        
         NavigationStack {
-            
             Form {
-                
                 Section("Personal Info") {
-                    
                     TextField("Full Name", text: $name)
-                    
                     TextField("Job Title", text: $title)
                 }
                 
                 Section("Professional Summary") {
-                    
-                    TextEditor(text: $summary)
+                    TextEditor(text: $content)
                         .frame(height: 120)
                     
                     Button("Improve with AI") {
@@ -40,23 +27,17 @@ struct ResumeEditorView: View {
                     }
                 }
             }
-            
             .navigationTitle("New Resume")
-            
             .toolbar {
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    
+                ToolbarItem(placement: .topBarTrailing) {     // or .navigationBarTrailing
                     Button("Save") {
-                        
                         let resume = Resume(
                             name: name,
                             title: title,
-                            summary: summary
+                            content: content
                         )
                         
                         viewModel.addResume(resume: resume)
-                        
                         dismiss()
                     }
                 }
@@ -65,11 +46,10 @@ struct ResumeEditorView: View {
     }
     
     func improveSummary() {
-        
-        summary = "Results-driven professional experienced in building scalable software, improving performance, and delivering impactful digital products."
+        content = "Results-driven professional experienced in building scalable software, improving performance, and delivering impactful digital products."
     }
 }
 
 #Preview {
-    ResumeEditorView( viewModel: ResumeViewModel())
+    ResumeEditorView(viewModel: ResumeViewModel())
 }
