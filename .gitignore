@@ -1,0 +1,9 @@
+# Xcode user data
+*.xcuserdata
+
+# Xcode schemes
+*.xcscheme
+
+# Environment files
+.env
+Secrets.plist

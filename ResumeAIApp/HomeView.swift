@@ -1,11 +1,15 @@
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
     
-    @StateObject var viewModel = ResumeViewModel()
+    @Environment(\.modelContext) private var modelContext
+    
+    @State private var viewModel: ResumeViewModel?
     
     @State private var showEditor = false
     @State private var showJobAd = false
+    @State private var showLinkedInImport = false
     
     var body: some View {
         
@@ -25,11 +29,25 @@ struct HomeView: View {
                 .padding()
             }
             .navigationTitle("ResumeAI")
+            
             .sheet(isPresented: $showEditor) {
-                ResumeEditorView(viewModel: viewModel)
+                if let vm = viewModel {
+                    ResumeEditorView(viewModel: vm)
+                }
             }
+            
             .sheet(isPresented: $showJobAd) {
                 UploadJobAdView()
+            }
+            
+            .sheet(isPresented: $showLinkedInImport) {
+                LinkedInImportView()
+            }
+            
+            .onAppear {
+                if viewModel == nil {
+                    viewModel = ResumeViewModel(modelContext: modelContext)
+                }
             }
         }
     }
@@ -37,7 +55,7 @@ struct HomeView: View {
 
 extension HomeView {
     
-    var header: some View {
+    private var header: some View {
         
         VStack(alignment: .leading, spacing: 8) {
             
@@ -45,13 +63,15 @@ extension HomeView {
                 .font(.largeTitle.bold())
             
             Text("Tailor your resume to every job using AI")
-                .foregroundColor(.gray)
+                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
+}
+
+extension HomeView {
     
-    
-    var actionCards: some View {
+    private var actionCards: some View {
         
         VStack(spacing: 16) {
             
@@ -64,7 +84,6 @@ extension HomeView {
                 showEditor.toggle()
             }
             
-            
             ActionCard(
                 title: "Tailor CV for Job",
                 subtitle: "Paste job link or upload PDF",
@@ -73,24 +92,68 @@ extension HomeView {
             ) {
                 showJobAd.toggle()
             }
+            
+            ActionCard(
+                title: "Import from LinkedIn",
+                subtitle: "Upload LinkedIn profile PDF",
+                icon: "link",
+                color: .green
+            ) {
+                showLinkedInImport.toggle()
+            }
         }
     }
+}
+
+extension HomeView {
     
-    
-    var recentResumes: some View {
+    private var recentResumes: some View {
         
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 12) {
             
             Text("Generated Resumes")
                 .font(.title2.bold())
             
-            ForEach(viewModel.resumes) { resume in
-                ResumeCard(resume: resume)
+            if let vm = viewModel {
+                
+                if vm.resumes.isEmpty {
+                    
+                    VStack(spacing: 10) {
+                        
+                        Image(systemName: "doc.text")
+                            .font(.largeTitle)
+                            .foregroundStyle(.secondary)
+                        
+                        Text("No resumes yet")
+                            .font(.headline)
+                        
+                        Text("Generate your first tailored resume.")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.vertical, 20)
+                    
+                } else {
+                    
+                    ForEach(vm.resumes) { resume in
+                        ResumeCard(resume: resume)
+                    }
+                }
+                
+            } else {
+                ProgressView("Loading...")
             }
         }
     }
 }
 
 #Preview {
-    HomeView()
+    
+    let container = try! ModelContainer(
+        for: Resume.self,
+        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+    )
+    
+    return HomeView()
+        .modelContainer(container)
 }

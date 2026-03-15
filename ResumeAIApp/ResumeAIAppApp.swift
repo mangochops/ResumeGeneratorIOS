@@ -1,17 +1,58 @@
-//
-//  ResumeAIAppApp.swift
-//  ResumeAIApp
-//
-//  Created by mac on 3/11/26.
-//
-
 import SwiftUI
+import SwiftData
 
 @main
 struct ResumeAIAppApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
+    
+    @StateObject private var authManager = AuthManager()
+    
+    @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
+    
+    let sharedModelContainer: ModelContainer = {
+        
+        let schema = Schema([
+            Resume.self
+        ])
+        
+        let modelConfiguration = ModelConfiguration(
+            schema: schema,
+            isStoredInMemoryOnly: false
+        )
+        
+        do {
+            return try ModelContainer(
+                for: schema,
+                configurations: [modelConfiguration]
+            )
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
         }
+        
+    }()
+    
+    var body: some Scene {
+        
+        WindowGroup {
+            
+            Group {
+                
+                if !authManager.isAuthenticated {
+                    
+                    LoginView()
+                    
+                } else if !hasSeenOnboarding {
+                    
+                    OnboardingView()
+                    
+                } else {
+                    
+                    ContentView()
+                    
+                }
+            }
+            .environmentObject(authManager)
+            
+        }
+        .modelContainer(sharedModelContainer)
     }
 }

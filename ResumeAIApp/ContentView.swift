@@ -14,7 +14,13 @@ struct ContentView: View {
             
             HomeView()
                 .tabItem {
-                    Image(systemName: "doc.text.fill")
+                    Image(systemName: "house.fill")
+                    Text("Home")
+                }
+            
+            ResumeLibraryView()
+                .tabItem {
+                    Image(systemName: "folder.fill")
                     Text("Resumes")
                 }
             
@@ -24,16 +30,12 @@ struct ContentView: View {
                     Text("AI Tools")
                 }
             
-            ResumeLibraryView()
-                .tabItem {
-                    Image(systemName: "doc.text")
-                    Text("Library")
-                }
             
-            SettingsView()
+            
+            ProfileView()
                 .tabItem {
-                    Image(systemName: "gearshape.fill")
-                    Text("Settings")
+                    Image(systemName: "person.crop.circle")
+                    Text("Profile")
                 }
         }
     }

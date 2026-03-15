@@ -11,60 +11,137 @@ struct CoverLetterView: View {
     
     @State private var jobDescription = ""
     
-    @State private var result = ""
-    
     var body: some View {
         
         NavigationStack {
             
             ScrollView {
                 
-                VStack(spacing: 20) {
+                VStack(alignment: .leading, spacing: 25) {
                     
-                    Text("Paste Job Description")
-                        .font(.headline)
+                    header
                     
-                    TextEditor(text: $jobDescription)
-                        .frame(height: 200)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.gray)
-                        )
+                    jobDescriptionCard
                     
-                    Button("Generate AI Cover Letter") {
-                        generateLetter()
-                    }
-                    .buttonStyle(.borderedProminent)
+                    generateButton
                     
-                    if !result.isEmpty {
-                        
-                        Text(result)
-                            .padding()
-                            .background(.ultraThinMaterial)
-                            .cornerRadius(12)
-                    }
+                    quickTools
+                    
                 }
                 .padding()
             }
-            
             .navigationTitle("AI Tools")
         }
     }
+}
     
-    func generateLetter() {
+
+
+extension CoverLetterView {
+    
+    private var header: some View {
         
-        result = """
-Dear Hiring Manager,
-
-I am excited to apply for this role. My experience building scalable software applications and solving complex problems aligns well with the needs of this position.
-
-I would welcome the opportunity to contribute my technical expertise and passion for innovation to your team.
-
-Sincerely,
-Applicant
-"""
+        VStack(alignment: .leading, spacing: 6) {
+            
+            Text("Smart tools for job applications")
+                .foregroundStyle(.secondary)
+        }
     }
 }
+
+
+
+extension CoverLetterView {
+    
+    private var jobDescriptionCard: some View {
+        
+        VStack(alignment: .leading, spacing: 10) {
+            
+            Label("Paste Job Description", systemImage: "doc.text")
+                .font(.headline)
+            
+            TextEditor(text: $jobDescription)
+                .frame(height: 160)
+                .padding(8)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.gray.opacity(0.3))
+                )
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 18)
+                .fill(Color(.secondarySystemBackground))
+        )
+    }
+}
+
+extension CoverLetterView {
+    
+    private var generateButton: some View {
+        
+        Button {
+            
+            generateCoverLetter()
+            
+        } label: {
+            
+            HStack {
+                
+                Image(systemName: "sparkles")
+                
+                Text("Generate AI Cover Letter")
+                    .fontWeight(.semibold)
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+        }
+        .buttonStyle(.borderedProminent)
+    }
+}
+
+extension CoverLetterView {
+    
+    private var quickTools: some View {
+        
+        VStack(alignment: .leading, spacing: 12) {
+            
+            Text("Quick AI Tools")
+                .font(.title3.bold())
+            
+            AIQuickTool(
+                title: "Rewrite Resume Bullet",
+                icon: "pencil"
+            )
+            
+            AIQuickTool(
+                title: "Improve Resume Summary",
+                icon: "text.alignleft"
+            )
+            
+            AIQuickTool(
+                title: "Analyze Job Match",
+                icon: "chart.bar"
+            )
+        }
+    }
+}
+
+
+
+extension CoverLetterView {
+    
+    func generateCoverLetter() {
+        
+        print("Generating cover letter with job description:")
+        print(jobDescription)
+        
+        // Send to AI API here
+    }
+}
+
+
+
 
 #Preview {
     CoverLetterView()

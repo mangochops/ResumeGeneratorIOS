@@ -18,6 +18,12 @@
 		047B69FF2F63E52500DD44BD /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69FE2F63E52500DD44BD /* StorageService.swift */; };
 		047B6A012F63E56700DD44BD /* ResumeLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B6A002F63E56700DD44BD /* ResumeLibrary.swift */; };
 		047B6A032F63E6AC00DD44BD /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 047B6A022F63E6AC00DD44BD /* Launch Screen.storyboard */; };
+		047B6A062F6412E000DD44BD /* SwiftData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B6A052F6412E000DD44BD /* SwiftData.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		047B6A082F646EA600DD44BD /* OnboardingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B6A072F646EA500DD44BD /* OnboardingItem.swift */; };
+		047B6A0A2F646F1A00DD44BD /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B6A092F646F1A00DD44BD /* OnboardingView.swift */; };
+		047B6A0D2F647E7E00DD44BD /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 047B6A0C2F647E7E00DD44BD /* Auth */; };
+		047B6A0F2F647E7E00DD44BD /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 047B6A0E2F647E7E00DD44BD /* PostgREST */; };
+		047B6A112F647E7E00DD44BD /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 047B6A102F647E7E00DD44BD /* Storage */; };
 		04A0B71F2F61837E00B4CB48 /* ResumeAIAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */; };
 		04A0B7212F61837E00B4CB48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7202F61837E00B4CB48 /* ContentView.swift */; };
 		04A0B7232F61838B00B4CB48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A0B7222F61838B00B4CB48 /* Assets.xcassets */; };
@@ -34,6 +40,16 @@
 		04A0B7552F6185FD00B4CB48 /* CoverLetterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */; };
 		04A0B7572F61864000B4CB48 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7562F61864000B4CB48 /* SettingsView.swift */; };
 		04A0B7592F61868A00B4CB48 /* PDFService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7582F61868A00B4CB48 /* PDFService.swift */; };
+		04D6BF442F65308400A066B8 /* SupabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF432F65308400A066B8 /* SupabaseManager.swift */; };
+		04D6BF462F6530EE00A066B8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF452F6530EE00A066B8 /* AuthService.swift */; };
+		04D6BF482F65316600A066B8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF472F65316600A066B8 /* LoginView.swift */; };
+		04D6BF4A2F65339500A066B8 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF492F65339500A066B8 /* AuthManager.swift */; };
+		04D6BF4C2F6536FB00A066B8 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 04D6BF4B2F6536FB00A066B8 /* Supabase */; };
+		04D6BF4E2F65393000A066B8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF4D2F65393000A066B8 /* SignUpView.swift */; };
+		04D6BF502F6548C500A066B8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF4F2F6548C500A066B8 /* ProfileView.swift */; };
+		04D6BF522F65D4CE00A066B8 /* LinkedInImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF512F65D4CE00A066B8 /* LinkedInImportView.swift */; };
+		04D6BF542F65D51B00A066B8 /* PDFParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF532F65D51B00A066B8 /* PDFParser.swift */; };
+		04D6BF562F65D8BD00A066B8 /* AIQuickTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF552F65D8BD00A066B8 /* AIQuickTool.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +81,9 @@
 		047B69FE2F63E52500DD44BD /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		047B6A002F63E56700DD44BD /* ResumeLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeLibrary.swift; sourceTree = "<group>"; };
 		047B6A022F63E6AC00DD44BD /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		047B6A052F6412E000DD44BD /* SwiftData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftData.framework; path = System/Library/Frameworks/SwiftData.framework; sourceTree = SDKROOT; };
+		047B6A072F646EA500DD44BD /* OnboardingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingItem.swift; sourceTree = "<group>"; };
+		047B6A092F646F1A00DD44BD /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		04A0B71B2F61837E00B4CB48 /* ResumeAIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResumeAIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeAIAppApp.swift; sourceTree = "<group>"; };
 		04A0B7202F61837E00B4CB48 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,6 +103,15 @@
 		04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverLetterView.swift; sourceTree = "<group>"; };
 		04A0B7562F61864000B4CB48 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		04A0B7582F61868A00B4CB48 /* PDFService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFService.swift; sourceTree = "<group>"; };
+		04D6BF432F65308400A066B8 /* SupabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseManager.swift; sourceTree = "<group>"; };
+		04D6BF452F6530EE00A066B8 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		04D6BF472F65316600A066B8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		04D6BF492F65339500A066B8 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		04D6BF4D2F65393000A066B8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		04D6BF4F2F6548C500A066B8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		04D6BF512F65D4CE00A066B8 /* LinkedInImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedInImportView.swift; sourceTree = "<group>"; };
+		04D6BF532F65D51B00A066B8 /* PDFParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFParser.swift; sourceTree = "<group>"; };
+		04D6BF552F65D8BD00A066B8 /* AIQuickTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIQuickTool.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +119,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D6BF4C2F6536FB00A066B8 /* Supabase in Frameworks */,
+				047B6A112F647E7E00DD44BD /* Storage in Frameworks */,
+				047B6A0F2F647E7E00DD44BD /* PostgREST in Frameworks */,
+				047B6A0D2F647E7E00DD44BD /* Auth in Frameworks */,
+				047B6A062F6412E000DD44BD /* SwiftData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +144,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		047B6A042F6412DF00DD44BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				047B6A052F6412E000DD44BD /* SwiftData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		04A0B7122F61837D00B4CB48 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +159,7 @@
 				04A0B72E2F61838D00B4CB48 /* ResumeAIAppTests */,
 				04A0B7382F61838D00B4CB48 /* ResumeAIAppUITests */,
 				04A0B71C2F61837E00B4CB48 /* Products */,
+				047B6A042F6412DF00DD44BD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,11 +177,20 @@
 			isa = PBXGroup;
 			children = (
 				04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */,
+				04D6BF492F65339500A066B8 /* AuthManager.swift */,
+				04D6BF432F65308400A066B8 /* SupabaseManager.swift */,
+				04D6BF452F6530EE00A066B8 /* AuthService.swift */,
+				04D6BF472F65316600A066B8 /* LoginView.swift */,
+				04D6BF4D2F65393000A066B8 /* SignUpView.swift */,
 				04A0B7482F61846F00B4CB48 /* MainTabView.swift */,
 				04A0B74A2F6184CB00B4CB48 /* Resume.swift */,
 				04A0B74C2F6184F300B4CB48 /* ResumeViewModel.swift */,
+				04D6BF512F65D4CE00A066B8 /* LinkedInImportView.swift */,
+				04D6BF532F65D51B00A066B8 /* PDFParser.swift */,
 				04A0B74E2F61852100B4CB48 /* ResumeCard.swift */,
 				04A0B7502F61856300B4CB48 /* HomeView.swift */,
+				047B6A072F646EA500DD44BD /* OnboardingItem.swift */,
+				047B6A092F646F1A00DD44BD /* OnboardingView.swift */,
 				047B69EE2F63167900DD44BD /* UserCv.swift */,
 				047B69F02F6316A200DD44BD /* JobAd.swift */,
 				047B69F22F6316CB00DD44BD /* AIService.swift */,
@@ -148,7 +199,9 @@
 				047B69F62F6317B800DD44BD /* TailoredResumeView.swift */,
 				04A0B7522F6185A900B4CB48 /* ResumeEditorView.swift */,
 				04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */,
+				04D6BF552F65D8BD00A066B8 /* AIQuickTool.swift */,
 				04A0B7562F61864000B4CB48 /* SettingsView.swift */,
+				04D6BF4F2F6548C500A066B8 /* ProfileView.swift */,
 				04A0B7582F61868A00B4CB48 /* PDFService.swift */,
 				04A0B7202F61837E00B4CB48 /* ContentView.swift */,
 				047B6A022F63E6AC00DD44BD /* Launch Screen.storyboard */,
@@ -203,6 +256,12 @@
 			dependencies = (
 			);
 			name = ResumeAIApp;
+			packageProductDependencies = (
+				047B6A0C2F647E7E00DD44BD /* Auth */,
+				047B6A0E2F647E7E00DD44BD /* PostgREST */,
+				047B6A102F647E7E00DD44BD /* Storage */,
+				04D6BF4B2F6536FB00A066B8 /* Supabase */,
+			);
 			productName = ResumeAIApp;
 			productReference = 04A0B71B2F61837E00B4CB48 /* ResumeAIApp.app */;
 			productType = "com.apple.product-type.application";
@@ -275,6 +334,9 @@
 				Base,
 			);
 			mainGroup = 04A0B7122F61837D00B4CB48;
+			packageReferences = (
+				047B6A0B2F647E7E00DD44BD /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			productRefGroup = 04A0B71C2F61837E00B4CB48 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -325,19 +387,30 @@
 				04A0B7512F61856300B4CB48 /* HomeView.swift in Sources */,
 				047B69FF2F63E52500DD44BD /* StorageService.swift in Sources */,
 				04A0B7592F61868A00B4CB48 /* PDFService.swift in Sources */,
+				04D6BF462F6530EE00A066B8 /* AuthService.swift in Sources */,
 				047B69EF2F63167900DD44BD /* UserCv.swift in Sources */,
 				04A0B7212F61837E00B4CB48 /* ContentView.swift in Sources */,
+				04D6BF4A2F65339500A066B8 /* AuthManager.swift in Sources */,
+				04D6BF502F6548C500A066B8 /* ProfileView.swift in Sources */,
+				04D6BF482F65316600A066B8 /* LoginView.swift in Sources */,
 				047B6A012F63E56700DD44BD /* ResumeLibrary.swift in Sources */,
 				04A0B74D2F6184F300B4CB48 /* ResumeViewModel.swift in Sources */,
 				047B69F32F6316CB00DD44BD /* AIService.swift in Sources */,
 				047B69FB2F63E47100DD44BD /* ATSService.swift in Sources */,
+				04D6BF562F65D8BD00A066B8 /* AIQuickTool.swift in Sources */,
+				047B6A082F646EA600DD44BD /* OnboardingItem.swift in Sources */,
 				047B69F92F631B1E00DD44BD /* ActionCard.swift in Sources */,
+				04D6BF522F65D4CE00A066B8 /* LinkedInImportView.swift in Sources */,
+				04D6BF442F65308400A066B8 /* SupabaseManager.swift in Sources */,
 				04A0B7552F6185FD00B4CB48 /* CoverLetterView.swift in Sources */,
 				04A0B7572F61864000B4CB48 /* SettingsView.swift in Sources */,
 				04A0B7532F6185A900B4CB48 /* ResumeEditorView.swift in Sources */,
 				047B69FD2F63E4AD00DD44BD /* ATSScoreView.swift in Sources */,
+				04D6BF542F65D51B00A066B8 /* PDFParser.swift in Sources */,
 				04A0B71F2F61837E00B4CB48 /* ResumeAIAppApp.swift in Sources */,
+				04D6BF4E2F65393000A066B8 /* SignUpView.swift in Sources */,
 				04A0B74F2F61852200B4CB48 /* ResumeCard.swift in Sources */,
+				047B6A0A2F646F1A00DD44BD /* OnboardingView.swift in Sources */,
 				04A0B7492F61846F00B4CB48 /* MainTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -676,6 +749,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		047B6A0B2F647E7E00DD44BD /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		047B6A0C2F647E7E00DD44BD /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 047B6A0B2F647E7E00DD44BD /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		047B6A0E2F647E7E00DD44BD /* PostgREST */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 047B6A0B2F647E7E00DD44BD /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = PostgREST;
+		};
+		047B6A102F647E7E00DD44BD /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 047B6A0B2F647E7E00DD44BD /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Storage;
+		};
+		04D6BF4B2F6536FB00A066B8 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 047B6A0B2F647E7E00DD44BD /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 04A0B7132F61837D00B4CB48 /* Project object */;
 }
