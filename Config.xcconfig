@@ -1,9 +1,8 @@
+// Config.xcconfig
+// ResumeAIApp
 //
-//  Config.xcconfig
-//  ResumeAIApp
-//
-//  Created by mac on 3/17/26.
+// Created by mac on 3/17/26.
 //
 
-// Configuration settings file format documentation can be found at:
-// https://help.apple.com/xcode/#/dev745c5c974
+SUPABASE_URL = https://eocldmwhgovgdhuttwgs.supabase.co
+SUPABASE_ANON_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVvY2xkbXdoZ292Z2RodHR3Z3MiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc3MzQ2NzAwNCwiZXhwIjoyMDg5MDQzMDA0fQ.IoX56kW8xSPoxw4pvyfvpZBr7mJCVdl6g47bahFh2YY

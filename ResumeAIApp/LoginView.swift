@@ -19,7 +19,7 @@ struct LoginView: View {
             
             VStack(spacing: 20) {
                 
-                Text("ResumeAI")
+                Text("CV Pilot")
                     .font(.largeTitle.bold())
                 
                 TextField("Email", text: $email)

@@ -5,44 +5,52 @@ import SwiftData
 
 struct ResumeEditorView: View {
     @Environment(\.dismiss) var dismiss
-    @Environment(\.modelContext) private var modelContext
-//    @ObservedObject var viewModel: ResumeViewModel
     @Bindable var viewModel: ResumeViewModel
     
+    // Ensure all state variables exist
     @State private var name = ""
     @State private var title = ""
-    @State private var content = ""                 // parsed CV text
+    @State private var content = ""
     @State private var atsScore: Int? = nil
     @State private var atsSuggestions = ""
     
     @State private var isImporting = false
     @State private var isAnalyzing = false
     @State private var errorMessage: String?
+    @State private var selectedTab = 0
     
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 24) {
-                    // Upload area
-                    uploadSection
-                    
-                    // Parsed content preview + editor
-                    if !content.isEmpty {
-                        contentSection
+                VStack(spacing: 20) {
+                    if content.isEmpty {
+                        initialUploadState
+                            .padding(.top, 40)
+                    } else {
+                        fileHeader
+                        
+                        Picker("View", selection: $selectedTab) {
+                            Text("Resume").tag(0)
+                            Text("AI Insights").tag(1)
+                        }
+                        .pickerStyle(.segmented)
+                        .padding(.horizontal)
+                        
+                        if selectedTab == 0 {
+                            contentEditor
+                        } else {
+                            aiInsightsView
+                        }
                     }
-                    
-                    // ATS results
-                    if let score = atsScore {
-                        atsResultSection(score: score)
-                    }
-                    
-                    Spacer(minLength: 40)
                 }
                 .padding()
             }
-            .navigationTitle("Create Resume")
+            .navigationTitle(content.isEmpty ? "Create Resume" : "Edit Details")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Cancel") { dismiss() }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     saveButton
                 }
@@ -54,94 +62,139 @@ struct ResumeEditorView: View {
             ) { result in
                 handleImport(result: result)
             }
-            .overlay {
-                if isAnalyzing {
-                    ProgressView("Analyzing with AI...")
-                        .padding()
-                        .background(.ultraThinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                }
-            }
-            .alert("Error", isPresented: Binding(
-                get: { errorMessage != nil },
-                set: { _ in errorMessage = nil }
-            )) {
-                Button("OK") { }
-            } message: {
-                Text(errorMessage ?? "Unknown error")
-            }
         }
     }
     
-    private var uploadSection: some View {
-        VStack(spacing: 12) {
-            Image(systemName: "doc.text.fill")
-                .font(.system(size: 60))
-                .foregroundStyle(.tint)
-            
-            Text("Upload Your Resume (PDF)")
-                .font(.title3.bold())
-            
-            Button("Choose PDF File") {
-                isImporting = true
-            }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
-        }
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-    }
+    // MARK: - Subviews
     
-    private var contentSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Parsed Resume Content")
-                .font(.headline)
-            
-            TextEditor(text: $content)
-                .font(.body)
-                .frame(minHeight: 220)
-                .padding(8)
-                .background(Color(.systemBackground))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-                .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.3)))
-            
-            if !isAnalyzing {
-                Button("Analyze ATS Compatibility") {
-                    Task { await analyzeATS() }
-                }
-                .buttonStyle(.borderedProminent)
-            }
-        }
-    }
-    
-    private func atsResultSection(score: Int) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack {
-                Text("ATS Score")
-                    .font(.title2.bold())
-                Spacer()
-                Text("\(score)/100")
-                    .font(.title.bold())
-                    .foregroundColor(scoreColor(for: score))
-            }
-            
-            if !atsSuggestions.isEmpty {
-                Text("Suggestions to Improve ATS Score")
-                    .font(.headline)
+    private var initialUploadState: some View {
+        VStack(spacing: 20) {
+            ZStack {
+                Circle()
+                    .fill(Color.blue.opacity(0.1))
+                    .frame(width: 120, height: 120)
                 
-                Text(atsSuggestions)
+                Image(systemName: "doc.badge.plus")
+                    .font(.system(size: 50))
+                    .foregroundStyle(Color.blue.gradient)
+            }
+            
+            VStack(spacing: 8) {
+                Text("Upload Your Resume")
+                    .font(.title2.bold())
+                Text("Support for PDF files only")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
+            
+            // Cleaned up Button Logic
+            Button {
+                isImporting = true
+            } label: {
+                HStack {
+                    Image(systemName: "plus.circle.fill")
+                    Text("Choose PDF File")
+                }
+                .font(.headline)
+                .padding()
+                .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .padding(.horizontal, 40)
         }
-        .padding()
-        .background(Color(.systemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .shadow(radius: 2)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 40)
+        .background(.ultraThinMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 24))
+        .overlay(RoundedRectangle(cornerRadius: 24).stroke(Color.primary.opacity(0.1), lineWidth: 1))
     }
     
+    private var fileHeader: some View {
+        HStack {
+            Image(systemName: "doc.text.fill")
+                .font(.title2)
+                .foregroundStyle(Color.blue)
+            
+            VStack(alignment: .leading) {
+                TextField("Resume Name", text: $name)
+                    .font(.headline)
+                Text("Imported from PDF")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            
+            Spacer()
+            
+            Button("Replace") {
+                isImporting = true
+            }
+            .font(.caption.bold())
+            .buttonStyle(.bordered)
+        }
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+    
+    private var contentEditor: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Verify Parsed Content")
+                .font(.subheadline.bold())
+                .foregroundStyle(.secondary)
+            
+            TextEditor(text: $content)
+                .frame(minHeight: 400)
+                .padding(12)
+                .background(Color(UIColor.secondarySystemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.primary.opacity(0.1), lineWidth: 1))
+        }
+    }
+    
+    private var aiInsightsView: some View {
+        VStack(spacing: 20) {
+            if let score = atsScore {
+                atsResultSection(score: score)
+            } else {
+                VStack(spacing: 16) {
+                    Image(systemName: "sparkles")
+                        .font(.largeTitle)
+                        .foregroundStyle(Color.purple)
+                    Text("No AI Analysis yet")
+                        .font(.headline)
+                    Button("Analyze ATS Compatibility") {
+                        Task { await analyzeATS() }
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.purple)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 40)
+            }
+        }
+    }
+
+    private func atsResultSection(score: Int) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Text("ATS Score").font(.title2.bold())
+                Spacer()
+                Text("\(score)/100")
+                    .font(.title.bold())
+                    .foregroundColor(score >= 80 ? .green : (score >= 60 ? .orange : .red))
+            }
+            if !atsSuggestions.isEmpty {
+                Text("Suggestions").font(.headline)
+                Text(atsSuggestions).font(.subheadline).foregroundStyle(.secondary)
+            }
+        }
+        .padding()
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .shadow(color: .black.opacity(0.05), radius: 5)
+    }
+
     private var saveButton: some View {
         Button("Save") {
             let resume = Resume(

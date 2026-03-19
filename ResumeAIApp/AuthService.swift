@@ -1,11 +1,3 @@
-//
-//  AuthService.swift
-//  ResumeAIApp
-//
-//  Created by mac on 3/14/26.
-//
-
-
 import Foundation
 import Supabase
 
@@ -15,10 +7,24 @@ final class AuthService {
     
     private let client = SupabaseManager.shared.client
     
-    func signUp(email: String, password: String) async throws {
+    // MARK: - Current User
+    /// Computed property to access the current authenticated user
+    var currentUser: User? {
+        return client.auth.currentUser
+    }
+    
+    /// Checks if a session currently exists
+    var isAuthenticated: Bool {
+        return client.auth.currentSession != nil
+    }
+    
+    // MARK: - Auth Methods
+    
+    func signUp(email: String, password: String, fullName:String) async throws {
         try await client.auth.signUp(
             email: email,
-            password: password
+            password: password,
+            data: ["full_name": .string(fullName)]
         )
     }
     
@@ -31,5 +37,31 @@ final class AuthService {
     
     func signOut() async throws {
         try await client.auth.signOut()
+    }
+    
+    // MARK: - User Details Fetching
+    /// If you need to fetch extra profile data from a 'profiles' table in Supabase
+    func getProfile() async throws -> UserAttributes? {
+        guard (currentUser?.id) != nil else { return nil }
+        
+        // Example: Fetching from a custom profiles table
+        // return try await client.database.from("profiles").select().eq("id", value: userId).single().execute().value
+        return nil
+    }
+    
+    func updateUserProfile(fullName: String? = nil, password: String? = nil) async throws {
+        var attributes = UserAttributes()
+        
+        // Update Full Name in metadata
+        if let fullName = fullName {
+            attributes.data = ["full_name": .string(fullName)]
+        }
+        
+        // Update Password if provided
+        if let password = password {
+            attributes.password = password
+        }
+        
+        try await client.auth.update(user: attributes)
     }
 }

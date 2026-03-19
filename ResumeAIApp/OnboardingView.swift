@@ -13,7 +13,7 @@ struct OnboardingView: View {
     
     let pages: [OnboardingItem] = [
         OnboardingItem(
-            image: "doc.text.magnifyingglass",
+            image: ".onboarding1",
             title: "Analyze Your Resume",
             description: "Upload your resume and let AI analyze ATS compatibility instantly."
         ),

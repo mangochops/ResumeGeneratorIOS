@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04144CEC2F6962D000A47000 /* SupabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF432F65308400A066B8 /* SupabaseManager.swift */; };
+		042F299D2F66D3710023A548 /* ReceiptParser in Frameworks */ = {isa = PBXBuildFile; productRef = 042F299C2F66D3710023A548 /* ReceiptParser */; };
+		042F299F2F66D3710023A548 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 042F299E2F66D3710023A548 /* RevenueCat */; };
+		042F29A12F66D3710023A548 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 042F29A02F66D3710023A548 /* RevenueCatUI */; };
 		047B69EF2F63167900DD44BD /* UserCv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69EE2F63167900DD44BD /* UserCv.swift */; };
 		047B69F12F6316A200DD44BD /* JobAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69F02F6316A200DD44BD /* JobAd.swift */; };
 		047B69F32F6316CB00DD44BD /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69F22F6316CB00DD44BD /* AIService.swift */; };
@@ -40,7 +44,6 @@
 		04A0B7552F6185FD00B4CB48 /* CoverLetterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */; };
 		04A0B7572F61864000B4CB48 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7562F61864000B4CB48 /* SettingsView.swift */; };
 		04A0B7592F61868A00B4CB48 /* PDFService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7582F61868A00B4CB48 /* PDFService.swift */; };
-		04D6BF442F65308400A066B8 /* SupabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF432F65308400A066B8 /* SupabaseManager.swift */; };
 		04D6BF462F6530EE00A066B8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF452F6530EE00A066B8 /* AuthService.swift */; };
 		04D6BF482F65316600A066B8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF472F65316600A066B8 /* LoginView.swift */; };
 		04D6BF4A2F65339500A066B8 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF492F65339500A066B8 /* AuthManager.swift */; };
@@ -50,6 +53,10 @@
 		04D6BF522F65D4CE00A066B8 /* LinkedInImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF512F65D4CE00A066B8 /* LinkedInImportView.swift */; };
 		04D6BF542F65D51B00A066B8 /* PDFParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF532F65D51B00A066B8 /* PDFParser.swift */; };
 		04D6BF562F65D8BD00A066B8 /* AIQuickTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF552F65D8BD00A066B8 /* AIQuickTool.swift */; };
+		04DF1FE22F6ADD7500323B51 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF1FE12F6ADD7500323B51 /* EditProfileView.swift */; };
+		04DF1FE42F6B84E700323B51 /* ATSAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF1FE32F6B84E700323B51 /* ATSAnalytics.swift */; };
+		04DF1FE62F6B859D00323B51 /* ContactSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF1FE52F6B859D00323B51 /* ContactSupport.swift */; };
+		04DF1FE82F6B860100323B51 /* PrivacyPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF1FE72F6B860100323B51 /* PrivacyPolicy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +91,7 @@
 		047B6A052F6412E000DD44BD /* SwiftData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftData.framework; path = System/Library/Frameworks/SwiftData.framework; sourceTree = SDKROOT; };
 		047B6A072F646EA500DD44BD /* OnboardingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingItem.swift; sourceTree = "<group>"; };
 		047B6A092F646F1A00DD44BD /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		049012D12F69B3F7008BC58A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		04A0B71B2F61837E00B4CB48 /* ResumeAIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResumeAIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeAIAppApp.swift; sourceTree = "<group>"; };
 		04A0B7202F61837E00B4CB48 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,6 +120,11 @@
 		04D6BF512F65D4CE00A066B8 /* LinkedInImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedInImportView.swift; sourceTree = "<group>"; };
 		04D6BF532F65D51B00A066B8 /* PDFParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFParser.swift; sourceTree = "<group>"; };
 		04D6BF552F65D8BD00A066B8 /* AIQuickTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIQuickTool.swift; sourceTree = "<group>"; };
+		04DF1FE02F6ABAA100323B51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		04DF1FE12F6ADD7500323B51 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		04DF1FE32F6B84E700323B51 /* ATSAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATSAnalytics.swift; sourceTree = "<group>"; };
+		04DF1FE52F6B859D00323B51 /* ContactSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSupport.swift; sourceTree = "<group>"; };
+		04DF1FE72F6B860100323B51 /* PrivacyPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,8 +132,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				042F299D2F66D3710023A548 /* ReceiptParser in Frameworks */,
 				04D6BF4C2F6536FB00A066B8 /* Supabase in Frameworks */,
+				042F299F2F66D3710023A548 /* RevenueCat in Frameworks */,
 				047B6A112F647E7E00DD44BD /* Storage in Frameworks */,
+				042F29A12F66D3710023A548 /* RevenueCatUI in Frameworks */,
 				047B6A0F2F647E7E00DD44BD /* PostgREST in Frameworks */,
 				047B6A0D2F647E7E00DD44BD /* Auth in Frameworks */,
 				047B6A062F6412E000DD44BD /* SwiftData.framework in Frameworks */,
@@ -155,6 +171,7 @@
 		04A0B7122F61837D00B4CB48 = {
 			isa = PBXGroup;
 			children = (
+				049012D12F69B3F7008BC58A /* Config.xcconfig */,
 				04A0B71D2F61837E00B4CB48 /* ResumeAIApp */,
 				04A0B72E2F61838D00B4CB48 /* ResumeAIAppTests */,
 				04A0B7382F61838D00B4CB48 /* ResumeAIAppUITests */,
@@ -176,10 +193,12 @@
 		04A0B71D2F61837E00B4CB48 /* ResumeAIApp */ = {
 			isa = PBXGroup;
 			children = (
+				04DF1FE02F6ABAA100323B51 /* Info.plist */,
 				04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */,
 				04D6BF492F65339500A066B8 /* AuthManager.swift */,
 				04D6BF432F65308400A066B8 /* SupabaseManager.swift */,
 				04D6BF452F6530EE00A066B8 /* AuthService.swift */,
+				04DF1FE12F6ADD7500323B51 /* EditProfileView.swift */,
 				04D6BF472F65316600A066B8 /* LoginView.swift */,
 				04D6BF4D2F65393000A066B8 /* SignUpView.swift */,
 				04A0B7482F61846F00B4CB48 /* MainTabView.swift */,
@@ -202,6 +221,9 @@
 				04D6BF552F65D8BD00A066B8 /* AIQuickTool.swift */,
 				04A0B7562F61864000B4CB48 /* SettingsView.swift */,
 				04D6BF4F2F6548C500A066B8 /* ProfileView.swift */,
+				04DF1FE32F6B84E700323B51 /* ATSAnalytics.swift */,
+				04DF1FE52F6B859D00323B51 /* ContactSupport.swift */,
+				04DF1FE72F6B860100323B51 /* PrivacyPolicy.swift */,
 				04A0B7582F61868A00B4CB48 /* PDFService.swift */,
 				04A0B7202F61837E00B4CB48 /* ContentView.swift */,
 				047B6A022F63E6AC00DD44BD /* Launch Screen.storyboard */,
@@ -261,6 +283,9 @@
 				047B6A0E2F647E7E00DD44BD /* PostgREST */,
 				047B6A102F647E7E00DD44BD /* Storage */,
 				04D6BF4B2F6536FB00A066B8 /* Supabase */,
+				042F299C2F66D3710023A548 /* ReceiptParser */,
+				042F299E2F66D3710023A548 /* RevenueCat */,
+				042F29A02F66D3710023A548 /* RevenueCatUI */,
 			);
 			productName = ResumeAIApp;
 			productReference = 04A0B71B2F61837E00B4CB48 /* ResumeAIApp.app */;
@@ -336,6 +361,7 @@
 			mainGroup = 04A0B7122F61837D00B4CB48;
 			packageReferences = (
 				047B6A0B2F647E7E00DD44BD /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				042F299B2F66D3710023A548 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
 			);
 			productRefGroup = 04A0B71C2F61837E00B4CB48 /* Products */;
 			projectDirPath = "";
@@ -382,8 +408,11 @@
 			files = (
 				047B69F12F6316A200DD44BD /* JobAd.swift in Sources */,
 				047B69F52F63170200DD44BD /* UploadJobAdView.swift in Sources */,
+				04DF1FE62F6B859D00323B51 /* ContactSupport.swift in Sources */,
 				04A0B74B2F6184CB00B4CB48 /* Resume.swift in Sources */,
+				04DF1FE22F6ADD7500323B51 /* EditProfileView.swift in Sources */,
 				047B69F72F6317B800DD44BD /* TailoredResumeView.swift in Sources */,
+				04DF1FE42F6B84E700323B51 /* ATSAnalytics.swift in Sources */,
 				04A0B7512F61856300B4CB48 /* HomeView.swift in Sources */,
 				047B69FF2F63E52500DD44BD /* StorageService.swift in Sources */,
 				04A0B7592F61868A00B4CB48 /* PDFService.swift in Sources */,
@@ -401,17 +430,18 @@
 				047B6A082F646EA600DD44BD /* OnboardingItem.swift in Sources */,
 				047B69F92F631B1E00DD44BD /* ActionCard.swift in Sources */,
 				04D6BF522F65D4CE00A066B8 /* LinkedInImportView.swift in Sources */,
-				04D6BF442F65308400A066B8 /* SupabaseManager.swift in Sources */,
 				04A0B7552F6185FD00B4CB48 /* CoverLetterView.swift in Sources */,
 				04A0B7572F61864000B4CB48 /* SettingsView.swift in Sources */,
 				04A0B7532F6185A900B4CB48 /* ResumeEditorView.swift in Sources */,
 				047B69FD2F63E4AD00DD44BD /* ATSScoreView.swift in Sources */,
+				04DF1FE82F6B860100323B51 /* PrivacyPolicy.swift in Sources */,
 				04D6BF542F65D51B00A066B8 /* PDFParser.swift in Sources */,
 				04A0B71F2F61837E00B4CB48 /* ResumeAIAppApp.swift in Sources */,
 				04D6BF4E2F65393000A066B8 /* SignUpView.swift in Sources */,
 				04A0B74F2F61852200B4CB48 /* ResumeCard.swift in Sources */,
 				047B6A0A2F646F1A00DD44BD /* OnboardingView.swift in Sources */,
 				04A0B7492F61846F00B4CB48 /* MainTabView.swift in Sources */,
+				04144CEC2F6962D000A47000 /* SupabaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +480,7 @@
 /* Begin XCBuildConfiguration section */
 		04A0B73D2F61838D00B4CB48 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -500,12 +531,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SUPABASE_URL = "https://eocldmwhgovgdhuttwgs.supabase.co";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -513,6 +547,7 @@
 		};
 		04A0B73E2F61838D00B4CB48 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -557,11 +592,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SUPABASE_URL = "https://eocldmwhgovgdhuttwgs.supabase.co";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -569,6 +607,7 @@
 		};
 		04A0B7402F61838D00B4CB48 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -579,6 +618,8 @@
 				DEVELOPMENT_TEAM = FMB873S974;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ResumeAIApp/Info.plist;
+				"INFOPLIST_FILE[sdk=*]" = "";
 				INFOPLIST_KEY_CFBundleDisplayName = ResumeAI;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -592,8 +633,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ke.mangochopsstudio.ResumeAIApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPABASE_URL = "https://eocldmwhgovgdhuttwgs.supabase.co";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -602,6 +645,7 @@
 		};
 		04A0B7412F61838D00B4CB48 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -612,6 +656,7 @@
 				DEVELOPMENT_TEAM = FMB873S974;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ResumeAIApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ResumeAI;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -625,8 +670,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ke.mangochopsstudio.ResumeAIApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPABASE_URL = "https://eocldmwhgovgdhuttwgs.supabase.co";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -635,6 +682,7 @@
 		};
 		04A0B7432F61838D00B4CB48 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -655,6 +703,7 @@
 		};
 		04A0B7442F61838D00B4CB48 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -675,6 +724,7 @@
 		};
 		04A0B7462F61838D00B4CB48 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -693,6 +743,7 @@
 		};
 		04A0B7472F61838D00B4CB48 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -751,6 +802,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		042F299B2F66D3710023A548 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.64.0;
+			};
+		};
 		047B6A0B2F647E7E00DD44BD /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/supabase/supabase-swift";
@@ -762,6 +821,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		042F299C2F66D3710023A548 /* ReceiptParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 042F299B2F66D3710023A548 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = ReceiptParser;
+		};
+		042F299E2F66D3710023A548 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 042F299B2F66D3710023A548 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+		042F29A02F66D3710023A548 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 042F299B2F66D3710023A548 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
+		};
 		047B6A0C2F647E7E00DD44BD /* Auth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 047B6A0B2F647E7E00DD44BD /* XCRemoteSwiftPackageReference "supabase-swift" */;

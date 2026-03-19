@@ -1,118 +1,161 @@
-//
-//  ProfileView.swift
-//  ResumeAIApp
-//
-//  Created by mac on 3/14/26.
-//
-
 import SwiftUI
 
 struct ProfileView: View {
+    // Fetch user details from your existing AuthService
+    @State private var currentUser = AuthService.shared.currentUser
     
     var body: some View {
-        
         NavigationStack {
-            
-            List {
-                
-                // PROFILE HEADER
-                Section {
+            ScrollView {
+                VStack(spacing: 24) {
                     
-                    HStack(spacing: 16) {
-                        
-                        Circle()
-                            .fill(Color.accentColor.opacity(0.2))
-                            .frame(width: 60, height: 60)
-                            .overlay(
+                    // MARK: - PROFILE HEADER CARD
+                    VStack(spacing: 16) {
+                        HStack(spacing: 20) {
+                            ZStack {
+                                Circle()
+                                    .fill(Color.blue.gradient.opacity(0.1))
+                                    .frame(width: 80, height: 80)
+                                
                                 Image(systemName: "person.fill")
-                                    .font(.title2)
-                                    .foregroundColor(.accentColor)
-                            )
-                        
-                        VStack(alignment: .leading) {
-                            Text("John Doe")
-                                .font(.headline)
+                                    .font(.system(size: 30, weight: .bold))
+                                    .foregroundStyle(.blue.gradient)
+                            }
                             
-                            Text("john@email.com")
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
+                            VStack(alignment: .leading, spacing: 4) {
+                                // Supabase stores the name in userMetadata
+                                let metadata = currentUser?.userMetadata
+                                    let name = metadata?["full_name"] as? String
+                                               ?? metadata?["display_name"] as? String
+                                               ?? "New User"
+                                
+                                Text(name)
+                                    .font(.title3.bold())
+                                
+                                Text(currentUser?.email ?? "example@gmail.com")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
+                            
+                            Spacer()
                         }
                     }
-                    .padding(.vertical, 8)
-                }
-                
-                // ACCOUNT
-                Section("Account") {
-                    
-                    NavigationLink {
-                        Text("Edit Profile Page")
-                    } label: {
-                        Label("Edit Profile", systemImage: "person.crop.circle")
+                    .padding()
+                    .background(Color(UIColor.secondarySystemGroupedBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 24))
+                    .padding(.horizontal)
+
+                    // MARK: - ACCOUNT SECTION
+                    profileSection(title: "ACCOUNT") {
+                        NavigationLink(destination: EditProfileView()) {
+                            settingsRow(icon: "person.crop.circle", title: "Edit Profile", color: .blue)
+                        }
+                        Divider().padding(.leading, 50)
+                        NavigationLink(destination: Text("Premium")) {
+                            settingsRow(icon: "crown.fill", title: "Upgrade to Premium", color: .orange)
+                        }
                     }
-                    
-                    NavigationLink {
-                        Text("Subscription Page")
-                    } label: {
-                        Label("Upgrade to Premium", systemImage: "crown.fill")
+
+                    // MARK: - TOOLS SECTION
+                    profileSection(title: "RESUME TOOLS") {
+                        NavigationLink(destination: Text("Resumes")) {
+                            settingsRow(icon: "doc.text.fill", title: "My Resumes", color: .purple)
+                        }
+                        Divider().padding(.leading, 50)
+                        NavigationLink(destination: ATSAnalyticsView()) {
+                            settingsRow(icon: "chart.bar.xaxis", title: "ATS Analytics", color: .green)
+                        }
                     }
-                }
-                
-                // APP FEATURES
-                Section("Resume Tools") {
-                    
-                    NavigationLink {
-                        Text("Saved Resumes")
-                    } label: {
-                        Label("My Resumes", systemImage: "doc.text")
+
+                    // MARK: - SUPPORT & LEGAL
+                    profileSection(title: "SUPPORT") {
+                        NavigationLink(destination: ContactSupportView()) {
+                        settingsRow(icon: "gear", title: "Contact Support", color: .cyan)
+                        }
+                        Divider().padding(.leading, 50)
+                        NavigationLink(destination: PrivacyPolicyView()) {
+                        settingsRow(icon: "shield.lefthalf.filled", title: "Privacy Policy", color: .gray)
+                        }
                     }
-                    
-                    NavigationLink {
-                        Text("ATS Analytics")
-                    } label: {
-                        Label("ATS Analytics", systemImage: "chart.bar")
-                    }
-                }
-                
-                // SETTINGS
-                Section("Settings") {
-                    
-                    NavigationLink {
-                        SettingsView()
-                    } label: {
-                        Label("App Settings", systemImage: "gearshape")
-                    }
-                }
-                
-                // SUPPORT
-                Section("Support") {
-                    
-                    Button {
-                        print("Contact support")
-                    } label: {
-                        Label("Contact Support", systemImage: "message")
-                    }
-                    
-                    Button {
-                        print("Privacy")
-                    } label: {
-                        Label("Privacy Policy", systemImage: "lock")
-                    }
-                }
-                
-                // LOGOUT
-                Section {
-                    
+
+                    // MARK: - LOGOUT BUTTON
                     Button(role: .destructive) {
-                        Task {
-                            try? await AuthService.shared.signOut()
-                        }
+                        Task { try? await AuthService.shared.signOut() }
                     } label: {
-                        Label("Sign Out", systemImage: "rectangle.portrait.and.arrow.right")
+                        HStack {
+                            Image(systemName: "arrow.right.circle.fill")
+                            Text("Sign Out")
+                                .fontWeight(.bold)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.red.opacity(0.1))
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
+                    .padding(.horizontal)
+                    .padding(.top, 10)
+                    
+                    Text("CV Pilot v1.0.4")
+                        .font(.caption2)
+                        .foregroundStyle(.tertiary)
+                        .padding(.bottom, 20)
                 }
+                .padding(.top)
             }
-            
+            .background(Color(UIColor.systemGroupedBackground))
             .navigationTitle("Profile")
+            .task {
+                self.currentUser = AuthService.shared.currentUser
+                        }
+            .onAppear {
+                self.currentUser = AuthService.shared.currentUser
+            }
+        }
+    }
+
+    // MARK: - Helper Views to keep code clean
+    
+    private func profileSection<Content: View>(title: String, @ViewBuilder content: () -> Content) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(title)
+                .font(.caption.bold())
+                .foregroundStyle(.secondary)
+                .padding(.leading, 24)
+            
+            VStack(spacing: 0) {
+                content()
+            }
+            .background(Color(UIColor.secondarySystemGroupedBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .padding(.horizontal)
+        }
+    }
+
+    private func settingsRow(icon: String, title: String, color: Color) -> some View {
+        HStack(spacing: 15) {
+            Image(systemName: icon)
+                .font(.body.bold())
+                .foregroundStyle(color)
+                .frame(width: 32, height: 32)
+                .background(color.opacity(0.1))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+            
+            Text(title)
+                .font(.body)
+                .foregroundStyle(.primary)
+            
+            Spacer()
+            
+            Image(systemName: "chevron.right")
+                .font(.caption.bold())
+                .foregroundStyle(.tertiary)
+        }
+        .padding()
+    }
+    
+    private func settingsButton(icon: String, title: String, color: Color, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            settingsRow(icon: icon, title: title, color: color)
         }
     }
 }

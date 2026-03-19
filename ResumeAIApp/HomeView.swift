@@ -17,18 +17,21 @@ struct HomeView: View {
             
             ScrollView {
                 
-                VStack(spacing: 25) {
+                VStack(spacing: 30) {
                     
                     header
                     
                     actionCards
                     
                     recentResumes
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     
                 }
                 .padding()
             }
-            .navigationTitle("ResumeAI")
+//            .navigationTitle("CV Pilot")
+            .navigationBarTitleDisplayMode(.inline)
+            .background(Color(UIColor.systemGroupedBackground).opacity(0.5))
             
             .sheet(isPresented: $showEditor) {
                 if let vm = viewModel {
@@ -57,15 +60,17 @@ extension HomeView {
     
     private var header: some View {
         
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 4) {
             
             Text("Get More Interviews")
-                .font(.largeTitle.bold())
+                .font(.system(.largeTitle, design: .rounded).bold())
             
             Text("Tailor your resume to every job using AI")
+                .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.top, 10)
     }
 }
 
@@ -73,7 +78,7 @@ extension HomeView {
     
     private var actionCards: some View {
         
-        VStack(spacing: 16) {
+        VStack(spacing: 14) {
             
             ActionCard(
                 title: "Edit Primary CV",
@@ -109,43 +114,57 @@ extension HomeView {
     
     private var recentResumes: some View {
         
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment:.leading ,spacing: 16) {
             
             Text("Generated Resumes")
-                .font(.title2.bold())
+                .font(.title3.bold())
+                .padding(.top, 5)
             
             if let vm = viewModel {
-                
                 if vm.resumes.isEmpty {
-                    
-                    VStack(spacing: 10) {
-                        
-                        Image(systemName: "doc.text")
-                            .font(.largeTitle)
-                            .foregroundStyle(.secondary)
-                        
-                        Text("No resumes yet")
-                            .font(.headline)
-                        
-                        Text("Generate your first tailored resume.")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                    }
-                    .padding(.vertical, 20)
-                    
+                    emptyState
                 } else {
-                    
-                    ForEach(vm.resumes) { resume in
-                        ResumeCard(resume: resume)
+                    // Using LazyVStack for better performance with lists
+                    LazyVStack(spacing: 12) {
+                        ForEach(vm.resumes) { resume in
+                            ResumeCard(resume: resume)
+                        }
                     }
                 }
-                
             } else {
-                ProgressView("Loading...")
-            }
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
+                .padding()
+             
         }
     }
 }
+    private var emptyState: some View {
+            VStack(spacing: 12) {
+                Image(systemName: "doc.text.magnifyingglass")
+                    .font(.system(size: 40))
+                    .foregroundStyle(.quaternary)
+                
+                Text("No resumes yet")
+                    .font(.headline)
+                
+                Text("Generate your first tailored resume above.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 40)
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [5]))
+                    .foregroundStyle(.quaternary)
+            )
+        }
+    }
 
 #Preview {
     

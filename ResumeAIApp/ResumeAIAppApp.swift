@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import RevenueCat
 
 @main
 struct ResumeAIAppApp: App {
@@ -7,6 +8,10 @@ struct ResumeAIAppApp: App {
     @StateObject private var authManager = AuthManager()
     
     @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
+    
+//    init() {
+//            Purchases.configure(withAPIKey: "test_fQmhDabrxyXbYqUbgnOZjERQgVe")
+//        }
     
     let sharedModelContainer: ModelContainer = {
         
