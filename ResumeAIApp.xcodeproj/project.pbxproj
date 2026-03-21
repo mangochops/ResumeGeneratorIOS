@@ -58,6 +58,8 @@
 		04DF1FE62F6B859D00323B51 /* ContactSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF1FE52F6B859D00323B51 /* ContactSupport.swift */; };
 		04DF1FE82F6B860100323B51 /* PrivacyPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF1FE72F6B860100323B51 /* PrivacyPolicy.swift */; };
 		04DF1FEA2F6C224A00323B51 /* ResendEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF1FE92F6C224A00323B51 /* ResendEmail.swift */; };
+		04DF1FEC2F6EA1FB00323B51 /* Supabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF1FEB2F6EA1FB00323B51 /* Supabase.swift */; };
+		04DF1FEE2F6EA42900323B51 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF1FED2F6EA42900323B51 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +129,8 @@
 		04DF1FE52F6B859D00323B51 /* ContactSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSupport.swift; sourceTree = "<group>"; };
 		04DF1FE72F6B860100323B51 /* PrivacyPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicy.swift; sourceTree = "<group>"; };
 		04DF1FE92F6C224A00323B51 /* ResendEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendEmail.swift; sourceTree = "<group>"; };
+		04DF1FEB2F6EA1FB00323B51 /* Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supabase.swift; sourceTree = "<group>"; };
+		04DF1FED2F6EA42900323B51 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +214,8 @@
 				04D6BF532F65D51B00A066B8 /* PDFParser.swift */,
 				04A0B74E2F61852100B4CB48 /* ResumeCard.swift */,
 				04A0B7502F61856300B4CB48 /* HomeView.swift */,
+				04DF1FEB2F6EA1FB00323B51 /* Supabase.swift */,
+				04DF1FED2F6EA42900323B51 /* Models.swift */,
 				04DF1FE92F6C224A00323B51 /* ResendEmail.swift */,
 				047B6A072F646EA500DD44BD /* OnboardingItem.swift */,
 				047B6A092F646F1A00DD44BD /* OnboardingView.swift */,
@@ -434,7 +440,9 @@
 				047B6A082F646EA600DD44BD /* OnboardingItem.swift in Sources */,
 				047B69F92F631B1E00DD44BD /* ActionCard.swift in Sources */,
 				04D6BF522F65D4CE00A066B8 /* LinkedInImportView.swift in Sources */,
+				04DF1FEC2F6EA1FB00323B51 /* Supabase.swift in Sources */,
 				04A0B7552F6185FD00B4CB48 /* CoverLetterView.swift in Sources */,
+				04DF1FEE2F6EA42900323B51 /* Models.swift in Sources */,
 				04A0B7572F61864000B4CB48 /* SettingsView.swift in Sources */,
 				04A0B7532F6185A900B4CB48 /* ResumeEditorView.swift in Sources */,
 				047B69FD2F63E4AD00DD44BD /* ATSScoreView.swift in Sources */,

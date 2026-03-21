@@ -64,4 +64,19 @@ final class AuthService {
         
         try await client.auth.update(user: attributes)
     }
+    func fetchUserResumes() async throws -> [UserResume] {
+        // 1. Get the user ID from currentUser (which is optional)
+        guard let userId = client.auth.currentUser?.id else {
+            return [] // Return empty if no user is logged in
+        }
+        
+        // 2. Fetch from Supabase using the renamed UserResume model
+        return try await client
+            .from("resumes")
+            .select()
+            // We add a filter to ensure we only get the current user's resumes
+            .eq("user_id", value: userId)
+            .execute()
+            .value
+    }
 }

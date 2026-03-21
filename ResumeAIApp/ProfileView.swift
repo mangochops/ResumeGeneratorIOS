@@ -23,19 +23,25 @@ struct ProfileView: View {
                             }
                             
                             VStack(alignment: .leading, spacing: 4) {
-                                // Supabase stores the name in userMetadata
-                                let metadata = currentUser?.userMetadata
-                                    let name = metadata?["full_name"] as? String
-                                               ?? metadata?["display_name"] as? String
-                                               ?? "New User"
-                                
-                                Text(name)
-                                    .font(.title3.bold())
-                                
-                                Text(currentUser?.email ?? "example@gmail.com")
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
-                            }
+                                        // Updated to use our new Profile model logic
+                                        Text(currentUser?.userMetadata["full_name"] as? String ?? "User")
+                                            .font(.title3.bold())
+                                        
+                                        // Show Badge if User is Pro
+                                        if let isPro = currentUser?.userMetadata["is_pro"] as? Bool, isPro {
+                                            Text("PRO MEMBER")
+                                                .font(.caption2.bold())
+                                                .padding(.horizontal, 8)
+                                                .padding(.vertical, 4)
+                                                .background(Color.orange.opacity(0.2))
+                                                .foregroundStyle(.orange)
+                                                .clipShape(Capsule())
+                                        } else {
+                                            Text("\(currentUser?.userMetadata["credits"] as? Int ?? 0) Credits Remaining")
+                                                .font(.caption)
+                                                .foregroundStyle(.secondary)
+                                        }
+                                    }
                             
                             Spacer()
                         }
