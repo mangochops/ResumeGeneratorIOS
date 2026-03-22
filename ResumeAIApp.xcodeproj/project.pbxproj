@@ -28,6 +28,7 @@
 		047B6A0D2F647E7E00DD44BD /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 047B6A0C2F647E7E00DD44BD /* Auth */; };
 		047B6A0F2F647E7E00DD44BD /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 047B6A0E2F647E7E00DD44BD /* PostgREST */; };
 		047B6A112F647E7E00DD44BD /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 047B6A102F647E7E00DD44BD /* Storage */; };
+		04885DEC2F7028AB009A800A /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04885DEB2F7028AB009A800A /* ProfileViewModel.swift */; };
 		04A0B71F2F61837E00B4CB48 /* ResumeAIAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */; };
 		04A0B7212F61837E00B4CB48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7202F61837E00B4CB48 /* ContentView.swift */; };
 		04A0B7232F61838B00B4CB48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A0B7222F61838B00B4CB48 /* Assets.xcassets */; };
@@ -94,6 +95,7 @@
 		047B6A052F6412E000DD44BD /* SwiftData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftData.framework; path = System/Library/Frameworks/SwiftData.framework; sourceTree = SDKROOT; };
 		047B6A072F646EA500DD44BD /* OnboardingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingItem.swift; sourceTree = "<group>"; };
 		047B6A092F646F1A00DD44BD /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		04885DEB2F7028AB009A800A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		049012D12F69B3F7008BC58A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		04A0B71B2F61837E00B4CB48 /* ResumeAIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResumeAIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeAIAppApp.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				04D6BF552F65D8BD00A066B8 /* AIQuickTool.swift */,
 				04A0B7562F61864000B4CB48 /* SettingsView.swift */,
 				04D6BF4F2F6548C500A066B8 /* ProfileView.swift */,
+				04885DEB2F7028AB009A800A /* ProfileViewModel.swift */,
 				04DF1FE32F6B84E700323B51 /* ATSAnalytics.swift */,
 				04DF1FE52F6B859D00323B51 /* ContactSupport.swift */,
 				04DF1FE72F6B860100323B51 /* PrivacyPolicy.swift */,
@@ -429,6 +432,7 @@
 				04D6BF462F6530EE00A066B8 /* AuthService.swift in Sources */,
 				047B69EF2F63167900DD44BD /* UserCv.swift in Sources */,
 				04A0B7212F61837E00B4CB48 /* ContentView.swift in Sources */,
+				04885DEC2F7028AB009A800A /* ProfileViewModel.swift in Sources */,
 				04D6BF4A2F65339500A066B8 /* AuthManager.swift in Sources */,
 				04D6BF502F6548C500A066B8 /* ProfileView.swift in Sources */,
 				04D6BF482F65316600A066B8 /* LoginView.swift in Sources */,
@@ -545,7 +549,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -606,7 +610,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -702,7 +706,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FMB873S974;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.ke.mangochopsstudio.ResumeAIAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -723,7 +727,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FMB873S974;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.ke.mangochopsstudio.ResumeAIAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -14,9 +14,9 @@ struct Profile: Codable, Identifiable {
     var fullName: String?
     var email: String?
     var avatarUrl: String?
-    var isPro: Bool
-    var credits: Int
-    var updatedAt: Date
+    var isPro: Bool?
+    var credits: Int?
+    var updatedAt: Date?
     
     enum CodingKeys: String, CodingKey {
         case id, email, credits

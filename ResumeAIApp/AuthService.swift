@@ -41,32 +41,52 @@ final class AuthService {
     
     // MARK: - User Details Fetching
     /// If you need to fetch extra profile data from a 'profiles' table in Supabase
-    func getProfile() async throws -> UserAttributes? {
-        guard (currentUser?.id) != nil else { return nil }
+    func getProfile() async throws -> Profile? {
+        guard let userId = currentUser?.id else { return nil }
         
-        // Example: Fetching from a custom profiles table
-        // return try await client.database.from("profiles").select().eq("id", value: userId).single().execute().value
-        return nil
+        // Fetch the single profile row matching the current User ID
+        let profile: Profile = try await client
+                .from("profiles")
+                .select()
+                .eq("id", value: userId)
+                .single()
+                .execute()
+                .value
+                
+            
+            
+            
+            return profile
     }
     
     func updateUserProfile(fullName: String? = nil, password: String? = nil) async throws {
+        let currentUser = client.auth.currentUser
+        guard let userId = currentUser?.id else { return }
+
+        // 1. Update Supabase Auth (Metadata & Password)
         var attributes = UserAttributes()
-        
-        // Update Full Name in metadata
         if let fullName = fullName {
             attributes.data = ["full_name": .string(fullName)]
         }
-        
-        // Update Password if provided
         if let password = password {
             attributes.password = password
         }
         
         try await client.auth.update(user: attributes)
+        
+        // 2. Update the 'profiles' table so the ProfileView stays in sync
+        if let fullName = fullName {
+            try await client
+                .from("profiles")
+                .update(["full_name": fullName])
+                .eq("id", value: userId)
+                .execute()
+        }
     }
+    
     func fetchUserResumes() async throws -> [UserResume] {
         // 1. Get the user ID from currentUser (which is optional)
-        guard let userId = client.auth.currentUser?.id else {
+        guard let userId = currentUser?.id else {
             return [] // Return empty if no user is logged in
         }
         

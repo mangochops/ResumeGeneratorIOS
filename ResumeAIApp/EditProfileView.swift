@@ -15,6 +15,7 @@ struct EditProfileView: View {
     
     @State private var isSaving = false
     @State private var errorMessage: String?
+    @State private var showSuccessAlert = false
 
     var body: some View {
         Form {
@@ -41,7 +42,7 @@ struct EditProfileView: View {
                     Task { await updateProfile() }
                 } label: {
                     if isSaving {
-                        ProgressView()
+                        ProgressView().scaleEffect(0.8)
                     } else {
                         Text("Save Changes")
                             .frame(maxWidth: .infinity)
@@ -58,6 +59,11 @@ struct EditProfileView: View {
             }
         }
         .navigationTitle("Edit Profile")
+        .alert("Success", isPresented: $showSuccessAlert) {
+                    Button("OK") { dismiss() } // Dismiss only after they see the alert
+                } message: {
+                    Text("Your profile has been updated successfully.")
+                }
         .onAppear {
             // Load current data
             let user = AuthService.shared.currentUser
@@ -75,7 +81,7 @@ struct EditProfileView: View {
                 fullName: fullName,
                 password: newPassword.isEmpty ? nil : newPassword
             )
-            dismiss()
+            showSuccessAlert = true
         } catch {
             errorMessage = error.localizedDescription
         }

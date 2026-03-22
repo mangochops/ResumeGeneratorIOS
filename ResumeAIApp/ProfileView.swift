@@ -1,8 +1,9 @@
 import SwiftUI
 
+
 struct ProfileView: View {
     // Fetch user details from your existing AuthService
-    @State private var currentUser = AuthService.shared.currentUser
+    @StateObject private var viewModel = ProfileViewModel()
     
     var body: some View {
         NavigationStack {
@@ -24,23 +25,13 @@ struct ProfileView: View {
                             
                             VStack(alignment: .leading, spacing: 4) {
                                         // Updated to use our new Profile model logic
-                                        Text(currentUser?.userMetadata["full_name"] as? String ?? "User")
-                                            .font(.title3.bold())
+                                        Text(viewModel.profile?.fullName ?? "User")
+                                    .font(.title3.bold())
                                         
                                         // Show Badge if User is Pro
-                                        if let isPro = currentUser?.userMetadata["is_pro"] as? Bool, isPro {
-                                            Text("PRO MEMBER")
-                                                .font(.caption2.bold())
-                                                .padding(.horizontal, 8)
-                                                .padding(.vertical, 4)
-                                                .background(Color.orange.opacity(0.2))
-                                                .foregroundStyle(.orange)
-                                                .clipShape(Capsule())
-                                        } else {
-                                            Text("\(currentUser?.userMetadata["credits"] as? Int ?? 0) Credits Remaining")
-                                                .font(.caption)
-                                                .foregroundStyle(.secondary)
-                                        }
+                                Text("\(viewModel.profile?.credits ?? 0) Credits Remaining")
+                                                                    .font(.caption)
+                                                                    .foregroundStyle(.secondary)
                                     }
                             
                             Spacer()
@@ -111,11 +102,11 @@ struct ProfileView: View {
             .background(Color(UIColor.systemGroupedBackground))
             .navigationTitle("Profile")
             .task {
-                self.currentUser = AuthService.shared.currentUser
+                await viewModel.loadUserData()
                         }
-            .onAppear {
-                self.currentUser = AuthService.shared.currentUser
-            }
+//            .onAppear {
+//                await viewModel.loadUserData()
+//            }
         }
     }
 
