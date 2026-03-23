@@ -30,3 +30,33 @@ final class SupabaseManager {
         print("✅ SupabaseClient initialized successfully via hardcoded values.")
     }
 }
+
+extension SupabaseManager {
+    /// Syncs a local SwiftData Resume to Supabase
+    func syncResume(_ resume: Resume) async throws {
+        // 1. Get current user ID
+        guard let userId = client.auth.currentSession?.user.id else {
+            print("❌ No logged-in user found")
+            return
+        }
+        
+        // 2. Map local Resume to UserResume (Supabase model)
+        let cloudResume = UserResume(
+            id: resume.id,
+            userId: userId,
+            title: resume.title,
+            content: resume.content,
+            templateId: resume.templateID,
+            fileUrl: nil, // Add if you have a PDF link
+            createdAt: resume.createdAt
+        )
+        
+        // 3. Perform the Upsert
+        try await client
+            .from("resumes")
+            .upsert(cloudResume)
+            .execute()
+            
+        print("✅ Successfully synced resume: \(resume.title)")
+    }
+}

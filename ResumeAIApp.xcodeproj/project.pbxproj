@@ -11,6 +11,8 @@
 		042F299D2F66D3710023A548 /* ReceiptParser in Frameworks */ = {isa = PBXBuildFile; productRef = 042F299C2F66D3710023A548 /* ReceiptParser */; };
 		042F299F2F66D3710023A548 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 042F299E2F66D3710023A548 /* RevenueCat */; };
 		042F29A12F66D3710023A548 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 042F29A02F66D3710023A548 /* RevenueCatUI */; };
+		046F408B2F7161E0004AE45C /* TemplatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046F408A2F7161E0004AE45C /* TemplatePickerView.swift */; };
+		046F408D2F71628A004AE45C /* TemplateCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046F408C2F71628A004AE45C /* TemplateCard.swift */; };
 		047B69EF2F63167900DD44BD /* UserCv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69EE2F63167900DD44BD /* UserCv.swift */; };
 		047B69F12F6316A200DD44BD /* JobAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69F02F6316A200DD44BD /* JobAd.swift */; };
 		047B69F32F6316CB00DD44BD /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69F22F6316CB00DD44BD /* AIService.swift */; };
@@ -81,6 +83,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		046F408A2F7161E0004AE45C /* TemplatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePickerView.swift; sourceTree = "<group>"; };
+		046F408C2F71628A004AE45C /* TemplateCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCard.swift; sourceTree = "<group>"; };
 		047B69EE2F63167900DD44BD /* UserCv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCv.swift; sourceTree = "<group>"; };
 		047B69F02F6316A200DD44BD /* JobAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobAd.swift; sourceTree = "<group>"; };
 		047B69F22F6316CB00DD44BD /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
@@ -201,11 +205,13 @@
 		04A0B71D2F61837E00B4CB48 /* ResumeAIApp */ = {
 			isa = PBXGroup;
 			children = (
+				046F408C2F71628A004AE45C /* TemplateCard.swift */,
 				04DF1FE02F6ABAA100323B51 /* Info.plist */,
 				04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */,
 				04D6BF492F65339500A066B8 /* AuthManager.swift */,
 				04D6BF432F65308400A066B8 /* SupabaseManager.swift */,
 				04D6BF452F6530EE00A066B8 /* AuthService.swift */,
+				046F408A2F7161E0004AE45C /* TemplatePickerView.swift */,
 				04DF1FE12F6ADD7500323B51 /* EditProfileView.swift */,
 				04D6BF472F65316600A066B8 /* LoginView.swift */,
 				04D6BF4D2F65393000A066B8 /* SignUpView.swift */,
@@ -429,6 +435,7 @@
 				04A0B7512F61856300B4CB48 /* HomeView.swift in Sources */,
 				047B69FF2F63E52500DD44BD /* StorageService.swift in Sources */,
 				04A0B7592F61868A00B4CB48 /* PDFService.swift in Sources */,
+				046F408D2F71628A004AE45C /* TemplateCard.swift in Sources */,
 				04D6BF462F6530EE00A066B8 /* AuthService.swift in Sources */,
 				047B69EF2F63167900DD44BD /* UserCv.swift in Sources */,
 				04A0B7212F61837E00B4CB48 /* ContentView.swift in Sources */,
@@ -445,6 +452,7 @@
 				047B69F92F631B1E00DD44BD /* ActionCard.swift in Sources */,
 				04D6BF522F65D4CE00A066B8 /* LinkedInImportView.swift in Sources */,
 				04DF1FEC2F6EA1FB00323B51 /* Supabase.swift in Sources */,
+				046F408B2F7161E0004AE45C /* TemplatePickerView.swift in Sources */,
 				04A0B7552F6185FD00B4CB48 /* CoverLetterView.swift in Sources */,
 				04DF1FEE2F6EA42900323B51 /* Models.swift in Sources */,
 				04A0B7572F61864000B4CB48 /* SettingsView.swift in Sources */,

@@ -10,6 +10,8 @@ import SwiftData
 
 struct ResumeLibraryView: View {
     @State private var viewModel: ResumeViewModel?
+    @State private var showTemplatePicker = false // New state
+    
     
     @Environment(\.modelContext) private var modelContext
     
@@ -34,10 +36,17 @@ struct ResumeLibraryView: View {
             }
             .navigationTitle("My Resumes")
             .sheet(isPresented: $showEditor) {
-                            if let vm = viewModel {
-                                ResumeEditorView(viewModel: vm)
-                            }
-                        }
+                // Force the creation of a VM if it somehow stayed nil
+                ResumeEditorView(viewModel: viewModel ?? ResumeViewModel(modelContext: modelContext))
+            }
+            .sheet(isPresented: $showTemplatePicker) {
+                // Pass the existing viewModel or create a temporary one if it's still nil
+                TemplatePickerView(
+                    viewModel: viewModel ?? ResumeViewModel(modelContext: modelContext),
+                    isPresented: $showTemplatePicker,
+                    shouldOpenEditor: $showEditor
+                )
+            }
             .onAppear {
                 if viewModel == nil {
                     viewModel = ResumeViewModel(modelContext: modelContext)
@@ -77,16 +86,16 @@ extension ResumeLibraryView {
             Text("Create your first AI optimized resume")
                 .foregroundStyle(.secondary)
             
-            Button {
-                showEditor = true
-            } label: {
-                Label("Create Resume", systemImage: "plus")
-                    .padding()
-                    .frame(maxWidth: 220)
-                    .background(.blue)
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-            }
+//            Button {
+//                showTemplatePicker = true
+//            } label: {
+//                Label("Create Resume", systemImage: "plus")
+//                    .padding()
+//                    .frame(maxWidth: 220)
+//                    .background(.blue)
+//                    .foregroundColor(.white)
+//                    .clipShape(RoundedRectangle(cornerRadius: 12))
+//            }
         }
     }
     
@@ -100,7 +109,7 @@ extension ResumeLibraryView {
                 Spacer()
                 
                 Button {
-                    showEditor = true
+                    showTemplatePicker = true
                 } label: {
                     Image(systemName: "plus")
                         .font(.title2)

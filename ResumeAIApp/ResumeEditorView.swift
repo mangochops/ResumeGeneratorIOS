@@ -5,12 +5,12 @@ import SwiftData
 
 struct ResumeEditorView: View {
     @Environment(\.dismiss) var dismiss
-    @Bindable var viewModel: ResumeViewModel
+    // Change: Use var for Observable viewModels unless binding to properties
+    var viewModel: ResumeViewModel
     
-    // Ensure all state variables exist
     @State private var name = ""
     @State private var title = ""
-    @State private var content = ""
+    @State private var content: String = ""
     @State private var atsScore: Int? = nil
     @State private var atsSuggestions = ""
     
@@ -62,6 +62,25 @@ struct ResumeEditorView: View {
             ) { result in
                 handleImport(result: result)
             }
+            .onAppear {
+                if let existingResume = viewModel.selectedResume {
+                    self.name = existingResume.name
+                    self.title = existingResume.title
+                    self.atsScore = existingResume.atsScore
+                    self.atsSuggestions = existingResume.atsSuggestions ?? ""
+                    
+                    if let decodedString = String(data: existingResume.content, encoding: .utf8) {
+                        self.content = decodedString
+                    }
+                }
+            }
+            .onDisappear {
+                // If we are editing an existing resume, sync it when leaving
+                if let existingResume = viewModel.selectedResume {
+                    let contentData = content.data(using: .utf8) ?? Data()
+                    viewModel.updateResume(existingResume, newContent: contentData)
+                }
+            }
         }
     }
     
@@ -87,7 +106,6 @@ struct ResumeEditorView: View {
                     .foregroundStyle(.secondary)
             }
             
-            // Cleaned up Button Logic
             Button {
                 isImporting = true
             } label: {
@@ -197,14 +215,23 @@ struct ResumeEditorView: View {
 
     private var saveButton: some View {
         Button("Save") {
-            let resume = Resume(
-                name: name.isEmpty ? "Untitled" : name,
-                title: title,
-                content: content,
-                atsScore: atsScore,
-                atsSuggestions: atsSuggestions
-            )
-            viewModel.addResume(resume)
+            let contentData = content.data(using: .utf8) ?? Data()
+            
+            // If we are editing, update the existing one
+            if let existing = viewModel.selectedResume {
+                existing.name = name
+                existing.title = title
+                viewModel.updateResume(existing, newContent: contentData)
+            } else {
+                // Otherwise, create new
+                viewModel.addResume(
+                    name: name,
+                    title: title,
+                    content: contentData,
+                    atsScore: atsScore,
+                    atsSuggestions: atsSuggestions
+                )
+            }
             dismiss()
         }
         .disabled(content.isEmpty)
@@ -241,7 +268,6 @@ struct ResumeEditorView: View {
         }
         
         let fullText = NSMutableAttributedString()
-        
         for i in 0..<doc.pageCount {
             guard let page = doc.page(at: i),
                   let pageText = page.attributedString else { continue }
@@ -264,22 +290,4 @@ struct ResumeEditorView: View {
             errorMessage = "AI analysis failed: \(error.localizedDescription)"
         }
     }
-    
-    private func scoreColor(for score: Int) -> Color {
-        switch score {
-        case 80...100: return .green
-        case 60..<80:  return .orange
-        default:       return .red
-        }
-    }
-}
-
-#Preview {
-    let container = try! ModelContainer(for: Resume.self)
-    let context = container.mainContext
-    
-    return ResumeEditorView(
-        viewModel: ResumeViewModel(modelContext: context)
-    )
-    .modelContainer(container)
 }

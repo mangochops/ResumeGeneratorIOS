@@ -52,11 +52,8 @@ final class AuthService {
                 .single()
                 .execute()
                 .value
-                
-            
-            
-            
-            return profile
+        
+        return profile
     }
     
     func updateUserProfile(fullName: String? = nil, password: String? = nil) async throws {

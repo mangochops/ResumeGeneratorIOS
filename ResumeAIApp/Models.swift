@@ -32,7 +32,8 @@ struct UserResume: Codable, Identifiable {
     let id: UUID
     let userId: UUID
     var title: String
-    var content: [String: AnyJSON]? // Requires Supabase AnyJSON type
+    var content: Data
+    var templateId: String?
     var fileUrl: String?
     let createdAt: Date
 
@@ -40,6 +41,7 @@ struct UserResume: Codable, Identifiable {
         case id, title, content
         case userId = "user_id"
         case fileUrl = "file_url"
+        case templateId = "template_id"
         case createdAt = "created_at"
     }
 }
@@ -63,4 +65,10 @@ struct Application: Codable, Identifiable {
         case tailoredResumeUrl = "tailored_resume_url"
         case createdAt = "created_at"
     }
+}
+
+struct ResumeTemplate: Identifiable {
+    let id: String
+    let name: String
+    let image: String // This should match an image name in your Assets.xcassets
 }
