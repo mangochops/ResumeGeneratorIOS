@@ -39,7 +39,6 @@
 		04A0B73A2F61838D00B4CB48 /* ResumeAIAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7392F61838D00B4CB48 /* ResumeAIAppUITests.swift */; };
 		04A0B73C2F61838D00B4CB48 /* ResumeAIAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B73B2F61838D00B4CB48 /* ResumeAIAppUITestsLaunchTests.swift */; };
 		04A0B7492F61846F00B4CB48 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7482F61846F00B4CB48 /* MainTabView.swift */; };
-		04A0B74B2F6184CB00B4CB48 /* Resume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B74A2F6184CB00B4CB48 /* Resume.swift */; };
 		04A0B74D2F6184F300B4CB48 /* ResumeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B74C2F6184F300B4CB48 /* ResumeViewModel.swift */; };
 		04A0B74F2F61852200B4CB48 /* ResumeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B74E2F61852100B4CB48 /* ResumeCard.swift */; };
 		04A0B7512F61856300B4CB48 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7502F61856300B4CB48 /* HomeView.swift */; };
@@ -47,6 +46,7 @@
 		04A0B7552F6185FD00B4CB48 /* CoverLetterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */; };
 		04A0B7572F61864000B4CB48 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7562F61864000B4CB48 /* SettingsView.swift */; };
 		04A0B7592F61868A00B4CB48 /* PDFService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7582F61868A00B4CB48 /* PDFService.swift */; };
+		04C2C4042F77F3840006D1D5 /* Paywall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C4032F77F3840006D1D5 /* Paywall.swift */; };
 		04D6BF462F6530EE00A066B8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF452F6530EE00A066B8 /* AuthService.swift */; };
 		04D6BF482F65316600A066B8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF472F65316600A066B8 /* LoginView.swift */; };
 		04D6BF4A2F65339500A066B8 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF492F65339500A066B8 /* AuthManager.swift */; };
@@ -112,7 +112,6 @@
 		04A0B7392F61838D00B4CB48 /* ResumeAIAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeAIAppUITests.swift; sourceTree = "<group>"; };
 		04A0B73B2F61838D00B4CB48 /* ResumeAIAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeAIAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		04A0B7482F61846F00B4CB48 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		04A0B74A2F6184CB00B4CB48 /* Resume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resume.swift; sourceTree = "<group>"; };
 		04A0B74C2F6184F300B4CB48 /* ResumeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeViewModel.swift; sourceTree = "<group>"; };
 		04A0B74E2F61852100B4CB48 /* ResumeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeCard.swift; sourceTree = "<group>"; };
 		04A0B7502F61856300B4CB48 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -120,6 +119,7 @@
 		04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverLetterView.swift; sourceTree = "<group>"; };
 		04A0B7562F61864000B4CB48 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		04A0B7582F61868A00B4CB48 /* PDFService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFService.swift; sourceTree = "<group>"; };
+		04C2C4032F77F3840006D1D5 /* Paywall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paywall.swift; sourceTree = "<group>"; };
 		04D6BF432F65308400A066B8 /* SupabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseManager.swift; sourceTree = "<group>"; };
 		04D6BF452F6530EE00A066B8 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		04D6BF472F65316600A066B8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -216,12 +216,12 @@
 				04D6BF472F65316600A066B8 /* LoginView.swift */,
 				04D6BF4D2F65393000A066B8 /* SignUpView.swift */,
 				04A0B7482F61846F00B4CB48 /* MainTabView.swift */,
-				04A0B74A2F6184CB00B4CB48 /* Resume.swift */,
 				04A0B74C2F6184F300B4CB48 /* ResumeViewModel.swift */,
 				04D6BF512F65D4CE00A066B8 /* LinkedInImportView.swift */,
 				04D6BF532F65D51B00A066B8 /* PDFParser.swift */,
 				04A0B74E2F61852100B4CB48 /* ResumeCard.swift */,
 				04A0B7502F61856300B4CB48 /* HomeView.swift */,
+				04C2C4032F77F3840006D1D5 /* Paywall.swift */,
 				04DF1FEB2F6EA1FB00323B51 /* Supabase.swift */,
 				04DF1FED2F6EA42900323B51 /* Models.swift */,
 				04DF1FE92F6C224A00323B51 /* ResendEmail.swift */,
@@ -427,7 +427,6 @@
 				047B69F12F6316A200DD44BD /* JobAd.swift in Sources */,
 				047B69F52F63170200DD44BD /* UploadJobAdView.swift in Sources */,
 				04DF1FE62F6B859D00323B51 /* ContactSupport.swift in Sources */,
-				04A0B74B2F6184CB00B4CB48 /* Resume.swift in Sources */,
 				04DF1FEA2F6C224A00323B51 /* ResendEmail.swift in Sources */,
 				04DF1FE22F6ADD7500323B51 /* EditProfileView.swift in Sources */,
 				047B69F72F6317B800DD44BD /* TailoredResumeView.swift in Sources */,
@@ -459,6 +458,7 @@
 				04A0B7532F6185A900B4CB48 /* ResumeEditorView.swift in Sources */,
 				047B69FD2F63E4AD00DD44BD /* ATSScoreView.swift in Sources */,
 				04DF1FE82F6B860100323B51 /* PrivacyPolicy.swift in Sources */,
+				04C2C4042F77F3840006D1D5 /* Paywall.swift in Sources */,
 				04D6BF542F65D51B00A066B8 /* PDFParser.swift in Sources */,
 				04A0B71F2F61837E00B4CB48 /* ResumeAIAppApp.swift in Sources */,
 				04D6BF4E2F65393000A066B8 /* SignUpView.swift in Sources */,

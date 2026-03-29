@@ -41,7 +41,7 @@ struct ResumeCard: View {
                         .font(.caption2)
                         .foregroundColor(.secondary)
                     
-                    if resume.userID != nil {
+                    if resume.userId != nil {
                         Image(systemName: "icloud.fill")
                             .font(.caption2)
                             .foregroundColor(.blue)

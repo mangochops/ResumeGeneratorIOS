@@ -17,27 +17,25 @@ class ResumeViewModel {
     
     /// Creates a new resume from raw components and syncs to cloud
     func addResume(
-        name: String,
-        title: String,
-        content: Data,
-        atsScore: Int? = nil,
-        atsSuggestions: String? = nil
-    ) {
-        // Get the current logged-in user ID to ensure RLS compliance
-        let currentUserID = SupabaseManager.shared.client.auth.currentSession?.user.id
-        
-        let resume = Resume(
-            userID: currentUserID,
-            name: name,
-            title: title,
-            content: content,
-            atsScore: atsScore,
-            atsSuggestions: atsSuggestions,
-            templateID: selectedTemplateID
-        )
-        
-        insertAndSync(resume)
-    }
+            title: String,
+            content: Data
+        ) {
+            // 1. Properly unwrap the optional UUID from Supabase
+            guard let currentUserID = SupabaseManager.shared.client.auth.currentSession?.user.id else {
+                print("No user logged in")
+                return
+            }
+            
+            // 2. Use the exact property names from your Models.swift
+            let resume = Resume(
+                userId: currentUserID, // Matches 'userId' in Models.swift
+                title: title,          // Matches 'title' in Models.swift
+                content: content,
+                templateId: selectedTemplateID
+            )
+            
+            insertAndSync(resume)
+        }
     
     /// Adds an existing Resume instance to local storage and syncs to cloud
     func addResume(_ resume: Resume) {
@@ -76,7 +74,7 @@ class ResumeViewModel {
         Task {
             do {
                 try await SupabaseManager.shared.syncResume(resume)
-                print("Sync successful for: \(resume.name)")
+                print("Sync successful for: \(resume.title)")
             } catch {
                 print("Cloud sync failed: \(error.localizedDescription)")
             }

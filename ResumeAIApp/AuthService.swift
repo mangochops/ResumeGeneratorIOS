@@ -81,7 +81,7 @@ final class AuthService {
         }
     }
     
-    func fetchUserResumes() async throws -> [UserResume] {
+    func fetchUserResumes() async throws -> [Resume] {
         // 1. Get the user ID from currentUser (which is optional)
         guard let userId = currentUser?.id else {
             return [] // Return empty if no user is logged in

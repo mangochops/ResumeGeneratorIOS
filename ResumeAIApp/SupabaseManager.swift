@@ -41,12 +41,13 @@ extension SupabaseManager {
         }
         
         // 2. Map local Resume to UserResume (Supabase model)
-        let cloudResume = UserResume(
+        let cloudResume = Resume(
             id: resume.id,
             userId: userId,
             title: resume.title,
+            name: resume.name,
             content: resume.content,
-            templateId: resume.templateID,
+            templateId: resume.templateId,
             fileUrl: nil, // Add if you have a PDF link
             createdAt: resume.createdAt
         )

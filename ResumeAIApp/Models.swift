@@ -7,6 +7,7 @@
 
 import Foundation
 import Supabase
+import SwiftData
 
 // Matches public.profiles
 struct Profile: Codable, Identifiable {
@@ -27,22 +28,31 @@ struct Profile: Codable, Identifiable {
     }
 }
 
-// Matches public.resumes
-struct UserResume: Codable, Identifiable {
-    let id: UUID
-    let userId: UUID
+
+@Model
+final class Resume {
+    @Attribute(.unique) var id: UUID
+    var userId: UUID
     var title: String
+    var name: String
     var content: Data
     var templateId: String?
     var fileUrl: String?
-    let createdAt: Date
+    var createdAt: Date
+    var atsScore: Int?         // Added to match ViewModel
+    var atsSuggestions: String? // Added to match ViewModel
 
-    enum CodingKeys: String, CodingKey {
-        case id, title, content
-        case userId = "user_id"
-        case fileUrl = "file_url"
-        case templateId = "template_id"
-        case createdAt = "created_at"
+    init(id: UUID = UUID(), userId: UUID, title: String, name: String, content: Data, templateId: String? = nil, fileUrl: String? = nil,atsScore: Int? = nil, atsSuggestions: String? = nil, createdAt: Date = Date()) {
+        self.id = id
+        self.userId = userId
+        self.title = title
+        self.name = name
+        self.content = content
+        self.templateId = templateId
+        self.fileUrl = fileUrl
+        self.createdAt = createdAt
+        self.atsScore = atsScore
+        self.atsSuggestions = atsSuggestions
     }
 }
 
