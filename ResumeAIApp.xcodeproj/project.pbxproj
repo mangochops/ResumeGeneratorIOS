@@ -63,6 +63,12 @@
 		04DF1FEA2F6C224A00323B51 /* ResendEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF1FE92F6C224A00323B51 /* ResendEmail.swift */; };
 		04DF1FEC2F6EA1FB00323B51 /* Supabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF1FEB2F6EA1FB00323B51 /* Supabase.swift */; };
 		04DF1FEE2F6EA42900323B51 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF1FED2F6EA42900323B51 /* Models.swift */; };
+		04E318782FA21CE10009EFAC /* UIViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E318772FA21CE10009EFAC /* UIViewRepresentable.swift */; };
+		04E3187C2FA228490009EFAC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 04E3187B2FA228490009EFAC /* Lottie */; };
+		04E318812FA22A620009EFAC /* pilot.json in Resources */ = {isa = PBXBuildFile; fileRef = 04E3187D2FA22A610009EFAC /* pilot.json */; };
+		04E318822FA22A620009EFAC /* analyze.json in Resources */ = {isa = PBXBuildFile; fileRef = 04E3187E2FA22A610009EFAC /* analyze.json */; };
+		04E318832FA22A620009EFAC /* interview.json in Resources */ = {isa = PBXBuildFile; fileRef = 04E3187F2FA22A620009EFAC /* interview.json */; };
+		04E318842FA22A620009EFAC /* ai.json in Resources */ = {isa = PBXBuildFile; fileRef = 04E318802FA22A620009EFAC /* ai.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +143,11 @@
 		04DF1FE92F6C224A00323B51 /* ResendEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendEmail.swift; sourceTree = "<group>"; };
 		04DF1FEB2F6EA1FB00323B51 /* Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supabase.swift; sourceTree = "<group>"; };
 		04DF1FED2F6EA42900323B51 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		04E318772FA21CE10009EFAC /* UIViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRepresentable.swift; sourceTree = "<group>"; };
+		04E3187D2FA22A610009EFAC /* pilot.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pilot.json; sourceTree = "<group>"; };
+		04E3187E2FA22A610009EFAC /* analyze.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = analyze.json; sourceTree = "<group>"; };
+		04E3187F2FA22A620009EFAC /* interview.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = interview.json; sourceTree = "<group>"; };
+		04E318802FA22A620009EFAC /* ai.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ai.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +157,7 @@
 			files = (
 				042F299D2F66D3710023A548 /* ReceiptParser in Frameworks */,
 				04D6BF4C2F6536FB00A066B8 /* Supabase in Frameworks */,
+				04E3187C2FA228490009EFAC /* Lottie in Frameworks */,
 				042F299F2F66D3710023A548 /* RevenueCat in Frameworks */,
 				047B6A112F647E7E00DD44BD /* Storage in Frameworks */,
 				042F29A12F66D3710023A548 /* RevenueCatUI in Frameworks */,
@@ -172,12 +184,188 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		042DEDE72F977C0200EB4260 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				048A5C032FA0C5E900E64352 /* Onboarding */,
+				048A5C022FA0C5D400E64352 /* Components */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		042DEDE82F977C0E00EB4260 /* Authenticaton */ = {
+			isa = PBXGroup;
+			children = (
+				04D6BF472F65316600A066B8 /* LoginView.swift */,
+				04D6BF4D2F65393000A066B8 /* SignUpView.swift */,
+			);
+			path = Authenticaton;
+			sourceTree = "<group>";
+		};
+		042DEDE92F977C2100EB4260 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		042DEDEA2F977C2A00EB4260 /* res */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		042DEDEB2F977C3A00EB4260 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				047B69FA2F63E47100DD44BD /* ATSService.swift */,
+				04A0B7582F61868A00B4CB48 /* PDFService.swift */,
+				047B69FE2F63E52500DD44BD /* StorageService.swift */,
+				04D6BF532F65D51B00A066B8 /* PDFParser.swift */,
+				04D6BF492F65339500A066B8 /* AuthManager.swift */,
+				04D6BF432F65308400A066B8 /* SupabaseManager.swift */,
+				04D6BF452F6530EE00A066B8 /* AuthService.swift */,
+				047B69F22F6316CB00DD44BD /* AIService.swift */,
+				04DF1FE92F6C224A00323B51 /* ResendEmail.swift */,
+				04DF1FEB2F6EA1FB00323B51 /* Supabase.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		042DEDEC2F977C4900EB4260 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				047B69EE2F63167900DD44BD /* UserCv.swift */,
+				047B6A072F646EA500DD44BD /* OnboardingItem.swift */,
+				04DF1FED2F6EA42900323B51 /* Models.swift */,
+				047B69F02F6316A200DD44BD /* JobAd.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		042DEDED2F977C5900EB4260 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				048A5C072FA0C7B200E64352 /* Profile */,
+				048A5C062FA0C7A300E64352 /* Coverletter */,
+				048A5C052FA0C79700E64352 /* Resume */,
+				048A5C042FA0C62400E64352 /* Home */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		042DEDEE2F977C6900EB4260 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */,
+				04A0B7482F61846F00B4CB48 /* MainTabView.swift */,
+				04A0B7202F61837E00B4CB48 /* ContentView.swift */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
 		047B6A042F6412DF00DD44BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				047B6A052F6412E000DD44BD /* SwiftData.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		048A5C022FA0C5D400E64352 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				04D6BF552F65D8BD00A066B8 /* AIQuickTool.swift */,
+				047B69F42F63170200DD44BD /* UploadJobAdView.swift */,
+				046F408A2F7161E0004AE45C /* TemplatePickerView.swift */,
+				047B69F82F631B1E00DD44BD /* ActionCard.swift */,
+				04A0B74E2F61852100B4CB48 /* ResumeCard.swift */,
+				04D6BF512F65D4CE00A066B8 /* LinkedInImportView.swift */,
+				047B69FC2F63E4AD00DD44BD /* ATSScoreView.swift */,
+				04E318772FA21CE10009EFAC /* UIViewRepresentable.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		048A5C032FA0C5E900E64352 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				047B6A092F646F1A00DD44BD /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		048A5C042FA0C62400E64352 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				04A0B7502F61856300B4CB48 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		048A5C052FA0C79700E64352 /* Resume */ = {
+			isa = PBXGroup;
+			children = (
+				04A0B74C2F6184F300B4CB48 /* ResumeViewModel.swift */,
+				04A0B7522F6185A900B4CB48 /* ResumeEditorView.swift */,
+				047B69F62F6317B800DD44BD /* TailoredResumeView.swift */,
+				047B6A002F63E56700DD44BD /* ResumeLibrary.swift */,
+			);
+			path = Resume;
+			sourceTree = "<group>";
+		};
+		048A5C062FA0C7A300E64352 /* Coverletter */ = {
+			isa = PBXGroup;
+			children = (
+				04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */,
+			);
+			path = Coverletter;
+			sourceTree = "<group>";
+		};
+		048A5C072FA0C7B200E64352 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				048A5C0B2FA0C91900E64352 /* Terms&Conditions */,
+				048A5C0A2FA0C90200E64352 /* Privacy */,
+				048A5C092FA0C8C900E64352 /* Settings */,
+				048A5C082FA0C8BC00E64352 /* Contact */,
+				04DF1FE12F6ADD7500323B51 /* EditProfileView.swift */,
+				04D6BF4F2F6548C500A066B8 /* ProfileView.swift */,
+				04885DEB2F7028AB009A800A /* ProfileViewModel.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		048A5C082FA0C8BC00E64352 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				04DF1FE52F6B859D00323B51 /* ContactSupport.swift */,
+			);
+			path = Contact;
+			sourceTree = "<group>";
+		};
+		048A5C092FA0C8C900E64352 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				04A0B7562F61864000B4CB48 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		048A5C0A2FA0C90200E64352 /* Privacy */ = {
+			isa = PBXGroup;
+			children = (
+				04DF1FE72F6B860100323B51 /* PrivacyPolicy.swift */,
+			);
+			path = Privacy;
+			sourceTree = "<group>";
+		};
+		048A5C0B2FA0C91900E64352 /* Terms&Conditions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Terms&Conditions";
 			sourceTree = "<group>";
 		};
 		04A0B7122F61837D00B4CB48 = {
@@ -205,50 +393,23 @@
 		04A0B71D2F61837E00B4CB48 /* ResumeAIApp */ = {
 			isa = PBXGroup;
 			children = (
+				042DEDEE2F977C6900EB4260 /* app */,
+				042DEDED2F977C5900EB4260 /* Features */,
+				042DEDEC2F977C4900EB4260 /* Models */,
+				042DEDEB2F977C3A00EB4260 /* Services */,
+				042DEDEA2F977C2A00EB4260 /* res */,
+				042DEDE92F977C2100EB4260 /* Helpers */,
+				042DEDE82F977C0E00EB4260 /* Authenticaton */,
+				042DEDE72F977C0200EB4260 /* ui */,
 				046F408C2F71628A004AE45C /* TemplateCard.swift */,
 				04DF1FE02F6ABAA100323B51 /* Info.plist */,
-				04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */,
-				04D6BF492F65339500A066B8 /* AuthManager.swift */,
-				04D6BF432F65308400A066B8 /* SupabaseManager.swift */,
-				04D6BF452F6530EE00A066B8 /* AuthService.swift */,
-				046F408A2F7161E0004AE45C /* TemplatePickerView.swift */,
-				04DF1FE12F6ADD7500323B51 /* EditProfileView.swift */,
-				04D6BF472F65316600A066B8 /* LoginView.swift */,
-				04D6BF4D2F65393000A066B8 /* SignUpView.swift */,
-				04A0B7482F61846F00B4CB48 /* MainTabView.swift */,
-				04A0B74C2F6184F300B4CB48 /* ResumeViewModel.swift */,
-				04D6BF512F65D4CE00A066B8 /* LinkedInImportView.swift */,
-				04D6BF532F65D51B00A066B8 /* PDFParser.swift */,
-				04A0B74E2F61852100B4CB48 /* ResumeCard.swift */,
-				04A0B7502F61856300B4CB48 /* HomeView.swift */,
 				04C2C4032F77F3840006D1D5 /* Paywall.swift */,
-				04DF1FEB2F6EA1FB00323B51 /* Supabase.swift */,
-				04DF1FED2F6EA42900323B51 /* Models.swift */,
-				04DF1FE92F6C224A00323B51 /* ResendEmail.swift */,
-				047B6A072F646EA500DD44BD /* OnboardingItem.swift */,
-				047B6A092F646F1A00DD44BD /* OnboardingView.swift */,
-				047B69EE2F63167900DD44BD /* UserCv.swift */,
-				047B69F02F6316A200DD44BD /* JobAd.swift */,
-				047B69F22F6316CB00DD44BD /* AIService.swift */,
-				047B69F82F631B1E00DD44BD /* ActionCard.swift */,
-				047B69F42F63170200DD44BD /* UploadJobAdView.swift */,
-				047B69F62F6317B800DD44BD /* TailoredResumeView.swift */,
-				04A0B7522F6185A900B4CB48 /* ResumeEditorView.swift */,
-				04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */,
-				04D6BF552F65D8BD00A066B8 /* AIQuickTool.swift */,
-				04A0B7562F61864000B4CB48 /* SettingsView.swift */,
-				04D6BF4F2F6548C500A066B8 /* ProfileView.swift */,
-				04885DEB2F7028AB009A800A /* ProfileViewModel.swift */,
 				04DF1FE32F6B84E700323B51 /* ATSAnalytics.swift */,
-				04DF1FE52F6B859D00323B51 /* ContactSupport.swift */,
-				04DF1FE72F6B860100323B51 /* PrivacyPolicy.swift */,
-				04A0B7582F61868A00B4CB48 /* PDFService.swift */,
-				04A0B7202F61837E00B4CB48 /* ContentView.swift */,
 				047B6A022F63E6AC00DD44BD /* Launch Screen.storyboard */,
-				047B69FA2F63E47100DD44BD /* ATSService.swift */,
-				047B69FC2F63E4AD00DD44BD /* ATSScoreView.swift */,
-				047B69FE2F63E52500DD44BD /* StorageService.swift */,
-				047B6A002F63E56700DD44BD /* ResumeLibrary.swift */,
+				04E318802FA22A620009EFAC /* ai.json */,
+				04E3187E2FA22A610009EFAC /* analyze.json */,
+				04E3187F2FA22A620009EFAC /* interview.json */,
+				04E3187D2FA22A610009EFAC /* pilot.json */,
 				04A0B7222F61838B00B4CB48 /* Assets.xcassets */,
 				04A0B7242F61838B00B4CB48 /* Preview Content */,
 			);
@@ -304,6 +465,7 @@
 				042F299C2F66D3710023A548 /* ReceiptParser */,
 				042F299E2F66D3710023A548 /* RevenueCat */,
 				042F29A02F66D3710023A548 /* RevenueCatUI */,
+				04E3187B2FA228490009EFAC /* Lottie */,
 			);
 			productName = ResumeAIApp;
 			productReference = 04A0B71B2F61837E00B4CB48 /* ResumeAIApp.app */;
@@ -380,6 +542,7 @@
 			packageReferences = (
 				047B6A0B2F647E7E00DD44BD /* XCRemoteSwiftPackageReference "supabase-swift" */,
 				042F299B2F66D3710023A548 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+				04E3187A2FA228490009EFAC /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 04A0B71C2F61837E00B4CB48 /* Products */;
 			projectDirPath = "";
@@ -398,7 +561,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				047B6A032F63E6AC00DD44BD /* Launch Screen.storyboard in Resources */,
+				04E318832FA22A620009EFAC /* interview.json in Resources */,
+				04E318822FA22A620009EFAC /* analyze.json in Resources */,
 				04A0B7262F61838B00B4CB48 /* Preview Assets.xcassets in Resources */,
+				04E318812FA22A620009EFAC /* pilot.json in Resources */,
+				04E318842FA22A620009EFAC /* ai.json in Resources */,
 				04A0B7232F61838B00B4CB48 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +604,7 @@
 				046F408D2F71628A004AE45C /* TemplateCard.swift in Sources */,
 				04D6BF462F6530EE00A066B8 /* AuthService.swift in Sources */,
 				047B69EF2F63167900DD44BD /* UserCv.swift in Sources */,
+				04E318782FA21CE10009EFAC /* UIViewRepresentable.swift in Sources */,
 				04A0B7212F61837E00B4CB48 /* ContentView.swift in Sources */,
 				04885DEC2F7028AB009A800A /* ProfileViewModel.swift in Sources */,
 				04D6BF4A2F65339500A066B8 /* AuthManager.swift in Sources */,
@@ -644,7 +812,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ResumeAIApp/Info.plist;
 				"INFOPLIST_FILE[sdk=*]" = "";
-				INFOPLIST_KEY_CFBundleDisplayName = ResumeAI;
+				INFOPLIST_KEY_CFBundleDisplayName = "CV Pilot";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -681,7 +849,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ResumeAIApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ResumeAI;
+				INFOPLIST_KEY_CFBundleDisplayName = "CV Pilot";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -842,6 +1010,14 @@
 				minimumVersion = 2.5.1;
 			};
 		};
+		04E3187A2FA228490009EFAC /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -879,6 +1055,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 047B6A0B2F647E7E00DD44BD /* XCRemoteSwiftPackageReference "supabase-swift" */;
 			productName = Supabase;
+		};
+		04E3187B2FA228490009EFAC /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04E3187A2FA228490009EFAC /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

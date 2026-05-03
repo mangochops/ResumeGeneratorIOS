@@ -95,11 +95,13 @@ struct ResumeCard: View {
     
     // 2. Create a sample resume with dummy Data
     let sampleData = "Experience: Senior iOS Developer at Apple...".data(using: .utf8)!
+    
     let sampleResume = Resume(
-        userID: UUID(),
-        name: "Software_Engineer_CV.pdf",
+        id: UUID(),
+        userId: UUID(), // Error 1 fix: Must be a UUID, not a String
         title: "Senior iOS Developer",
-        content: sampleData
+        name: "Software_Engineer_CV.pdf", // Error 2 fix: Name is a String
+        content: sampleData // Error 2 fix: Content is the Data object
     )
     
     // 3. Return the card wrapped in a list for context

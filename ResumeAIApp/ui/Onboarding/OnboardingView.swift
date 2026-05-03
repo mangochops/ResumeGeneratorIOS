@@ -13,19 +13,19 @@ struct OnboardingView: View {
     
     let pages: [OnboardingItem] = [
         OnboardingItem(
-            image: ".onboarding1",
+            lottieFile: "analyze",
             title: "Analyze Your Resume",
             description: "Upload your resume and let AI analyze ATS compatibility instantly."
         ),
         
         OnboardingItem(
-            image: "brain.head.profile",
+            lottieFile: "ai",
             title: "AI Improvements",
             description: "Get smart suggestions and missing keywords for your dream job."
         ),
         
         OnboardingItem(
-            image: "checkmark.seal.fill",
+            lottieFile: "interview",
             title: "Land More Interviews",
             description: "Create optimized resumes that pass recruiter screening systems."
         )
@@ -41,9 +41,8 @@ struct OnboardingView: View {
                     
                     VStack(spacing: 30) {
                         
-                        Image(systemName: pages[index].image)
-                            .font(.system(size: 90))
-                            .foregroundStyle(.tint)
+                        LottieView(name: pages[index].lottieFile)
+                            .frame(width: 300, height: 300)
                         
                         Text(pages[index].title)
                             .font(.title.bold())
@@ -62,7 +61,13 @@ struct OnboardingView: View {
             Spacer()
             
             Button(action: {
-                finishOnboarding()
+                if currentPage < pages.count - 1 {
+                    withAnimation {
+                        currentPage += 1
+                    }
+                } else {
+                    finishOnboarding()
+                }
             }) {
                 Text(currentPage == pages.count - 1 ? "Get Started" : "Skip")
                     .font(.headline)

@@ -7,9 +7,8 @@
 
 import Foundation
 
-struct OnboardingItem: Identifiable {
-    let id = UUID()
-    let image: String
+struct OnboardingItem {
+    let lottieFile: String // The name of your JSON file (without .json)
     let title: String
     let description: String
 }

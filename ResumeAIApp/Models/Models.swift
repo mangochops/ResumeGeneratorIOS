@@ -30,7 +30,7 @@ struct Profile: Codable, Identifiable {
 
 
 @Model
-final class Resume {
+final class Resume: Codable {
     @Attribute(.unique) var id: UUID
     var userId: UUID
     var title: String
@@ -42,6 +42,16 @@ final class Resume {
     var atsScore: Int?         // Added to match ViewModel
     var atsSuggestions: String? // Added to match ViewModel
 
+    enum CodingKeys: String, CodingKey {
+            case id, title, name, content
+            case userId = "user_id"
+            case templateId = "template_id"
+            case fileUrl = "file_url"
+            case createdAt = "created_at"
+            case atsScore = "ats_score"
+            case atsSuggestions = "ats_suggestions"
+        }
+    
     init(id: UUID = UUID(), userId: UUID, title: String, name: String, content: Data, templateId: String? = nil, fileUrl: String? = nil,atsScore: Int? = nil, atsSuggestions: String? = nil, createdAt: Date = Date()) {
         self.id = id
         self.userId = userId
@@ -54,6 +64,36 @@ final class Resume {
         self.atsScore = atsScore
         self.atsSuggestions = atsSuggestions
     }
+    
+    // MARK: - Decodable implementation
+        required init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.id = try container.decode(UUID.self, forKey: .id)
+            self.userId = try container.decode(UUID.self, forKey: .userId)
+            self.title = try container.decode(String.self, forKey: .title)
+            self.name = try container.decode(String.self, forKey: .name)
+            self.content = try container.decode(Data.self, forKey: .content)
+            self.templateId = try container.decodeIfPresent(String.self, forKey: .templateId)
+            self.fileUrl = try container.decodeIfPresent(String.self, forKey: .fileUrl)
+            self.createdAt = try container.decode(Date.self, forKey: .createdAt)
+            self.atsScore = try container.decodeIfPresent(Int.self, forKey: .atsScore)
+            self.atsSuggestions = try container.decodeIfPresent(String.self, forKey: .atsSuggestions)
+        }
+
+        // MARK: - Encodable implementation
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(id, forKey: .id)
+            try container.encode(userId, forKey: .userId)
+            try container.encode(title, forKey: .title)
+            try container.encode(name, forKey: .name)
+            try container.encode(content, forKey: .content)
+            try container.encode(templateId, forKey: .templateId)
+            try container.encode(fileUrl, forKey: .fileUrl)
+            try container.encode(createdAt, forKey: .createdAt)
+            try container.encode(atsScore, forKey: .atsScore)
+            try container.encode(atsSuggestions, forKey: .atsSuggestions)
+        }
 }
 
 // Matches public.applications

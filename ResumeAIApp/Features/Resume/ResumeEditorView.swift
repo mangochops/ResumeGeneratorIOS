@@ -129,32 +129,32 @@ struct ResumeEditorView: View {
     }
     
     private var fileHeader: some View {
-        HStack {
-            Image(systemName: "doc.text.fill")
-                .font(.title2)
-                .foregroundStyle(Color.blue)
-            
-            VStack(alignment: .leading) {
-                TextField("Resume Name", text: $name)
-                    .font(.headline)
-                Text("Imported from PDF")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+            HStack {
+                Image(systemName: "doc.text.fill")
+                    .font(.title2)
+                    .foregroundStyle(Color.blue)
+                
+                VStack(alignment: .leading) {
+                    TextField("Resume Name", text: $name)
+                        .font(.headline)
+                    Text("Imported from PDF")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                
+                Spacer()
+                
+                // Explicitly use action/label here to prevent compiler confusion
+                Button(action: { isImporting = true }) {
+                    Text("Replace")
+                        .font(.caption.bold())
+                }
+                .buttonStyle(.bordered)
             }
-            
-            Spacer()
-            
-            Button("Replace") {
-                isImporting = true
-            }
-            .font(.caption.bold())
-            .buttonStyle(.bordered)
+            .padding()
+            .background(Color(UIColor.secondarySystemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 12))
         }
-        .padding()
-        .background(Color(UIColor.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-    }
-    
     private var contentEditor: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Verify Parsed Content")
@@ -171,27 +171,45 @@ struct ResumeEditorView: View {
     }
     
     private var aiInsightsView: some View {
-        VStack(spacing: 20) {
-            if let score = atsScore {
-                atsResultSection(score: score)
-            } else {
-                VStack(spacing: 16) {
-                    Image(systemName: "sparkles")
-                        .font(.largeTitle)
-                        .foregroundStyle(Color.purple)
-                    Text("No AI Analysis yet")
-                        .font(.headline)
-                    Button("Analyze ATS Compatibility") {
-                        Task { await analyzeATS() }
+            VStack(spacing: 20) {
+                if let score = atsScore {
+                    atsResultSection(score: score)
+                } else {
+                    VStack(spacing: 16) {
+                        Image(systemName: "sparkles")
+                            .font(.largeTitle)
+                            .foregroundStyle(Color.purple)
+                        
+                        Text("No AI Analysis yet")
+                            .font(.headline)
+                        
+                        // FIXED: Using explicit action and label closure
+                        Button(action: {
+                            Task {
+                                await analyzeATS()
+                            }
+                        }) {
+                            HStack {
+                                if isAnalyzing {
+                                    ProgressView()
+                                        .tint(.white)
+                                        .padding(.trailing, 8)
+                                }
+                                Text(isAnalyzing ? "Analyzing..." : "Analyze ATS Compatibility")
+                            }
+                            .font(.headline)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.purple)
+                        .disabled(isAnalyzing)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.purple)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 40)
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 40)
             }
         }
-    }
 
     private func atsResultSection(score: Int) -> some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -214,25 +232,27 @@ struct ResumeEditorView: View {
     }
 
     private var saveButton: some View {
-        Button("Save") {
+        Button(action: {
+            // All logic must go inside this action closure
             let contentData = content.data(using: .utf8) ?? Data()
             
-            // If we are editing, update the existing one
             if let existing = viewModel.selectedResume {
                 existing.name = name
                 existing.title = title
                 viewModel.updateResume(existing, newContent: contentData)
             } else {
-                // Otherwise, create new
                 viewModel.addResume(
-                    name: name,
                     title: title,
-                    content: contentData,
-                    atsScore: atsScore,
-                    atsSuggestions: atsSuggestions
+                    name: name,
+                    content: contentData
+//                    atsScore: atsScore,
+//                    atsSuggestions: atsSuggestions
                 )
             }
             dismiss()
+        }) {
+            // This is the label
+            Text("Save")
         }
         .disabled(content.isEmpty)
     }

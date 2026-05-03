@@ -18,7 +18,9 @@ class ResumeViewModel {
     /// Creates a new resume from raw components and syncs to cloud
     func addResume(
             title: String,
+            name: String,
             content: Data
+            
         ) {
             // 1. Properly unwrap the optional UUID from Supabase
             guard let currentUserID = SupabaseManager.shared.client.auth.currentSession?.user.id else {
@@ -30,7 +32,11 @@ class ResumeViewModel {
             let resume = Resume(
                 userId: currentUserID, // Matches 'userId' in Models.swift
                 title: title,          // Matches 'title' in Models.swift
+                name: name,
                 content: content,
+                
+                
+                
                 templateId: selectedTemplateID
             )
             
