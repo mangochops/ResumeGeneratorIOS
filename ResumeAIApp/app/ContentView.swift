@@ -21,7 +21,7 @@ struct ContentView: View {
             ResumeLibraryView()
                 .tabItem {
                     Image(systemName: "folder.fill")
-                    Text("Resumes")
+                    Text("Files")
                 }
             
             CoverLetterView()

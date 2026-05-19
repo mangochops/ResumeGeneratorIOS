@@ -16,7 +16,7 @@ struct MainTabView: View {
             HomeView()
                 .tabItem {
                     Image(systemName: "doc.text.fill")
-                    Text("Resumes")
+                    Text("Files")
                 }
             
             CoverLetterView()
