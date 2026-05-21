@@ -63,6 +63,12 @@ class ResumeViewModel {
         // Note: You may want to add logic here to delete from Supabase as well
     }
     
+    func deleteCoverLetter(_ letter: CoverLetter) {
+            modelContext.delete(letter)
+            try? modelContext.save()
+            // Optional cloud deletion can go here
+        }
+    
     // MARK: - Private Helpers
     
     private func insertAndSync(_ resume: Resume) {

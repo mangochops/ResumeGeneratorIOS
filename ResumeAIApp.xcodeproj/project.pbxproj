@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0407FEDD2FBC723D001B503A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407FEDC2FBC723D001B503A /* HomeViewModel.swift */; };
+		0407FEDF2FBC7339001B503A /* CompactResumeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407FEDE2FBC7339001B503A /* CompactResumeCard.swift */; };
+		0407FEE12FBC736E001B503A /* CompactCoverLetterCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407FEE02FBC736E001B503A /* CompactCoverLetterCard.swift */; };
+		0407FEE32FBC73B7001B503A /* CompactResumeSkeletonCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407FEE22FBC73B7001B503A /* CompactResumeSkeletonCard.swift */; };
+		0407FEE52FBC73DC001B503A /* CompactCoverLetterSkeletonCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407FEE42FBC73DC001B503A /* CompactCoverLetterSkeletonCard.swift */; };
+		0407FEE72FBC76FC001B503A /* CoverLetterSheetContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407FEE62FBC76FC001B503A /* CoverLetterSheetContent.swift */; };
+		0407FEE92FBC776A001B503A /* RevenueCatPaywallOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407FEE82FBC776A001B503A /* RevenueCatPaywallOverlay.swift */; };
 		04144CEC2F6962D000A47000 /* SupabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF432F65308400A066B8 /* SupabaseManager.swift */; };
 		042F299D2F66D3710023A548 /* ReceiptParser in Frameworks */ = {isa = PBXBuildFile; productRef = 042F299C2F66D3710023A548 /* ReceiptParser */; };
 		042F299F2F66D3710023A548 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 042F299E2F66D3710023A548 /* RevenueCat */; };
@@ -89,6 +96,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0407FEDC2FBC723D001B503A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		0407FEDE2FBC7339001B503A /* CompactResumeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactResumeCard.swift; sourceTree = "<group>"; };
+		0407FEE02FBC736E001B503A /* CompactCoverLetterCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactCoverLetterCard.swift; sourceTree = "<group>"; };
+		0407FEE22FBC73B7001B503A /* CompactResumeSkeletonCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactResumeSkeletonCard.swift; sourceTree = "<group>"; };
+		0407FEE42FBC73DC001B503A /* CompactCoverLetterSkeletonCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactCoverLetterSkeletonCard.swift; sourceTree = "<group>"; };
+		0407FEE62FBC76FC001B503A /* CoverLetterSheetContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverLetterSheetContent.swift; sourceTree = "<group>"; };
+		0407FEE82FBC776A001B503A /* RevenueCatPaywallOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCatPaywallOverlay.swift; sourceTree = "<group>"; };
 		046F408A2F7161E0004AE45C /* TemplatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePickerView.swift; sourceTree = "<group>"; };
 		046F408C2F71628A004AE45C /* TemplateCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCard.swift; sourceTree = "<group>"; };
 		047B69EE2F63167900DD44BD /* UserCv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCv.swift; sourceTree = "<group>"; };
@@ -284,6 +298,12 @@
 				04D6BF512F65D4CE00A066B8 /* LinkedInImportView.swift */,
 				047B69FC2F63E4AD00DD44BD /* ATSScoreView.swift */,
 				04E318772FA21CE10009EFAC /* UIViewRepresentable.swift */,
+				0407FEDE2FBC7339001B503A /* CompactResumeCard.swift */,
+				0407FEE02FBC736E001B503A /* CompactCoverLetterCard.swift */,
+				0407FEE22FBC73B7001B503A /* CompactResumeSkeletonCard.swift */,
+				0407FEE42FBC73DC001B503A /* CompactCoverLetterSkeletonCard.swift */,
+				0407FEE62FBC76FC001B503A /* CoverLetterSheetContent.swift */,
+				0407FEE82FBC776A001B503A /* RevenueCatPaywallOverlay.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -300,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				04A0B7502F61856300B4CB48 /* HomeView.swift */,
+				0407FEDC2FBC723D001B503A /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -610,10 +631,13 @@
 				04D6BF4A2F65339500A066B8 /* AuthManager.swift in Sources */,
 				04D6BF502F6548C500A066B8 /* ProfileView.swift in Sources */,
 				04D6BF482F65316600A066B8 /* LoginView.swift in Sources */,
+				0407FEE92FBC776A001B503A /* RevenueCatPaywallOverlay.swift in Sources */,
 				047B6A012F63E56700DD44BD /* ResumeLibrary.swift in Sources */,
 				04A0B74D2F6184F300B4CB48 /* ResumeViewModel.swift in Sources */,
 				047B69F32F6316CB00DD44BD /* AIService.swift in Sources */,
+				0407FEE72FBC76FC001B503A /* CoverLetterSheetContent.swift in Sources */,
 				047B69FB2F63E47100DD44BD /* ATSService.swift in Sources */,
+				0407FEDD2FBC723D001B503A /* HomeViewModel.swift in Sources */,
 				04D6BF562F65D8BD00A066B8 /* AIQuickTool.swift in Sources */,
 				047B6A082F646EA600DD44BD /* OnboardingItem.swift in Sources */,
 				047B69F92F631B1E00DD44BD /* ActionCard.swift in Sources */,
@@ -623,14 +647,18 @@
 				04A0B7552F6185FD00B4CB48 /* CoverLetterView.swift in Sources */,
 				04DF1FEE2F6EA42900323B51 /* Models.swift in Sources */,
 				04A0B7572F61864000B4CB48 /* SettingsView.swift in Sources */,
+				0407FEDF2FBC7339001B503A /* CompactResumeCard.swift in Sources */,
 				04A0B7532F6185A900B4CB48 /* ResumeEditorView.swift in Sources */,
 				047B69FD2F63E4AD00DD44BD /* ATSScoreView.swift in Sources */,
+				0407FEE52FBC73DC001B503A /* CompactCoverLetterSkeletonCard.swift in Sources */,
 				04DF1FE82F6B860100323B51 /* PrivacyPolicy.swift in Sources */,
 				04C2C4042F77F3840006D1D5 /* Paywall.swift in Sources */,
 				04D6BF542F65D51B00A066B8 /* PDFParser.swift in Sources */,
+				0407FEE12FBC736E001B503A /* CompactCoverLetterCard.swift in Sources */,
 				04A0B71F2F61837E00B4CB48 /* ResumeAIAppApp.swift in Sources */,
 				04D6BF4E2F65393000A066B8 /* SignUpView.swift in Sources */,
 				04A0B74F2F61852200B4CB48 /* ResumeCard.swift in Sources */,
+				0407FEE32FBC73B7001B503A /* CompactResumeSkeletonCard.swift in Sources */,
 				047B6A0A2F646F1A00DD44BD /* OnboardingView.swift in Sources */,
 				04A0B7492F61846F00B4CB48 /* MainTabView.swift in Sources */,
 				04144CEC2F6962D000A47000 /* SupabaseManager.swift in Sources */,

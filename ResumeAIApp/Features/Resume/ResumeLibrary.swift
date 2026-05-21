@@ -8,132 +8,217 @@
 import SwiftUI
 import SwiftData
 
+enum LibraryTab {
+    case resumes
+    case coverLetters
+}
+
 struct ResumeLibraryView: View {
     @State private var viewModel: ResumeViewModel?
     @State private var showTemplatePicker = false // New state
+    @State private var showEditor = false
+    @State private var activeTab: LibraryTab = .resumes
     
     
     @Environment(\.modelContext) private var modelContext
     
     @Query(sort: \Resume.createdAt, order: .reverse)
     private var resumes: [Resume]
+    @Query(sort: \CoverLetter.createdAt, order: .reverse) private var coverLetters: [CoverLetter]
     
-    @State private var showEditor = false
+    private let backgroundColor = Color(red: 0.07, green: 0.07, blue: 0.08)
+    private let cardColor = Color(red: 0.12, green: 0.12, blue: 0.14)
+    private let tabSelectorColor = Color(red: 0.18, green: 0.18, blue: 0.20)
+    
+   
     
     var body: some View {
         NavigationStack {
-            
-            
             ZStack {
-                
-                if resumes.isEmpty {
-                    emptyState
-                } else {
-                    resumeList
-                }
-                
-                createButton
-            }
-            .navigationTitle("My Resumes")
-            .sheet(isPresented: $showEditor) {
-                // Force the creation of a VM if it somehow stayed nil
-                ResumeEditorView(viewModel: viewModel ?? ResumeViewModel(modelContext: modelContext))
-            }
-            .sheet(isPresented: $showTemplatePicker) {
-                // Pass the existing viewModel or create a temporary one if it's still nil
-                TemplatePickerView(
-                    viewModel: viewModel ?? ResumeViewModel(modelContext: modelContext),
-                    isPresented: $showTemplatePicker,
-                    shouldOpenEditor: $showEditor
-                )
-            }
-            .onAppear {
-                if viewModel == nil {
-                    viewModel = ResumeViewModel(modelContext: modelContext)
-                }
-            }
-        }
-    }
-}
-
-extension ResumeLibraryView {
-    
-    // MARK: Resume List
-    
-    private var resumeList: some View {
-        List {
-            ForEach(resumes) { resume in
-                ResumeCard(resume: resume)
-                    .listRowSeparator(.hidden)
-            }
-            .onDelete(perform: deleteResume)
-        }
-        .listStyle(.plain)
-    }
-    
-    // MARK: Empty State
-    
-    private var emptyState: some View {
-        VStack(spacing: 20) {
-            
-            Image(systemName: "doc.text.magnifyingglass")
-                .font(.system(size: 60))
-                .foregroundColor(.gray.opacity(0.6))
-            
-            Text("No Resumes Yet")
-                .font(.title2.bold())
-            
-            Text("Create your first AI optimized resume")
-                .foregroundStyle(.secondary)
-            
-//            Button {
-//                showTemplatePicker = true
-//            } label: {
-//                Label("Create Resume", systemImage: "plus")
-//                    .padding()
-//                    .frame(maxWidth: 220)
-//                    .background(.blue)
-//                    .foregroundColor(.white)
-//                    .clipShape(RoundedRectangle(cornerRadius: 12))
-//            }
-        }
-    }
-    
-    // MARK: Floating Button
-    
-    private var createButton: some View {
-        VStack {
-            Spacer()
-            
-            HStack {
-                Spacer()
-                
-                Button {
-                    showTemplatePicker = true
-                } label: {
-                    Image(systemName: "plus")
-                        .font(.title2)
-                        .padding()
-                        .background(.blue)
-                        .foregroundColor(.white)
-                        .clipShape(Circle())
-                        .shadow(radius: 4)
+                            backgroundColor.ignoresSafeArea()
+                            
+                            VStack(spacing: 0) {
+                                
+                                // MARK: - Custom Segmented Control Header View Block
+                                HStack(spacing: 0) {
+                                    tabButton(title: "Resumes", tab: .resumes)
+                                    tabButton(title: "Cover Letters", tab: .coverLetters)
+                                }
+                                .padding(4)
+                                .background(tabSelectorColor)
+                                .cornerRadius(12)
+                                .padding(.horizontal, 16)
+                                .padding(.top, 12)
+                                .padding(.bottom, 8)
+                                
+                                // MARK: - Dynamic Tab Segment View Router
+                                Group {
+                                    switch activeTab {
+                                    case .resumes:
+                                        if resumes.isEmpty {
+                                            emptyState(text: "No Resumes Yet", subtitle: "Create your first AI optimized resume")
+                                        } else {
+                                            resumeList
+                                        }
+                                    case .coverLetters:
+                                        if coverLetters.isEmpty {
+                                            emptyState(text: "No Cover Letters Yet", subtitle: "AI hasn't generated any cover letters yet")
+                                        } else {
+                                            coverLetterList
+                                        }
+                                    }
+                                }
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            }
+                            
+                            // Floating Action Button Anchor Frame Layout
+                            createButton
+                        }
+                        .navigationTitle("Library")
+                        .sheet(isPresented: $showEditor) {
+                            ResumeEditorView(viewModel: viewModel ?? ResumeViewModel(modelContext: modelContext))
+                        }
+                        .sheet(isPresented: $showTemplatePicker) {
+                            TemplatePickerView(
+                                viewModel: viewModel ?? ResumeViewModel(modelContext: modelContext),
+                                isPresented: $showTemplatePicker,
+                                shouldOpenEditor: $showEditor
+                            )
+                        }
+                        .onAppear {
+                            if viewModel == nil {
+                                viewModel = ResumeViewModel(modelContext: modelContext)
+                            }
+                            // Custom overrides to clean layout navigation lists styling behavior global frames
+                            UICollectionView.appearance().backgroundColor = .clear
+                        }
+                    }
                 }
             }
-            .padding()
-        }
-    }
-    
-    // MARK: Delete
-    
-    private func deleteResume(at offsets: IndexSet) {
-        for index in offsets {
-            modelContext.delete(resumes[index])
-        }
-    }
-}
 
+            // MARK: - Subviews & Extensions Layout Nodes
+            extension ResumeLibraryView {
+                
+                private func tabButton(title: String, tab: LibraryTab) -> some View {
+                    Button {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            activeTab = tab
+                        }
+                    } label: {
+                        Text(title)
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 38)
+                            .background(activeTab == tab ? cardColor : Color.clear)
+                            .cornerRadius(10)
+                    }
+                }
+                
+                // MARK: - Resume Dynamic List Layout View
+                private var resumeList: some View {
+                    List {
+                        ForEach(resumes) { resume in
+                            ResumeCard(resume: resume)
+                                .listRowBackground(Color.clear)
+                                .listRowSeparator(.hidden)
+                                .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
+                        }
+                        .onDelete(perform: deleteResume)
+                    }
+                    .listStyle(.plain)
+                    .scrollContentBackground(.hidden)
+                }
+                
+                // MARK: - Cover Letters List Layout View
+                private var coverLetterList: some View {
+                    List {
+                        ForEach(coverLetters) { letter in
+                            // Custom UI row rendering configuration matching Android style
+                            HStack {
+                                VStack(alignment: .leading, spacing: 6) {
+                                    Text(letter.title)
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                    Text("\(letter.jobTitle) at \(letter.companyName)")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.gray.opacity(0.5))
+                            }
+                            .padding()
+                            .background(cardColor)
+                            .cornerRadius(14)
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
+                        }
+                        .onDelete(perform: deleteCoverLetter)
+                    }
+                    .listStyle(.plain)
+                    .scrollContentBackground(.hidden)
+                }
+                
+                // MARK: - Standard Blank Empty State UI Block Element Frame
+                private func emptyState(text: String, subtitle: String) -> some View {
+                    VStack(spacing: 16) {
+                        Image(systemName: "doc.text.magnifyingglass")
+                            .font(.system(size: 54))
+                            .foregroundColor(.gray.opacity(0.4))
+                        
+                        Text(text)
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                        
+                        Text(subtitle)
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 32)
+                    }
+                }
+                
+                // MARK: - Custom Floating Circular Trigger Action Button Context
+                private var createButton: some View {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            Button {
+                                showTemplatePicker = true
+                            } label: {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 22, weight: .bold))
+                                    .padding(18)
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .clipShape(Circle())
+                                    .shadow(color: Color.black.opacity(0.3), radius: 6, x: 0, y: 4)
+                            }
+                        }
+                        .padding(.trailing, 20)
+                        .padding(.bottom, 24)
+                    }
+                }
+                
+                private func deleteResume(at offsets: IndexSet) {
+                    for index in offsets {
+                        viewModel?.deleteResume(resumes[index])
+                    }
+                }
+                
+                private func deleteCoverLetter(at offsets: IndexSet) {
+                    for index in offsets {
+                        viewModel?.deleteCoverLetter(coverLetters[index])
+                    }
+                }
+            }
 
-#Preview {
-    ResumeLibraryView()
-}
+            #Preview {
+                ResumeLibraryView()
+                    .modelContainer(for: [Resume.self, CoverLetter.self], inMemory: true)
+            }

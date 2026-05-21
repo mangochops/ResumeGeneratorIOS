@@ -96,6 +96,41 @@ final class Resume: Codable {
         }
 }
 
+@Model
+final class CoverLetter {
+    var id: String
+    var userId: String
+    var title: String
+    var companyName: String
+    var jobTitle: String
+    var content: String
+    var createdAt: Date
+    
+    init(id: String = UUID().uuidString, userId: String, title: String, companyName: String, jobTitle: String, content: String, createdAt: Date = Date()) {
+        self.id = id
+        self.userId = userId
+        self.title = title
+        self.companyName = companyName
+        self.jobTitle = jobTitle
+        self.content = content
+        self.createdAt = createdAt
+    }
+}
+
+struct AnyDecodable: Decodable {
+    let value: Any
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let str = try? container.decode(String.self) { value = str }
+        else if let int = try? container.decode(Int.self) { value = int }
+        else if let bool = try? container.decode(Bool.self) { value = bool }
+        else if let dict = try? container.decode([String: AnyDecodable].self) { value = dict.mapValues { $0.value } }
+        else if let arr = try? container.decode([AnyDecodable].self) { value = arr.map { $0.value } }
+        else { throw DecodingError.dataCorruptedError(in: container, debugDescription: "Unsupported JSONB data layout format") }
+    }
+}
+
 // Matches public.applications
 struct Application: Codable, Identifiable {
     let id: UUID
