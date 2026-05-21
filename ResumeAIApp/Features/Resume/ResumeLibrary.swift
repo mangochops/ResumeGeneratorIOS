@@ -33,8 +33,16 @@ struct ResumeLibraryView: View {
    
     
     var body: some View {
+        
         NavigationStack {
+            HeaderTitleView(
+                name: "Library"
+                
+            )
             ZStack {
+                
+                
+                
                             backgroundColor.ignoresSafeArea()
                             
                             VStack(spacing: 0) {
@@ -74,7 +82,7 @@ struct ResumeLibraryView: View {
                             // Floating Action Button Anchor Frame Layout
                             createButton
                         }
-                        .navigationTitle("Library")
+                        
                         .sheet(isPresented: $showEditor) {
                             ResumeEditorView(viewModel: viewModel ?? ResumeViewModel(modelContext: modelContext))
                         }

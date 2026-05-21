@@ -9,6 +9,10 @@ struct ProfileView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
+                    HeaderTitleView(
+                        name: "Profile"
+                        
+                    )
                     
                     // MARK: - PROFILE HEADER CARD
                     VStack(spacing: 16) {
@@ -53,16 +57,7 @@ struct ProfileView: View {
                         }
                     }
 
-                    // MARK: - TOOLS SECTION
-                    profileSection(title: "RESUME TOOLS") {
-                        NavigationLink(destination: Text("Resumes")) {
-                            settingsRow(icon: "doc.text.fill", title: "My Resumes", color: .purple)
-                        }
-                        Divider().padding(.leading, 50)
-                        NavigationLink(destination: ATSAnalyticsView()) {
-                            settingsRow(icon: "chart.bar.xaxis", title: "ATS Analytics", color: .green)
-                        }
-                    }
+                    
 
                     // MARK: - SUPPORT & LEGAL
                     profileSection(title: "SUPPORT") {
@@ -100,7 +95,7 @@ struct ProfileView: View {
                 .padding(.top)
             }
             .background(Color(UIColor.systemGroupedBackground))
-            .navigationTitle("Profile")
+            
             .task {
                 await viewModel.loadUserData()
                         }

@@ -57,7 +57,8 @@ struct ResumeAIAppApp: App {
     
     let sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Resume.self
+            Resume.self,
+            CoverLetter.self
         ])
         
         let modelConfiguration = ModelConfiguration(

@@ -53,6 +53,7 @@
 		04A0B7552F6185FD00B4CB48 /* CoverLetterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */; };
 		04A0B7572F61864000B4CB48 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7562F61864000B4CB48 /* SettingsView.swift */; };
 		04A0B7592F61868A00B4CB48 /* PDFService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7582F61868A00B4CB48 /* PDFService.swift */; };
+		04A7E59A2FBF3A3D0060094D /* HeaderTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7E5992FBF3A3D0060094D /* HeaderTitle.swift */; };
 		04C2C4042F77F3840006D1D5 /* Paywall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C4032F77F3840006D1D5 /* Paywall.swift */; };
 		04D6BF462F6530EE00A066B8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF452F6530EE00A066B8 /* AuthService.swift */; };
 		04D6BF482F65316600A066B8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF472F65316600A066B8 /* LoginView.swift */; };
@@ -139,6 +140,7 @@
 		04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverLetterView.swift; sourceTree = "<group>"; };
 		04A0B7562F61864000B4CB48 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		04A0B7582F61868A00B4CB48 /* PDFService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFService.swift; sourceTree = "<group>"; };
+		04A7E5992FBF3A3D0060094D /* HeaderTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTitle.swift; sourceTree = "<group>"; };
 		04C2C4032F77F3840006D1D5 /* Paywall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paywall.swift; sourceTree = "<group>"; };
 		04D6BF432F65308400A066B8 /* SupabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseManager.swift; sourceTree = "<group>"; };
 		04D6BF452F6530EE00A066B8 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				0407FEE42FBC73DC001B503A /* CompactCoverLetterSkeletonCard.swift */,
 				0407FEE62FBC76FC001B503A /* CoverLetterSheetContent.swift */,
 				0407FEE82FBC776A001B503A /* RevenueCatPaywallOverlay.swift */,
+				04A7E5992FBF3A3D0060094D /* HeaderTitle.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				0407FEE32FBC73B7001B503A /* CompactResumeSkeletonCard.swift in Sources */,
 				047B6A0A2F646F1A00DD44BD /* OnboardingView.swift in Sources */,
 				04A0B7492F61846F00B4CB48 /* MainTabView.swift in Sources */,
+				04A7E59A2FBF3A3D0060094D /* HeaderTitle.swift in Sources */,
 				04144CEC2F6962D000A47000 /* SupabaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

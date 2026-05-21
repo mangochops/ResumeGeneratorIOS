@@ -19,7 +19,10 @@ struct CoverLetterView: View {
                 
                 VStack(alignment: .leading, spacing: 25) {
                     
-                    header
+                    HeaderTitleView(
+                        name: "AI Workspace"
+                        
+                    )
                     
                     jobDescriptionCard
                     
@@ -30,7 +33,7 @@ struct CoverLetterView: View {
                 }
                 .padding()
             }
-            .navigationTitle("AI Tools")
+            
         }
     }
 }

@@ -193,11 +193,11 @@ struct HeaderSectionView: View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
                 Text(greetingMessage)
-                    .font(.body)
+                    .font(.subheadline)
                     .foregroundColor(.gray)
                 
                 Text(name)
-                    .font(.system(size: 38, weight: .black))
+                    .font(.system(size: 28, weight: .black))
                     .linearGradientForeground(colors: [.blue, .purple])
             }
             
