@@ -54,6 +54,7 @@
 		04A0B7572F61864000B4CB48 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7562F61864000B4CB48 /* SettingsView.swift */; };
 		04A0B7592F61868A00B4CB48 /* PDFService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7582F61868A00B4CB48 /* PDFService.swift */; };
 		04A7E59A2FBF3A3D0060094D /* HeaderTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7E5992FBF3A3D0060094D /* HeaderTitle.swift */; };
+		04A7E59C2FBF44010060094D /* Terms&Codition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7E59B2FBF44010060094D /* Terms&Codition.swift */; };
 		04C2C4042F77F3840006D1D5 /* Paywall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C4032F77F3840006D1D5 /* Paywall.swift */; };
 		04D6BF462F6530EE00A066B8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF452F6530EE00A066B8 /* AuthService.swift */; };
 		04D6BF482F65316600A066B8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF472F65316600A066B8 /* LoginView.swift */; };
@@ -141,6 +142,7 @@
 		04A0B7562F61864000B4CB48 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		04A0B7582F61868A00B4CB48 /* PDFService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFService.swift; sourceTree = "<group>"; };
 		04A7E5992FBF3A3D0060094D /* HeaderTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTitle.swift; sourceTree = "<group>"; };
+		04A7E59B2FBF44010060094D /* Terms&Codition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Terms&Codition.swift"; sourceTree = "<group>"; };
 		04C2C4032F77F3840006D1D5 /* Paywall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paywall.swift; sourceTree = "<group>"; };
 		04D6BF432F65308400A066B8 /* SupabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseManager.swift; sourceTree = "<group>"; };
 		04D6BF452F6530EE00A066B8 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 		048A5C0B2FA0C91900E64352 /* Terms&Conditions */ = {
 			isa = PBXGroup;
 			children = (
+				04A7E59B2FBF44010060094D /* Terms&Codition.swift */,
 			);
 			path = "Terms&Conditions";
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				04DF1FE42F6B84E700323B51 /* ATSAnalytics.swift in Sources */,
 				04A0B7512F61856300B4CB48 /* HomeView.swift in Sources */,
 				047B69FF2F63E52500DD44BD /* StorageService.swift in Sources */,
+				04A7E59C2FBF44010060094D /* Terms&Codition.swift in Sources */,
 				04A0B7592F61868A00B4CB48 /* PDFService.swift in Sources */,
 				046F408D2F71628A004AE45C /* TemplateCard.swift in Sources */,
 				04D6BF462F6530EE00A066B8 /* AuthService.swift in Sources */,

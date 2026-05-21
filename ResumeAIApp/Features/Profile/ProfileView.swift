@@ -68,6 +68,10 @@ struct ProfileView: View {
                         NavigationLink(destination: PrivacyPolicyView()) {
                         settingsRow(icon: "shield.lefthalf.filled", title: "Privacy Policy", color: .gray)
                         }
+                        Divider().padding(.leading, 50)
+                        NavigationLink(destination: TermsConditionView()) {
+                        settingsRow(icon: "doc.append.fill.rtl", title: "Terms & Conditions", color: .gray)
+                        }
                     }
 
                     // MARK: - LOGOUT BUTTON
