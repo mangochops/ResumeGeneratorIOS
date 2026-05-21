@@ -15,8 +15,11 @@ struct ContentView: View {
     // 2. StateObject to manage the lifecycle of HomeViewModel
     @StateObject private var homeViewModel: HomeViewModel
     
+    private let supabaseClient: SupabaseClient
+    
     // 3. Inject SupabaseClient through the initializer
     init(supabaseClient: SupabaseClient) {
+        self.supabaseClient = supabaseClient
         _homeViewModel = StateObject(wrappedValue: HomeViewModel(supabaseClient: supabaseClient))
     }
     
@@ -43,7 +46,7 @@ struct ContentView: View {
                 }
                 .tag(1)
             
-            CoverLetterView()
+            CoverLetterView(supabaseClient: supabaseClient)
                 .tabItem {
                     Image(systemName: "sparkles")
                     Text("AI Tools")

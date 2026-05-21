@@ -11,10 +11,14 @@ import Supabase
 struct MainTabView: View {
     @StateObject private var homeViewModel: HomeViewModel
     @State private var selectedTab = 0
+    
+    private let supabaseClient: SupabaseClient
+    
     init(supabaseClient: SupabaseClient) {
-            // FIXED: Safely initializing StateObject with your injected Supabase dependency
-            _homeViewModel = StateObject(wrappedValue: HomeViewModel(supabaseClient: supabaseClient))
-        }
+        self.supabaseClient = supabaseClient
+        // FIXED: Safely initializing StateObject with your injected Supabase dependency
+        _homeViewModel = StateObject(wrappedValue: HomeViewModel(supabaseClient: supabaseClient))
+    }
     
     var body: some View {
         
@@ -33,7 +37,7 @@ struct MainTabView: View {
                 }
                 .tag(0)
             
-            CoverLetterView()
+            CoverLetterView(supabaseClient: supabaseClient)
                 .tabItem {
                     Image(systemName: "sparkles")
                     Text("AI Tools")
