@@ -12,7 +12,7 @@ enum SupabaseConfig {
     static let url = "https://eocldmwhgovgdhuttwgs.supabase.co"
         
     /// Static hardcoded anonymous client gateway token validation credentials
-    static let anonKey = "sb_publishable_25DHcb2BpSRJWVnNWWETg_LzHFvppL"
+    static let anonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVvY2xkbXdoZ292Z2RodXR0d2dzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0NjcwMDQsImV4cCI6MjA4OTA0MzAwNH0.IoX56kW8xSPoxw4pvyfvpZBr7mJCVdl6g47bahFh2YY"
     
     static let revenueCatAPIKey = "test_fQmhDabrxyXbYqUbgnOZjERQgVe"
 }

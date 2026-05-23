@@ -119,7 +119,6 @@
 		047B6A072F646EA500DD44BD /* OnboardingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingItem.swift; sourceTree = "<group>"; };
 		047B6A092F646F1A00DD44BD /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		04885DEB2F7028AB009A800A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		049012D12F69B3F7008BC58A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		04A0B71B2F61837E00B4CB48 /* ResumeAIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResumeAIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeAIAppApp.swift; sourceTree = "<group>"; };
 		04A0B7202F61837E00B4CB48 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -395,7 +394,6 @@
 		04A0B7122F61837D00B4CB48 = {
 			isa = PBXGroup;
 			children = (
-				049012D12F69B3F7008BC58A /* Config.xcconfig */,
 				04A0B71D2F61837E00B4CB48 /* ResumeAIApp */,
 				04A0B72E2F61838D00B4CB48 /* ResumeAIAppTests */,
 				04A0B7382F61838D00B4CB48 /* ResumeAIAppUITests */,
