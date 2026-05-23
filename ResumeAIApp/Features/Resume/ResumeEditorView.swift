@@ -5,7 +5,6 @@ import SwiftData
 
 struct ResumeEditorView: View {
     @Environment(\.dismiss) var dismiss
-    // Change: Use var for Observable viewModels unless binding to properties
     var viewModel: ResumeViewModel
     
     @State private var name = ""
@@ -66,19 +65,18 @@ struct ResumeEditorView: View {
                 if let existingResume = viewModel.selectedResume {
                     self.name = existingResume.name
                     self.title = existingResume.title
-                    self.atsScore = existingResume.atsScore
-                    self.atsSuggestions = existingResume.atsSuggestions ?? ""
                     
-                    if let decodedString = String(data: existingResume.content, encoding: .utf8) {
-                        self.content = decodedString
+                    // FIX: Directly extract text string from your typed schema model
+                    if let extractedText = existingResume.content {
+                        self.content = extractedText
                     }
                 }
             }
             .onDisappear {
                 // If we are editing an existing resume, sync it when leaving
                 if let existingResume = viewModel.selectedResume {
-                    let contentData = content.data(using: .utf8) ?? Data()
-                    viewModel.updateResume(existingResume, newContent: contentData)
+                    // FIX: Construct the wrapper content structural object instead of binary Data
+                    viewModel.updateResume(existingResume, newContentText: content)
                 }
             }
         }
@@ -129,32 +127,32 @@ struct ResumeEditorView: View {
     }
     
     private var fileHeader: some View {
-            HStack {
-                Image(systemName: "doc.text.fill")
-                    .font(.title2)
-                    .foregroundStyle(Color.blue)
-                
-                VStack(alignment: .leading) {
-                    TextField("Resume Name", text: $name)
-                        .font(.headline)
-                    Text("Imported from PDF")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-                
-                Spacer()
-                
-                // Explicitly use action/label here to prevent compiler confusion
-                Button(action: { isImporting = true }) {
-                    Text("Replace")
-                        .font(.caption.bold())
-                }
-                .buttonStyle(.bordered)
+        HStack {
+            Image(systemName: "doc.text.fill")
+                .font(.title2)
+                .foregroundStyle(Color.blue)
+            
+            VStack(alignment: .leading) {
+                TextField("Resume Name", text: $name)
+                    .font(.headline)
+                Text("Imported from PDF")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
-            .padding()
-            .background(Color(UIColor.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            
+            Spacer()
+            
+            Button(action: { isImporting = true }) {
+                Text("Replace")
+                    .font(.caption.bold())
+            }
+            .buttonStyle(.bordered)
         }
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+    
     private var contentEditor: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Verify Parsed Content")
@@ -171,45 +169,44 @@ struct ResumeEditorView: View {
     }
     
     private var aiInsightsView: some View {
-            VStack(spacing: 20) {
-                if let score = atsScore {
-                    atsResultSection(score: score)
-                } else {
-                    VStack(spacing: 16) {
-                        Image(systemName: "sparkles")
-                            .font(.largeTitle)
-                            .foregroundStyle(Color.purple)
-                        
-                        Text("No AI Analysis yet")
-                            .font(.headline)
-                        
-                        // FIXED: Using explicit action and label closure
-                        Button(action: {
-                            Task {
-                                await analyzeATS()
-                            }
-                        }) {
-                            HStack {
-                                if isAnalyzing {
-                                    ProgressView()
-                                        .tint(.white)
-                                        .padding(.trailing, 8)
-                                }
-                                Text(isAnalyzing ? "Analyzing..." : "Analyze ATS Compatibility")
-                            }
-                            .font(.headline)
-                            .padding()
-                            .frame(maxWidth: .infinity)
+        VStack(spacing: 20) {
+            if let score = atsScore {
+                atsResultSection(score: score)
+            } else {
+                VStack(spacing: 16) {
+                    Image(systemName: "sparkles")
+                        .font(.largeTitle)
+                        .foregroundStyle(Color.purple)
+                    
+                    Text("No AI Analysis yet")
+                        .font(.headline)
+                    
+                    Button(action: {
+                        Task {
+                            await analyzeATS()
                         }
-                        .buttonStyle(.borderedProminent)
-                        .tint(.purple)
-                        .disabled(isAnalyzing)
+                    }) {
+                        HStack {
+                            if isAnalyzing {
+                                ProgressView()
+                                    .tint(.white)
+                                    .padding(.trailing, 8)
+                            }
+                            Text(isAnalyzing ? "Analyzing..." : "Analyze ATS Compatibility")
+                        }
+                        .font(.headline)
+                        .padding()
+                        .frame(maxWidth: .infinity)
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 40)
+                    .buttonStyle(.borderedProminent)
+                    .tint(.purple)
+                    .disabled(isAnalyzing)
                 }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 40)
             }
         }
+    }
 
     private func atsResultSection(score: Int) -> some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -233,25 +230,22 @@ struct ResumeEditorView: View {
 
     private var saveButton: some View {
         Button(action: {
-            // All logic must go inside this action closure
-            let contentData = content.data(using: .utf8) ?? Data()
+            // FIX: Map text contents to your clean model data type wrapper
+            
             
             if let existing = viewModel.selectedResume {
                 existing.name = name
                 existing.title = title
-                viewModel.updateResume(existing, newContent: contentData)
+                viewModel.updateResume(existing, newContentText: content)
             } else {
                 viewModel.addResume(
                     title: title,
                     name: name,
-                    content: contentData
-//                    atsScore: atsScore,
-//                    atsSuggestions: atsSuggestions
+                    contentText: content
                 )
             }
             dismiss()
         }) {
-            // This is the label
             Text("Save")
         }
         .disabled(content.isEmpty)
@@ -309,5 +303,11 @@ struct ResumeEditorView: View {
         } catch {
             errorMessage = "AI analysis failed: \(error.localizedDescription)"
         }
+    }
+}
+
+extension String {
+    func withNoBinaryGarbage() -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

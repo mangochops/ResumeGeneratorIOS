@@ -88,12 +88,14 @@ final class AuthService {
         }
         
         // 2. Fetch from Supabase using the renamed UserResume model
-        return try await client
-            .from("resumes")
-            .select()
-            // We add a filter to ensure we only get the current user's resumes
-            .eq("user_id", value: userId)
-            .execute()
-            .value
+        let dtos: [Resume.ResumeDTO] = try await client
+                    .from("resumes")
+                    .select()
+                    .eq("user_id", value: userId)
+                    .execute()
+                    .value
+                
+                // 3. FIXED: Safely unpack and map the network DTOs back into native SwiftData entities
+        return dtos.map { $0.toModel() }
     }
 }

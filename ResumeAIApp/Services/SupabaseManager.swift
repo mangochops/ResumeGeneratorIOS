@@ -8,26 +8,27 @@ final class SupabaseManager {
     let client: SupabaseClient
     
     private init() {
-        // Development
-//        let urlString = "http://127.0.0.1:54321"
-//        let anonKey = "sb_publishable_ACJWlzQH1ZjBrEguHvfOxg_3BJgxAaH"
+        if let infoDict = Bundle.main.infoDictionary {
+                print("--- Available Info.plist Keys ---")
+                for key in infoDict.keys {
+                    print(key)
+                }
+                print("---------------------------------")
+            }
         
         
+
         
-//         Production
-        let urlString = "https://eocldmwhgovgdhuttwgs.supabase.co"
-        let anonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVvY2xkbXdoZ292Z2RodXR0d2dzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0NjcwMDQsImV4cCI6MjA4OTA0MzAwNH0.IoX56kW8xSPoxw4pvyfvpZBr7mJCVdl6g47bahFh2YY"
-        
-        guard let url = URL(string: urlString), !anonKey.isEmpty else {
-            fatalError("Check your hardcoded Supabase URL or Key.")
-        }
+        guard let url = URL(string: SupabaseConfig.url), !SupabaseConfig.anonKey.isEmpty else {
+                fatalError("🚨 Supabase configuration values are invalid.")
+            }
         
         client = SupabaseClient(
             supabaseURL: url,
-            supabaseKey: anonKey
+            supabaseKey: SupabaseConfig.anonKey
         )
         
-        print("✅ SupabaseClient initialized successfully via hardcoded values.")
+        print("✅ SupabaseClient initialized successfully via Info.plist configurations.")
     }
 }
 
@@ -41,21 +42,12 @@ extension SupabaseManager {
         }
         
         // 2. Map local Resume to UserResume (Supabase model)
-        let cloudResume = Resume(
-            id: resume.id,
-            userId: userId,
-            title: resume.title,
-            name: resume.name,
-            content: resume.content,
-            templateId: resume.templateId,
-            fileUrl: nil, // Add if you have a PDF link
-            createdAt: resume.createdAt
-        )
+        let cloudDTO = Resume.ResumeDTO(from: resume)
         
         // 3. Perform the Upsert
         try await client
             .from("resumes")
-            .upsert(cloudResume)
+            .upsert(cloudDTO)
             .execute()
             
         print("✅ Successfully synced resume: \(resume.title)")

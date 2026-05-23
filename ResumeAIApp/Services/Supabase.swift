@@ -7,9 +7,12 @@
 
 import Foundation
 
-import Supabase
-
-let supabase = SupabaseClient(
-  supabaseURL: URL(string: "https://eocldmwhgovgdhuttwgs.supabase.co")!,
-  supabaseKey: "sb_publishable_25DHcb2BpSRJWVNtNWWETg_LzHFVppL"
-)
+enum SupabaseConfig {
+    /// Dynamically extracts the Supabase Endpoint URL out of the compiled application package bundle.
+    static let url = "https://eocldmwhgovgdhuttwgs.supabase.co"
+        
+    /// Static hardcoded anonymous client gateway token validation credentials
+    static let anonKey = "sb_publishable_25DHcb2BpSRJWVnNWWETg_LzHFvppL"
+    
+    static let revenueCatAPIKey = "test_fQmhDabrxyXbYqUbgnOZjERQgVe"
+}

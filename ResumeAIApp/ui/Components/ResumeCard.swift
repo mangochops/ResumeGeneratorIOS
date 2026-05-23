@@ -12,7 +12,7 @@ struct ResumeCard: View {
     let resume: Resume
     
     private var contentPreview: String {
-        String(data: resume.content, encoding: .utf8) ?? "No content available"
+        resume.content ?? "No content available"
     }
     
     private var formattedDate: String {
@@ -87,26 +87,4 @@ struct ResumeCard: View {
     }
 }
 
-// MARK: - Preview Logic
-#Preview {
-    // 1. Create an in-memory container for the preview
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: Resume.self, configurations: config)
-    
-    // 2. Create a sample resume with dummy Data
-    let sampleData = "Experience: Senior iOS Developer at Apple...".data(using: .utf8)!
-    
-    let sampleResume = Resume(
-        id: UUID(),
-        userId: UUID(), // Error 1 fix: Must be a UUID, not a String
-        title: "Senior iOS Developer",
-        name: "Software_Engineer_CV.pdf", // Error 2 fix: Name is a String
-        content: sampleData // Error 2 fix: Content is the Data object
-    )
-    
-    // 3. Return the card wrapped in a list for context
-    return List {
-        ResumeCard(resume: sampleResume)
-    }
-    .modelContainer(container)
-}
+

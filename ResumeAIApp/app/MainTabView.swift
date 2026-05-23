@@ -9,15 +9,16 @@ import SwiftUI
 import Supabase
 
 struct MainTabView: View {
-    @StateObject private var homeViewModel: HomeViewModel
+    @State private var homeViewModel: HomeViewModel
     @State private var selectedTab = 0
     
     private let supabaseClient: SupabaseClient
     
+    @MainActor
     init(supabaseClient: SupabaseClient) {
         self.supabaseClient = supabaseClient
         // FIXED: Safely initializing StateObject with your injected Supabase dependency
-        _homeViewModel = StateObject(wrappedValue: HomeViewModel(supabaseClient: supabaseClient))
+        _homeViewModel = State(wrappedValue: HomeViewModel(supabaseClient: supabaseClient))
     }
     
     var body: some View {

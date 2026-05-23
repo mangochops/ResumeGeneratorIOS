@@ -18,8 +18,6 @@
 		042F299D2F66D3710023A548 /* ReceiptParser in Frameworks */ = {isa = PBXBuildFile; productRef = 042F299C2F66D3710023A548 /* ReceiptParser */; };
 		042F299F2F66D3710023A548 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 042F299E2F66D3710023A548 /* RevenueCat */; };
 		042F29A12F66D3710023A548 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 042F29A02F66D3710023A548 /* RevenueCatUI */; };
-		046F408B2F7161E0004AE45C /* TemplatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046F408A2F7161E0004AE45C /* TemplatePickerView.swift */; };
-		046F408D2F71628A004AE45C /* TemplateCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046F408C2F71628A004AE45C /* TemplateCard.swift */; };
 		047B69EF2F63167900DD44BD /* UserCv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69EE2F63167900DD44BD /* UserCv.swift */; };
 		047B69F12F6316A200DD44BD /* JobAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69F02F6316A200DD44BD /* JobAd.swift */; };
 		047B69F32F6316CB00DD44BD /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B69F22F6316CB00DD44BD /* AIService.swift */; };
@@ -78,6 +76,7 @@
 		04E318822FA22A620009EFAC /* analyze.json in Resources */ = {isa = PBXBuildFile; fileRef = 04E3187E2FA22A610009EFAC /* analyze.json */; };
 		04E318832FA22A620009EFAC /* interview.json in Resources */ = {isa = PBXBuildFile; fileRef = 04E3187F2FA22A620009EFAC /* interview.json */; };
 		04E318842FA22A620009EFAC /* ai.json in Resources */ = {isa = PBXBuildFile; fileRef = 04E318802FA22A620009EFAC /* ai.json */; };
+		04EE0A1A2FC211F9001530C2 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 04EE0A192FC211F9001530C2 /* Secrets.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,8 +104,6 @@
 		0407FEE42FBC73DC001B503A /* CompactCoverLetterSkeletonCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactCoverLetterSkeletonCard.swift; sourceTree = "<group>"; };
 		0407FEE62FBC76FC001B503A /* CoverLetterSheetContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverLetterSheetContent.swift; sourceTree = "<group>"; };
 		0407FEE82FBC776A001B503A /* RevenueCatPaywallOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCatPaywallOverlay.swift; sourceTree = "<group>"; };
-		046F408A2F7161E0004AE45C /* TemplatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePickerView.swift; sourceTree = "<group>"; };
-		046F408C2F71628A004AE45C /* TemplateCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCard.swift; sourceTree = "<group>"; };
 		047B69EE2F63167900DD44BD /* UserCv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCv.swift; sourceTree = "<group>"; };
 		047B69F02F6316A200DD44BD /* JobAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobAd.swift; sourceTree = "<group>"; };
 		047B69F22F6316CB00DD44BD /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
@@ -166,6 +163,7 @@
 		04E3187E2FA22A610009EFAC /* analyze.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = analyze.json; sourceTree = "<group>"; };
 		04E3187F2FA22A620009EFAC /* interview.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = interview.json; sourceTree = "<group>"; };
 		04E318802FA22A620009EFAC /* ai.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ai.json; sourceTree = "<group>"; };
+		04EE0A192FC211F9001530C2 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,7 +294,6 @@
 			children = (
 				04D6BF552F65D8BD00A066B8 /* AIQuickTool.swift */,
 				047B69F42F63170200DD44BD /* UploadJobAdView.swift */,
-				046F408A2F7161E0004AE45C /* TemplatePickerView.swift */,
 				047B69F82F631B1E00DD44BD /* ActionCard.swift */,
 				04A0B74E2F61852100B4CB48 /* ResumeCard.swift */,
 				04D6BF512F65D4CE00A066B8 /* LinkedInImportView.swift */,
@@ -428,7 +425,6 @@
 				042DEDE92F977C2100EB4260 /* Helpers */,
 				042DEDE82F977C0E00EB4260 /* Authenticaton */,
 				042DEDE72F977C0200EB4260 /* ui */,
-				046F408C2F71628A004AE45C /* TemplateCard.swift */,
 				04DF1FE02F6ABAA100323B51 /* Info.plist */,
 				04C2C4032F77F3840006D1D5 /* Paywall.swift */,
 				04DF1FE32F6B84E700323B51 /* ATSAnalytics.swift */,
@@ -439,6 +435,7 @@
 				04E3187D2FA22A610009EFAC /* pilot.json */,
 				04A0B7222F61838B00B4CB48 /* Assets.xcassets */,
 				04A0B7242F61838B00B4CB48 /* Preview Content */,
+				04EE0A192FC211F9001530C2 /* Secrets.xcconfig */,
 			);
 			path = ResumeAIApp;
 			sourceTree = "<group>";
@@ -587,6 +584,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04EE0A1A2FC211F9001530C2 /* Secrets.xcconfig in Resources */,
 				047B6A032F63E6AC00DD44BD /* Launch Screen.storyboard in Resources */,
 				04E318832FA22A620009EFAC /* interview.json in Resources */,
 				04E318822FA22A620009EFAC /* analyze.json in Resources */,
@@ -629,7 +627,6 @@
 				047B69FF2F63E52500DD44BD /* StorageService.swift in Sources */,
 				04A7E59C2FBF44010060094D /* Terms&Codition.swift in Sources */,
 				04A0B7592F61868A00B4CB48 /* PDFService.swift in Sources */,
-				046F408D2F71628A004AE45C /* TemplateCard.swift in Sources */,
 				04D6BF462F6530EE00A066B8 /* AuthService.swift in Sources */,
 				047B69EF2F63167900DD44BD /* UserCv.swift in Sources */,
 				04E318782FA21CE10009EFAC /* UIViewRepresentable.swift in Sources */,
@@ -650,7 +647,6 @@
 				047B69F92F631B1E00DD44BD /* ActionCard.swift in Sources */,
 				04D6BF522F65D4CE00A066B8 /* LinkedInImportView.swift in Sources */,
 				04DF1FEC2F6EA1FB00323B51 /* Supabase.swift in Sources */,
-				046F408B2F7161E0004AE45C /* TemplatePickerView.swift in Sources */,
 				04A0B7552F6185FD00B4CB48 /* CoverLetterView.swift in Sources */,
 				04DF1FEE2F6EA42900323B51 /* Models.swift in Sources */,
 				04A0B7572F61864000B4CB48 /* SettingsView.swift in Sources */,
@@ -708,7 +704,7 @@
 /* Begin XCBuildConfiguration section */
 		04A0B73D2F61838D00B4CB48 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
+			baseConfigurationReference = 04EE0A192FC211F9001530C2 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -775,7 +771,7 @@
 		};
 		04A0B73E2F61838D00B4CB48 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
+			baseConfigurationReference = 04EE0A192FC211F9001530C2 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -835,7 +831,7 @@
 		};
 		04A0B7402F61838D00B4CB48 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
+			baseConfigurationReference = 04EE0A192FC211F9001530C2 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -873,7 +869,7 @@
 		};
 		04A0B7412F61838D00B4CB48 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
+			baseConfigurationReference = 04EE0A192FC211F9001530C2 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -910,7 +906,7 @@
 		};
 		04A0B7432F61838D00B4CB48 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
+			baseConfigurationReference = 04EE0A192FC211F9001530C2 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -931,7 +927,7 @@
 		};
 		04A0B7442F61838D00B4CB48 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
+			baseConfigurationReference = 04EE0A192FC211F9001530C2 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -952,7 +948,7 @@
 		};
 		04A0B7462F61838D00B4CB48 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
+			baseConfigurationReference = 04EE0A192FC211F9001530C2 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -971,7 +967,7 @@
 		};
 		04A0B7472F61838D00B4CB48 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 049012D12F69B3F7008BC58A /* Config.xcconfig */;
+			baseConfigurationReference = 04EE0A192FC211F9001530C2 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

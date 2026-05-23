@@ -14,8 +14,9 @@ class StorageService {
     private let key = "saved_resumes"
     
     func save(resumes: [Resume]) {
+        let dtos = resumes.map { Resume.ResumeDTO(from: $0) }
         
-        if let data = try? JSONEncoder().encode(resumes) {
+        if let data = try? JSONEncoder().encode(dtos) {
             UserDefaults.standard.set(data, forKey: key)
         }
     }
@@ -23,11 +24,11 @@ class StorageService {
     func load() -> [Resume] {
         
         guard let data = UserDefaults.standard.data(forKey: key),
-              let resumes = try? JSONDecoder().decode([Resume].self, from: data)
+              let decodedDTOs = try? JSONDecoder().decode([Resume.ResumeDTO].self, from: data)
         else {
             return []
         }
         
-        return resumes
+        return decodedDTOs.map { $0.toModel() }
     }
 }

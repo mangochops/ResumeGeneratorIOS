@@ -2,7 +2,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct HomeView: View {
-    @StateObject var viewModel: HomeViewModel
+    @State var viewModel: HomeViewModel
     
     @State private var showLinkedInImport = false
     @State private var showJobAdEntry = false
@@ -47,10 +47,8 @@ struct HomeView: View {
                             accentColor: Color(hex: 0x9C27B0)
                         ) {
                             if !viewModel.recentResumes.isEmpty && viewModel.selectedResumeFullText.isEmpty {
-                                let firstResume = viewModel.recentResumes.first
-                                if let data = firstResume?.content,
-                                   let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                                   let text = json["text"] as? String {
+                                // FIX: Extract text directly from the structured object instead of using JSONSerialization
+                                if let text = viewModel.recentResumes.first?.content {
                                     viewModel.selectedResumeFullText = text
                                 }
                             }
@@ -89,8 +87,7 @@ struct HomeView: View {
                                 ForEach(viewModel.recentResumes) { resume in
                                     CompactResumeCard(resume: resume) {
                                         // FIXED: Directly deserialize the non-optional data block
-                                        if let json = try? JSONSerialization.jsonObject(with: resume.content) as? [String: Any],
-                                           let text = json["text"] as? String {
+                                        if let text = resume.content {
                                             viewModel.selectedResumeFullText = text
                                         }
                                         showJobAdEntry = true
