@@ -66,11 +66,11 @@ struct ProfileView: View {
                         }
                         Divider().padding(.leading, 50)
                         NavigationLink(destination: PrivacyPolicyView()) {
-                        settingsRow(icon: "shield.lefthalf.filled", title: "Privacy Policy", color: .gray)
+                        settingsRow(icon: "shield.lefthalf.filled", title: "Privacy Policy", color: .cyan)
                         }
                         Divider().padding(.leading, 50)
                         NavigationLink(destination: TermsConditionView()) {
-                        settingsRow(icon: "doc.append.fill.rtl", title: "Terms & Conditions", color: .gray)
+                        settingsRow(icon: "doc.append.fill.rtl", title: "Terms & Conditions", color: .cyan)
                         }
                     }
 

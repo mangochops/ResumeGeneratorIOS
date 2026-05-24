@@ -43,7 +43,6 @@
 		04A0B7302F61838D00B4CB48 /* ResumeAIAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B72F2F61838D00B4CB48 /* ResumeAIAppTests.swift */; };
 		04A0B73A2F61838D00B4CB48 /* ResumeAIAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7392F61838D00B4CB48 /* ResumeAIAppUITests.swift */; };
 		04A0B73C2F61838D00B4CB48 /* ResumeAIAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B73B2F61838D00B4CB48 /* ResumeAIAppUITestsLaunchTests.swift */; };
-		04A0B7492F61846F00B4CB48 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7482F61846F00B4CB48 /* MainTabView.swift */; };
 		04A0B74D2F6184F300B4CB48 /* ResumeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B74C2F6184F300B4CB48 /* ResumeViewModel.swift */; };
 		04A0B74F2F61852200B4CB48 /* ResumeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B74E2F61852100B4CB48 /* ResumeCard.swift */; };
 		04A0B7512F61856300B4CB48 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7502F61856300B4CB48 /* HomeView.swift */; };
@@ -129,7 +128,6 @@
 		04A0B7352F61838D00B4CB48 /* ResumeAIAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResumeAIAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A0B7392F61838D00B4CB48 /* ResumeAIAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeAIAppUITests.swift; sourceTree = "<group>"; };
 		04A0B73B2F61838D00B4CB48 /* ResumeAIAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeAIAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		04A0B7482F61846F00B4CB48 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		04A0B74C2F6184F300B4CB48 /* ResumeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeViewModel.swift; sourceTree = "<group>"; };
 		04A0B74E2F61852100B4CB48 /* ResumeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeCard.swift; sourceTree = "<group>"; };
 		04A0B7502F61856300B4CB48 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -274,7 +272,6 @@
 			isa = PBXGroup;
 			children = (
 				04A0B71E2F61837E00B4CB48 /* ResumeAIAppApp.swift */,
-				04A0B7482F61846F00B4CB48 /* MainTabView.swift */,
 				04A0B7202F61837E00B4CB48 /* ContentView.swift */,
 			);
 			path = app;
@@ -661,7 +658,6 @@
 				04A0B74F2F61852200B4CB48 /* ResumeCard.swift in Sources */,
 				0407FEE32FBC73B7001B503A /* CompactResumeSkeletonCard.swift in Sources */,
 				047B6A0A2F646F1A00DD44BD /* OnboardingView.swift in Sources */,
-				04A0B7492F61846F00B4CB48 /* MainTabView.swift in Sources */,
 				04A7E59A2FBF3A3D0060094D /* HeaderTitle.swift in Sources */,
 				04144CEC2F6962D000A47000 /* SupabaseManager.swift in Sources */,
 			);

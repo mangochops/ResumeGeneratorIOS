@@ -21,6 +21,7 @@ struct ResumeLibraryView: View {
     @State private var showTemplatePicker = false // New state
     @State private var showEditor = false
     @State private var activeTab: LibraryTab = .resumes
+    @State private var showFileImporter = false
     
     let resumes: [Resume]
     let coverLetters: [CoverLetter]
@@ -38,6 +39,9 @@ struct ResumeLibraryView: View {
                 backgroundColor.ignoresSafeArea()
                 
                 VStack(spacing: 0) {
+                    
+                    primaryResumeSection
+                        .padding(.top, 12)
                     
                     // MARK: - Custom Segmented Control Header View Block
                     HStack(spacing: 0) {
@@ -72,7 +76,7 @@ struct ResumeLibraryView: View {
                 }
                 
                 // Floating Action Button Anchor Frame Layout
-                createButton
+//                createButton
             }
             .sheet(isPresented: $showEditor) {
                 // Safely falls back to an on-the-fly instance if viewModel is nil
@@ -93,6 +97,79 @@ struct ResumeLibraryView: View {
 
 // MARK: - Subviews & Extensions Layout Nodes
 extension ResumeLibraryView {
+    private var primaryResumeSection: some View {
+            let primaryResume = resumes.first
+        
+        let sectionBorderColor = Color(red: 0.18, green: 0.18, blue: 0.18)
+            
+            return VStack(alignment: .leading, spacing: 8) {
+                Text("PRIMARY CV")
+                    .font(.system(size: 11, weight: .bold))
+                    .tracking(1.5)
+                    .foregroundColor(.gray)
+                    .padding(.leading, 20)
+                
+                VStack(spacing: 0) {
+                    HStack(spacing: 16) {
+                        // Gold Accent Icon Container Frame Block
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color(red: 0.13, green: 0.15, blue: 0.16))
+                                .frame(width: 44, height: 44)
+                            
+                            Image(systemName: "star.fill")
+                                .font(.system(size: 20))
+                                .foregroundColor(Color(red: 1.0, green: 0.84, blue: 0.0))
+                        }
+                        
+                        // Main Meta Label Matrix Block Layout
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(primaryResume?.title ?? "No Master CV Set")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(.white)
+                            
+                            Text(primaryResume?.name ?? "Upload your master copy base file")
+                                .font(.system(size: 13))
+                                .foregroundColor(.gray)
+                        }
+                        
+                        Spacer()
+                        
+                        // Action Trigger Elements Flow Block
+                        if primaryResume == nil {
+                            Button {
+                                showFileImporter = true
+                            } label: {
+                                Text("Setup")
+                                    .font(.system(size: 13, weight: .bold))
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 6)
+                                    .background(Color.white.opacity(0.1))
+                                    .cornerRadius(12)
+                            }
+                        }
+                    }
+                    .padding(16)
+                }
+                .background(cardColor)
+                .cornerRadius(20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(sectionBorderColor, lineWidth: 1)
+                )
+                .padding(.horizontal, 16)
+                .onTapGesture {
+                    if let primary = primaryResume {
+                        // Navigate directly to your item editor layout anchor node
+                        viewModel?.selectedResume = primary
+                        showEditor = true
+                    } else {
+                        showFileImporter = true
+                    }
+                }
+            }
+        }
     
     private func tabButton(title: String, tab: LibraryTab) -> some View {
         Button {

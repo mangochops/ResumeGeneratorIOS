@@ -7,20 +7,24 @@
 
 import SwiftUI
 import Supabase
+import SwiftData
 
 struct ContentView: View {
     // 1. Keep track of the active selected tab index
     @State private var selectedTab = 0
     
     // 2. StateObject to manage the lifecycle of HomeViewModel
-    @State private var homeViewModel: HomeViewModel?
+    @State private var homeViewModel: HomeViewModel
+    @State private var resumeViewModel: ResumeViewModel
     
     private let supabaseClient: SupabaseClient
     
     // 3. Inject SupabaseClient through the initializer
-    init(supabaseClient: SupabaseClient) {
+    @MainActor
+    init(supabaseClient: SupabaseClient, modelContext: ModelContext) {
         self.supabaseClient = supabaseClient
-        
+        self._homeViewModel = State(wrappedValue: HomeViewModel(supabaseClient: supabaseClient))
+        self._resumeViewModel = State(wrappedValue: ResumeViewModel(modelContext: modelContext))
     }
     
     var body: some View {
@@ -29,8 +33,8 @@ struct ContentView: View {
         // Bind the TabView to control programmatic switching
         TabView(selection: $selectedTab) {
             
-            if let viewModel = homeViewModel {
-                HomeView(viewModel: viewModel) {
+            
+                HomeView(viewModel: homeViewModel) {
                     // When "See All" is tapped, jump to the Files tab (index 1)
                     selectedTab = 1
                 }
@@ -41,22 +45,15 @@ struct ContentView: View {
                 .tag(0) // Explicit tags map to our index state
                 
                 ResumeLibraryView(
-                    resumes: viewModel.recentResumes,
-                    coverLetters: viewModel.recentCoverLetters
+                    resumes: resumeViewModel.resumes,
+                    coverLetters: homeViewModel.recentCoverLetters
                 )
                 .tabItem {
                     Image(systemName: "folder.fill")
                     Text("Files")
                 }
                 .tag(1)
-            } else {
-                ProgressView()
-                    .tabItem {
-                        Image(systemName: "house.fill")
-                        Text("Home")
-                    }
-                    .tag(0)
-            }
+            
             
             CoverLetterView(supabaseClient: supabaseClient)
                 .tabItem {

@@ -9,20 +9,11 @@ struct ResumeAIAppApp: App {
     @StateObject private var authManager = AuthManager()
     
     @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
-    
-//    private static var supabaseURLString: String {
-//        Bundle.main.object(forInfoDictionaryKey: "SupabaseURL") as? String ?? ""
-//    }
-//    
-//    private static var supabaseAnonKeyString: String {
-//        Bundle.main.object(forInfoDictionaryKey: "SupabaseAnonKey") as? String ?? ""
-//    }
-//    
-//    private static var revenueCatAPIKey: String {
-//        Bundle.main.object(forInfoDictionaryKey: "RevenueCatAPIKey") as? String ?? ""
-//    }
+
     
     let supabase: SupabaseClient
+    
+    let sharedModelContainer: ModelContainer
         
     init() {
             // 1. Initialize Supabase directly using the hardcoded config enum layer
@@ -40,6 +31,12 @@ struct ResumeAIAppApp: App {
             Purchases.logLevel = .debug
             Purchases.configure(withAPIKey: SupabaseConfig.revenueCatAPIKey)
             print("🚀 CONFIG: Successfully initialized RevenueCat via hardcoded Config boundaries.")
+        
+            do {
+                self.sharedModelContainer = try ModelContainer(for: Resume.self, CoverLetter.self, Application.self)
+            } catch {
+                fatalError("🚨 SwiftData Error: Failed to build local storage container: \(error.localizedDescription)")
+            }
         }
     
     
@@ -61,11 +58,14 @@ struct ResumeAIAppApp: App {
                     
                 } else {
                     
-                    ContentView(supabaseClient: supabase)
+                    ContentView(
+                        supabaseClient: supabase,
+                        modelContext: sharedModelContainer.mainContext
+                    )
                     
                 }
             }
-            .modelContainer(for: [Resume.self, CoverLetter.self, Application.self])
+            .modelContainer(sharedModelContainer)
             .environmentObject(authManager)
             
         }
