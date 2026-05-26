@@ -10,13 +10,18 @@ import Supabase
 
 struct CoverLetterView: View {
     
-    let supabaseClient: SupabaseClient
+    @State private var viewModel: CoverLetterViewModel
     
-    // UI Local State Sheet Toggles
+    // UI local UI presentation state controls only
     @State private var showJobAdEntry = false
     @State private var showCoverLetterEntry = false
     @State private var showOptimizationSheet = false
     @State private var activeOptimizationType: OptimizationType = .bulletRewrite
+    
+    @MainActor
+    init(supabaseClient: SupabaseClient) {
+        _viewModel = State(initialValue: CoverLetterViewModel(supabaseClient: supabaseClient))
+    }
     
     // Core Engine Layout Configurations
     enum OptimizationType {
@@ -24,6 +29,24 @@ struct CoverLetterView: View {
         case summaryImprove
         case matchAnalysis
         case atsCheck
+        
+        var title: String {
+            switch self {
+            case .bulletRewrite: return "Rewrite Resume Bullet"
+            case .summaryImprove: return "Improve Professional Summary"
+            case .matchAnalysis: return "Analyze Job Match Rating"
+            case .atsCheck: return "ATS Check Optimization"
+            }
+        }
+        
+        var placeholder: String {
+            switch self {
+            case .bulletRewrite: return "Paste a bullet point you want to improve (e.g., 'Responsible for managing technical support operations.')"
+            case .summaryImprove: return "Paste your current profile bio or professional summary statement..."
+            case .matchAnalysis: return "Paste the target job description to run structural comparison matrices..."
+            case .atsCheck: return "Paste your text to execute structural compliance scans for layout parsers..."
+            }
+        }
     }
     
     var body: some View {
@@ -73,9 +96,10 @@ struct CoverLetterView: View {
                                     iconColor: Color(.systemPurple),
                                     bgColor: Color(.systemPurple).opacity(0.08)
                                 ) {
+                                    viewModel.clearWorkspaceBuffers()
                                     showJobAdEntry = true
                                 }
-                                
+                                  
                                 GridToolCard(
                                     title: "Cover Letter",
                                     description: "Draft contextual application statements from standard requirements.",
@@ -83,6 +107,7 @@ struct CoverLetterView: View {
                                     iconColor: Color(.systemGreen),
                                     bgColor: Color(.systemGreen).opacity(0.08)
                                 ) {
+                                    viewModel.clearWorkspaceBuffers()
                                     showCoverLetterEntry = true
                                 }
                             }
@@ -104,13 +129,12 @@ struct CoverLetterView: View {
                                     iconBgColor: Color(red: 0.12, green: 0.16, blue: 0.23),
                                     iconTextColor: Color(red: 0.22, green: 0.74, blue: 0.97)
                                 ) {
-                                    activeOptimizationType = .bulletRewrite
-                                    showOptimizationSheet = true
+                                    openUtilityWorkspace(type: .bulletRewrite)
                                 }
-                                
+                                  
                                 Divider()
                                     .padding(.leading, 72)
-                                
+                                  
                                 ListToolItem(
                                     title: "Improve Professional Summary",
                                     subtitle: "Structure high-level personal value declarations.",
@@ -118,13 +142,12 @@ struct CoverLetterView: View {
                                     iconBgColor: Color(red: 0.18, green: 0.06, blue: 0.40),
                                     iconTextColor: Color(red: 0.75, green: 0.52, blue: 0.99)
                                 ) {
-                                    activeOptimizationType = .summaryImprove
-                                    showOptimizationSheet = true
+                                    openUtilityWorkspace(type: .summaryImprove)
                                 }
-                                
+                                  
                                 Divider()
                                     .padding(.leading, 72)
-                                
+                                  
                                 ListToolItem(
                                     title: "Analyze Job Match Rating",
                                     subtitle: "Benchmark resume keyword data matrices against active adverts.",
@@ -132,13 +155,12 @@ struct CoverLetterView: View {
                                     iconBgColor: Color(red: 0.02, green: 0.31, blue: 0.23),
                                     iconTextColor: Color(red: 0.20, green: 0.83, blue: 0.60)
                                 ) {
-                                    activeOptimizationType = .matchAnalysis
-                                    showOptimizationSheet = true
+                                    openUtilityWorkspace(type: .matchAnalysis)
                                 }
-                                
+                                  
                                 Divider()
                                     .padding(.leading, 72)
-                                
+                                  
                                 ListToolItem(
                                     title: "ATS Check Optimization",
                                     subtitle: "Run deep structural compliance scans to eliminate parsing barriers.",
@@ -146,8 +168,7 @@ struct CoverLetterView: View {
                                     iconBgColor: Color(red: 0.27, green: 0.10, blue: 0.01),
                                     iconTextColor: Color(red: 0.98, green: 0.57, blue: 0.24)
                                 ) {
-                                    activeOptimizationType = .atsCheck
-                                    showOptimizationSheet = true
+                                    openUtilityWorkspace(type: .atsCheck)
                                 }
                             }
                             .background(Color(.secondarySystemBackground).opacity(0.4))
@@ -164,22 +185,187 @@ struct CoverLetterView: View {
                 }
             }
             // --- MODAL INTERACTION SHEET SYSTEMS ---
+            
+            // 1. Unified Utility Processing Sheet
             .sheet(isPresented: $showOptimizationSheet) {
-                Text("Prompt Optimization Sheet Content - \(String(describing: activeOptimizationType))")
-                    .presentationDetents([.medium, .large])
-                    .presentationDragIndicator(.visible)
+                NavigationStack {
+                    @Bindable var vm = viewModel
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 20) {
+                            Text(activeOptimizationType.title)
+                                .font(.title2.bold())
+                                .padding(.top)
+                            
+                            TextEditor(text: $vm.textInputBuffer)
+                                .frame(height: 140)
+                                .padding(8)
+                                .background(Color(.secondarySystemBackground))
+                                .cornerRadius(12)
+                                .overlay(
+                                    Group {
+                                        if vm.textInputBuffer.isEmpty {
+                                            Text(activeOptimizationType.placeholder)
+                                                .foregroundColor(.gray)
+                                                .font(.subheadline)
+                                                .padding(.init(top: 16, leading: 12, bottom: 0, trailing: 0))
+                                        }
+                                    }, alignment: .topLeading
+                                )
+                            
+                            Button {
+                                viewModel.runAIUtilityProcessing(type: activeOptimizationType)
+                            } label: {
+                                if viewModel.isProcessingAI {
+                                    ProgressView().tint(.white)
+                                } else {
+                                    Text("Analyze with AI").font(.headline)
+                                }
+                            }
+                            .frame(maxWidth: .infinity).frame(height: 50)
+                            .background(vm.textInputBuffer.isEmpty ? Color.gray : Color.blue)
+                            .foregroundColor(.white).cornerRadius(12)
+                            .disabled(vm.textInputBuffer.isEmpty || viewModel.isProcessingAI)
+                            
+                            if !viewModel.aiResultOutput.isEmpty {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text("AI Analysis Output").font(.headline)
+                                    Text(viewModel.aiResultOutput)
+                                        .padding()
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .background(Color.blue.opacity(0.08)).cornerRadius(12)
+                                        .textSelection(.enabled)
+                                }
+                            }
+                        }
+                        .padding()
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button("Done") { showOptimizationSheet = false }
+                        }
+                    }
+                }
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
             }
+            
+            // 2. Cover Letter Workspace Sheet
             .sheet(isPresented: $showCoverLetterEntry) {
-                Text("Cover Letter Generation Workspace Entry")
-                    .presentationDetents([.medium, .large])
-                    .presentationDragIndicator(.visible)
+                NavigationStack {
+                    @Bindable var vm = viewModel
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Generate Custom Cover Letter")
+                                .font(.title2.bold())
+                                .padding(.top)
+                            
+                            TextField("Company Name", text: $vm.companyName)
+                                .textFieldStyle(.roundedBorder)
+                            
+                            TextField("Job Title Target", text: $vm.jobTitle)
+                                .textFieldStyle(.roundedBorder)
+                            
+                            Text("Paste requirements or full Job Specification:")
+                                .font(.subheadline).foregroundColor(.secondary)
+                            
+                            TextEditor(text: $vm.jobAdBuffer)
+                                .frame(height: 140).padding(4)
+                                .background(Color(.secondarySystemBackground)).cornerRadius(12)
+                            
+                            Button {
+                                viewModel.generateCoverLetterWithAI()
+                            } label: {
+                                if viewModel.isProcessingAI {
+                                    ProgressView().tint(.white)
+                                } else {
+                                    Text("Draft Statements").font(.headline)
+                                }
+                            }
+                            .frame(maxWidth: .infinity).frame(height: 50)
+                            .background(vm.jobAdBuffer.isEmpty || vm.companyName.isEmpty ? Color.gray : Color.green)
+                            .foregroundColor(.white).cornerRadius(12)
+                            .disabled(vm.jobAdBuffer.isEmpty || vm.companyName.isEmpty || viewModel.isProcessingAI)
+                            
+                            if !viewModel.aiResultOutput.isEmpty {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text("Generated Letter Preview").font(.headline)
+                                    Text(viewModel.aiResultOutput)
+                                        .padding()
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .background(Color.green.opacity(0.08)).cornerRadius(12)
+                                        .textSelection(.enabled)
+                                }
+                            }
+                        }
+                        .padding()
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button("Close") { showCoverLetterEntry = false }
+                        }
+                    }
+                }
             }
+            
+            // 3. Tailor Resume Workspace Sheet
             .sheet(isPresented: $showJobAdEntry) {
-                Text("Upload/Parse Job Advertisement Interface")
-                    .presentationDetents([.medium, .large])
-                    .presentationDragIndicator(.visible)
+                NavigationStack {
+                    @Bindable var vm = viewModel
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Tailor Resume Target")
+                                .font(.title2.bold())
+                                .padding(.top)
+                            
+                            Text("Paste target raw Job Description below:")
+                                .font(.subheadline).foregroundColor(.secondary)
+                            
+                            TextEditor(text: $vm.jobAdBuffer)
+                                .frame(height: 180).padding(4)
+                                .background(Color(.secondarySystemBackground)).cornerRadius(12)
+                            
+                            Button {
+                                viewModel.executeResumeTailoringEngine()
+                            } label: {
+                                if viewModel.isProcessingAI {
+                                    ProgressView().tint(.white)
+                                } else {
+                                    Text("Optimize Experience Matrix").font(.headline)
+                                }
+                            }
+                            .frame(maxWidth: .infinity).frame(height: 50)
+                            .background(vm.jobAdBuffer.isEmpty ? Color.gray : Color.purple)
+                            .foregroundColor(.white).cornerRadius(12)
+                            .disabled(vm.jobAdBuffer.isEmpty || viewModel.isProcessingAI)
+                            
+                            if !viewModel.aiResultOutput.isEmpty {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text("Tailored Optimization Insights").font(.headline)
+                                    Text(viewModel.aiResultOutput)
+                                        .padding()
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .background(Color.purple.opacity(0.08)).cornerRadius(12)
+                                        .textSelection(.enabled)
+                                }
+                            }
+                        }
+                        .padding()
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button("Close") { showJobAdEntry = false }
+                        }
+                    }
+                }
             }
         }
+    }
+    
+    @MainActor
+    private func openUtilityWorkspace(type: OptimizationType) {
+        viewModel.clearWorkspaceBuffers()
+        activeOptimizationType = type
+        showOptimizationSheet = true
     }
 }
 
@@ -195,11 +381,9 @@ struct GridToolCard: View {
     var body: some View {
         Button(action: action) {
             VStack(alignment: .leading, spacing: 0) {
-                // Top Custom Icon Plate
                 ZStack {
                     RoundedRectangle(cornerRadius: 12)
                         .fill(bgColor)
-                    
                     Image(systemName: icon)
                         .font(.system(size: 20))
                         .foregroundColor(iconColor)
@@ -208,12 +392,10 @@ struct GridToolCard: View {
                 
                 Spacer()
                 
-                // Bottom Text Hierarchy Group
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(.primary)
-                    
                     Text(description)
                         .font(.system(size: 12))
                         .foregroundColor(.secondary)
@@ -247,23 +429,19 @@ struct ListToolItem: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 16) {
-                // Custom Icon Plate container matching material design spec
                 ZStack {
                     RoundedRectangle(cornerRadius: 12)
                         .fill(iconBgColor)
-                    
                     Image(systemName: icon)
                         .font(.system(size: 18))
                         .foregroundColor(iconTextColor)
                 }
                 .frame(width: 44, height: 44)
                 
-                // Label groups
                 VStack(alignment: .leading, spacing: 3) {
                     Text(title)
                         .font(.system(size: 15, weight: .bold))
                         .foregroundColor(.primary)
-                    
                     Text(subtitle)
                         .font(.system(size: 13))
                         .foregroundColor(.secondary)
@@ -274,7 +452,6 @@ struct ListToolItem: View {
                 
                 Spacer()
                 
-                // Chevron decoration
                 Image(systemName: "chevron.right")
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(Color(.placeholderText).opacity(0.5))

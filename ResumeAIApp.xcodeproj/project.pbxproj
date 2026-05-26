@@ -52,6 +52,7 @@
 		04A0B7592F61868A00B4CB48 /* PDFService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7582F61868A00B4CB48 /* PDFService.swift */; };
 		04A7E59A2FBF3A3D0060094D /* HeaderTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7E5992FBF3A3D0060094D /* HeaderTitle.swift */; };
 		04A7E59C2FBF44010060094D /* Terms&Codition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7E59B2FBF44010060094D /* Terms&Codition.swift */; };
+		04BBD2BF2FC60CC000DDE66F /* ToolsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBD2BE2FC60CC000DDE66F /* ToolsViewModel.swift */; };
 		04C2C4042F77F3840006D1D5 /* Paywall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C4032F77F3840006D1D5 /* Paywall.swift */; };
 		04D6BF462F6530EE00A066B8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF452F6530EE00A066B8 /* AuthService.swift */; };
 		04D6BF482F65316600A066B8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6BF472F65316600A066B8 /* LoginView.swift */; };
@@ -137,6 +138,7 @@
 		04A0B7582F61868A00B4CB48 /* PDFService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFService.swift; sourceTree = "<group>"; };
 		04A7E5992FBF3A3D0060094D /* HeaderTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTitle.swift; sourceTree = "<group>"; };
 		04A7E59B2FBF44010060094D /* Terms&Codition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Terms&Codition.swift"; sourceTree = "<group>"; };
+		04BBD2BE2FC60CC000DDE66F /* ToolsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewModel.swift; sourceTree = "<group>"; };
 		04C2C4032F77F3840006D1D5 /* Paywall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paywall.swift; sourceTree = "<group>"; };
 		04D6BF432F65308400A066B8 /* SupabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseManager.swift; sourceTree = "<group>"; };
 		04D6BF452F6530EE00A066B8 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				04A0B7542F6185FD00B4CB48 /* CoverLetterView.swift */,
+				04BBD2BE2FC60CC000DDE66F /* ToolsViewModel.swift */,
 			);
 			path = Coverletter;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				04A0B7532F6185A900B4CB48 /* ResumeEditorView.swift in Sources */,
 				047B69FD2F63E4AD00DD44BD /* ATSScoreView.swift in Sources */,
 				0407FEE52FBC73DC001B503A /* CompactCoverLetterSkeletonCard.swift in Sources */,
+				04BBD2BF2FC60CC000DDE66F /* ToolsViewModel.swift in Sources */,
 				04DF1FE82F6B860100323B51 /* PrivacyPolicy.swift in Sources */,
 				04C2C4042F77F3840006D1D5 /* Paywall.swift in Sources */,
 				04D6BF542F65D51B00A066B8 /* PDFParser.swift in Sources */,
