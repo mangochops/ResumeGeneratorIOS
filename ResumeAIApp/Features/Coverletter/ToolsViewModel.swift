@@ -13,6 +13,7 @@ import Supabase
 class CoverLetterViewModel {
     
     let supabaseClient: SupabaseClient
+    private let anonKey: String
     
     // Core Processing states
     var isProcessingAI = false
@@ -26,6 +27,7 @@ class CoverLetterViewModel {
     
     init(supabaseClient: SupabaseClient) {
         self.supabaseClient = supabaseClient
+        self.anonKey = SupabaseConfig.anonKey
     }
     
     /// Helper to safely retrieve the active session token for authorization headers
@@ -44,6 +46,16 @@ class CoverLetterViewModel {
         aiResultOutput = ""
         isProcessingAI = false
     }
+    
+    struct CoverLetterStreamRequest: Encodable {
+            let jobDescription: String
+            let companyName: String
+            let jobTitle: String
+        }
+        
+        struct ResumeTailorRequest: Encodable {
+            let jobDescription: String
+        }
     
     // --- WORKSPACE CORE SUPABASE EDGE FUNCTION PIPELINE ---
     
@@ -93,68 +105,74 @@ class CoverLetterViewModel {
         }
     }
     
-    struct CoverLetterResponse: Codable {
-        let coverLetter: String
-        
-        enum CodingKeys: String, CodingKey {
-            case coverLetter = "cover_letter" // Maps "cover_letter" from JSON to camelCase
-        }
-    }
+   
     
     func generateCoverLetterWithAI() {
-        isProcessingAI = true
-        aiResultOutput = ""
-        
-        Task {
-            do {
-                let payload: [String: Any] = [
-                    "company_name": companyName,
-                    "job_title": jobTitle,
-                    "job_description": jobAdBuffer
-                ]
+            isProcessingAI = true
+            aiResultOutput = ""
                 
-                let jsonData = try JSONSerialization.data(withJSONObject: payload)
-                
-                // Invoke the function normally
-                let responseData: Data = try await supabaseClient.functions.invoke(
-                    "generate-cover-letter",
-                    options: FunctionInvokeOptions(
-                        method: .post,
-                        body: jsonData
-                    )
-                )
-                
-                // Convert the response buffer into lines to parse the stream
-                guard let responseString = String(data: responseData, encoding: .utf8) else {
-                    throw NSError(domain: "DecodingError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Unable to parse stream raw data"])
-                }
-                
-                // Clean up the text-event-stream format lines
-                // Server-sent events look like: "data: { ... }" or raw text lines depending on your Deno setup
-                let lines = responseString.components(separatedBy: .newlines)
-                
-                for line in lines {
-                    if line.hasPrefix("data: ") && line != "data: [DONE]" {
-                        let jsonString = line.replacingOccurrences(of: "data: ", with: "")
+            Task {
+                do {
+                    // 1. Get the current active authorization token
+                    guard let authHeader = await getAuthHeader() else {
+                        throw NSError(domain: "AuthError", code: 401, userInfo: [NSLocalizedDescriptionKey: "Missing Auth Session Token"])
+                    }
                         
-                        if let jsonData = jsonString.data(using: .utf8),
-                           let jsonObject = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any],
-                           let choices = jsonObject["choices"] as? [[String: Any]],
-                           let delta = choices.first?["delta"] as? [String: Any],
-                           let content = delta["content"] as? String {
-                            
-                            self.aiResultOutput += content
+                    // 2. Set up the explicit endpoint URL
+                    let urlString = "https://eocldmwhgovgdhuttwgs.supabase.co/functions/v1/generate-cover-letter"
+                    guard let url = URL(string: urlString) else { return }
+                        
+                    // 3. Build the payload matching your Edge Function's expected properties
+                    let payload = CoverLetterStreamRequest(
+                        jobDescription: jobAdBuffer,
+                        companyName: companyName,
+                        jobTitle: jobTitle
+                    )
+                        
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "POST"
+                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.setValue(authHeader, forHTTPHeaderField: "Authorization")
+                    
+                    // FIXED: Pulling key from configuration options block
+                    let anonKey = self.anonKey
+                    request.setValue(anonKey, forHTTPHeaderField: "apikey")
+                    request.httpBody = try JSONEncoder().encode(payload)
+                        
+                    // Set a generous timeout window for the initial handshake connection
+                    request.timeoutInterval = 60.0
+                        
+                    // 4. Use Apple's streaming bytes method to keep the connection active
+                    let (bytes, response) = try await URLSession.shared.bytes(for: request)
+                        
+                    // FIXED: Cleaned up character syntax types on cast assignment
+                    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                        throw NSError(domain: "ServerError", code: (response as? HTTPURLResponse)?.statusCode ?? 500, userInfo: [NSLocalizedDescriptionKey: "Server returned non-200 status code"])
+                    }
+                        
+                    // 5. Read lines asynchronously as they drop down from the edge container
+                    for try await line in bytes.lines {
+                        if line.hasPrefix("data: ") && line != "data: [DONE]" {
+                            let jsonString = line.replacingOccurrences(of: "data: ", with: "")
+                                
+                            if let jsonData = jsonString.data(using: .utf8),
+                               let jsonObject = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any],
+                               let choices = jsonObject["choices"] as? [[String: Any]],
+                               let delta = choices.first?["delta"] as? [String: Any],
+                               let content = delta["content"] as? String {
+                                    
+                                self.aiResultOutput += content
+                            }
                         }
                     }
+                        
+                    self.isProcessingAI = false
+                } catch {
+                    self.aiResultOutput = "Streaming broken or timed out: \(error.localizedDescription)"
+                    self.isProcessingAI = false
                 }
-                
-                self.isProcessingAI = false
-            } catch {
-                self.aiResultOutput = "Failed to draft statement: \(error.localizedDescription)"
-                self.isProcessingAI = false
             }
         }
-    }
     
     func executeResumeTailoringEngine() {
         isProcessingAI = true
