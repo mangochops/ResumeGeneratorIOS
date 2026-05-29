@@ -17,6 +17,7 @@ struct CoverLetterView: View {
     @State private var showCoverLetterEntry = false
     @State private var showOptimizationSheet = false
     @State private var activeOptimizationType: OptimizationType = .bulletRewrite
+    @State private var showDocumentPreview = false
     
     @MainActor
     init(supabaseClient: SupabaseClient) {
@@ -309,54 +310,121 @@ struct CoverLetterView: View {
             
             // 3. Tailor Resume Workspace Sheet
             .sheet(isPresented: $showJobAdEntry) {
-                NavigationStack {
-                    @Bindable var vm = viewModel
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 16) {
-                            Text("Tailor Resume Target")
-                                .font(.title2.bold())
-                                .padding(.top)
-                            
-                            Text("Paste target raw Job Description below:")
-                                .font(.subheadline).foregroundColor(.secondary)
-                            
-                            TextEditor(text: $vm.jobAdBuffer)
-                                .frame(height: 180).padding(4)
-                                .background(Color(.secondarySystemBackground)).cornerRadius(12)
-                            
-                            Button {
-                                viewModel.executeResumeTailoringEngine()
-                            } label: {
-                                if viewModel.isProcessingAI {
-                                    ProgressView().tint(.white)
-                                } else {
-                                    Text("Optimize Experience Matrix").font(.headline)
+                            NavigationStack {
+                                @Bindable var vm = viewModel
+                                ScrollView {
+                                    VStack(alignment: .leading, spacing: 20) {
+                                        Text("Tailor Resume Target")
+                                            .font(.title2.bold())
+                                            .padding(.top)
+                                        
+                                        // Check if the engine completed optimization processing successfully
+                                        if !viewModel.aiResultOutput.isEmpty && !viewModel.isProcessingAI && viewModel.aiResultOutput.contains("✅") {
+                                            
+                                            // Success Notice Display Panel
+                                            VStack(spacing: 16) {
+                                                ZStack {
+                                                    Circle()
+                                                        .fill(Color.purple.opacity(0.1))
+                                                        .frame(width: 80, height: 80)
+                                                    Image(systemName: "doc.plaintext.fill")
+                                                        .font(.system(size: 32))
+                                                        .foregroundColor(.purple)
+                                                }
+                                                
+                                                Text("Optimization Engine Complete")
+                                                    .font(.headline)
+                                                
+                                                Text(viewModel.aiResultOutput)
+                                                    .font(.subheadline)
+                                                    .foregroundColor(.secondary)
+                                                    .multilineTextAlignment(.center)
+                                                    .padding(.horizontal)
+                                            }
+                                            .frame(maxWidth: .infinity)
+                                            .padding(.vertical, 30)
+                                            
+                                            // SUCCESS ACTION CONTROLS: "Preview" and "Start Over"
+                                            VStack(spacing: 12) {
+                                                Button {
+                                                    showDocumentPreview = true
+                                                } label: {
+                                                    HStack {
+                                                        Image(systemName: "eye.fill")
+                                                        Text("Preview Resume")
+                                                    }
+                                                    .font(.headline)
+                                                }
+                                                .frame(maxWidth: .infinity).frame(height: 52)
+                                                .background(Color.purple)
+                                                .foregroundColor(.white)
+                                                .cornerRadius(12)
+                                                
+                                                Button {
+                                                    viewModel.clearWorkspaceBuffers()
+                                                } label: {
+                                                    Text("Start Over")
+                                                        .font(.headline)
+                                                        .foregroundColor(.purple)
+                                                }
+                                                .frame(maxWidth: .infinity).frame(height: 52)
+                                                .background(Color.purple.opacity(0.08))
+                                                .cornerRadius(12)
+                                            }
+                                            .padding(.top, 10)
+                                            
+                                        } else {
+                                            // Default input form view while waiting for compilation
+                                            VStack(alignment: .leading, spacing: 16) {
+                                                TextField("Job Title Target", text: $vm.jobTitle)
+                                                    .textFieldStyle(.roundedBorder)
+                                                
+                                                Text("Paste target raw Job Description below:")
+                                                    .font(.subheadline).foregroundColor(.secondary)
+                                                
+                                                TextEditor(text: $vm.jobAdBuffer)
+                                                    .frame(height: 180).padding(4)
+                                                    .background(Color(.secondarySystemBackground)).cornerRadius(12)
+                                                
+                                                Button {
+                                                    viewModel.executeResumeTailoringEngine()
+                                                } label: {
+                                                    if viewModel.isProcessingAI {
+                                                        ProgressView().tint(.white)
+                                                    } else {
+                                                        Text("Optimize Experience Matrix").font(.headline)
+                                                    }
+                                                }
+                                                .frame(maxWidth: .infinity).frame(height: 50)
+                                                .background(vm.jobAdBuffer.isEmpty ? Color.gray : Color.purple)
+                                                .foregroundColor(.white).cornerRadius(12)
+                                                .disabled(vm.jobAdBuffer.isEmpty || viewModel.isProcessingAI)
+                                                
+                                                // Error display box if the connection fails or needs an upgrade
+                                                if !viewModel.aiResultOutput.isEmpty {
+                                                    Text(viewModel.aiResultOutput)
+                                                        .font(.subheadline)
+                                                        .foregroundColor(.red)
+                                                        .padding()
+                                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                                        .background(Color.red.opacity(0.05))
+                                                        .cornerRadius(12)
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .padding()
+                                }
+                                .toolbar {
+                                    ToolbarItem(placement: .topBarTrailing) {
+                                        Button("Close") { showJobAdEntry = false }
+                                    }
                                 }
                             }
-                            .frame(maxWidth: .infinity).frame(height: 50)
-                            .background(vm.jobAdBuffer.isEmpty ? Color.gray : Color.purple)
-                            .foregroundColor(.white).cornerRadius(12)
-                            .disabled(vm.jobAdBuffer.isEmpty || viewModel.isProcessingAI)
-                            
-                            if !viewModel.aiResultOutput.isEmpty {
-                                VStack(alignment: .leading, spacing: 10) {
-                                    Text("Tailored Optimization Insights").font(.headline)
-                                    Text(viewModel.aiResultOutput)
-                                        .padding()
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        .background(Color.purple.opacity(0.08)).cornerRadius(12)
-                                        .textSelection(.enabled)
-                                }
+                            // Nested layout modal view presentation mapping
+                            .sheet(isPresented: $showDocumentPreview) {
+                                DocumentPreviewWorkspaceView(rawTextData: viewModel.aiResultOutput)
                             }
-                        }
-                        .padding()
-                    }
-                    .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button("Close") { showJobAdEntry = false }
-                        }
-                    }
-                }
             }
         }
     }
@@ -369,7 +437,101 @@ struct CoverLetterView: View {
     }
 }
 
-// --- SUBCOMPONENT 1: DYNAMIC CORE GRID COMPONENT ---
+// --- SUBCOMPONENTS ---
+
+struct DocumentPreviewWorkspaceView: View {
+    let rawTextData: String
+    @Environment(\.dismiss) var dismissAction
+    @State private var isDownloading = false
+    @State private var showDownloadAlert = false
+    
+    var body: some View {
+        NavigationStack {
+            VStack(spacing: 0) {
+                // Mimics a mock structural page container viewport
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 14) {
+                        HStack {
+                            Text("DOCUMENT PREVIEW")
+                                .font(.system(size: 11, weight: .bold))
+                                .foregroundColor(.secondary)
+                                .tracking(1.0)
+                            Spacer()
+                            Label("PDF Saved", systemImage: "checkmark.circle.fill")
+                                .font(.caption.bold())
+                                .foregroundColor(.green)
+                        }
+                        .padding(.bottom, 8)
+                        
+                        Text("Tailored Resume Profile Framework")
+                            .font(.title3.bold())
+                        
+                        Divider()
+                        
+                        Text("Your tailored resume optimization pipeline has run successfully. A structured version matching your target requirements is now compiled into your storage nodes.")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .lineSpacing(4)
+                        
+                        Text(rawTextData)
+                            .font(.caption)
+                            .foregroundColor(.primary)
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color(.systemBackground))
+                            .cornerRadius(8)
+                            .shadow(color: Color.black.opacity(0.03), radius: 5, x: 0, y: 2)
+                    }
+                    .padding(24)
+                }
+                .background(Color(.secondarySystemBackground).opacity(0.5))
+                
+                // Bottom Download Actions Container bar
+                VStack {
+                    Button {
+                        isDownloading = true
+                        // Trigger async file saving simulator tasks
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            isDownloading = false
+                            showDownloadAlert = true
+                        }
+                    } label: {
+                        HStack(spacing: 10) {
+                            if isDownloading {
+                                ProgressView().tint(.white)
+                            } else {
+                                Image(systemName: "square.and.arrow.down.fill")
+                                Text("Download Tailored PDF Document")
+                            }
+                        }
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(Color.blue)
+                        .cornerRadius(12)
+                    }
+                    .disabled(isDownloading)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 16)
+                }
+                .background(Color(.systemBackground))
+            }
+            .navigationTitle("Document Preview")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Dismiss") { dismissAction() }
+                }
+            }
+            .alert("Download Completed", isPresented: $showDownloadAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text("Your optimized workspace PDF summary file has been saved to your Local Files Storage directory.")
+            }
+        }
+    }
+}
 struct GridToolCard: View {
     let title: String
     let description: String

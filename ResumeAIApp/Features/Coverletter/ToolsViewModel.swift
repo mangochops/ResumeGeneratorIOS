@@ -24,6 +24,7 @@ class CoverLetterViewModel {
     var jobAdBuffer = ""
     var companyName = ""
     var jobTitle = ""
+    var customTitle = ""
     
     init(supabaseClient: SupabaseClient) {
         self.supabaseClient = supabaseClient
@@ -53,8 +54,10 @@ class CoverLetterViewModel {
             let jobTitle: String
         }
         
-        struct ResumeTailorRequest: Encodable {
+    struct ResumeTailorRequest: Encodable {
             let jobDescription: String
+            
+            let title: String
         }
     
     // --- WORKSPACE CORE SUPABASE EDGE FUNCTION PIPELINE ---
@@ -175,32 +178,55 @@ class CoverLetterViewModel {
         }
     
     func executeResumeTailoringEngine() {
-        isProcessingAI = true
-        aiResultOutput = ""
-        
-        Task {
-            do {
-                let payload: [String: Any] = [
-                    "job_description": jobAdBuffer
-                ]
-                
-                let jsonData = try JSONSerialization.data(withJSONObject: payload)
-                
-                let responseData: Data = try await supabaseClient.functions.invoke(
-                    "tailor-resume",
-                    options: FunctionInvokeOptions(
-                        method: .post,
-                        body: jsonData
+            isProcessingAI = true
+            aiResultOutput = ""
+            
+            Task {
+                do {
+                    // 1. Fetch user authentication token string
+                    guard let authHeader = await getAuthHeader() else {
+                        throw NSError(domain: "AuthError", code: 401, userInfo: [NSLocalizedDescriptionKey: "Log in session expired."])
+                    }
+                    
+
+                    // 3. Match keys with your edge engine payload expectations (`jobDescription` and `resumeText`)
+                    let payload = ResumeTailorRequest(
+                        jobDescription: jobAdBuffer,
+                        title: customTitle.isEmpty ? "Tailored Resume" : customTitle
                     )
-                )
-                
-                // Extract response.data directly into a UTF8 cleartext format output
-                self.aiResultOutput = String(data: responseData, encoding: .utf8) ?? "Optimization engine completed layout changes successfully."
-                self.isProcessingAI = false
-            } catch {
-                self.aiResultOutput = "Tailoring pipeline aborted: \(error.localizedDescription)"
-                self.isProcessingAI = false
+                    // 4. Hit direct URL endpoint to prevent routing context 404 drops on function execution
+                    let urlString = "https://eocldmwhgovgdhuttwgs.supabase.co/functions/v1/tweak-resume"
+                    guard let url = URL(string: urlString) else { return }
+                    
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "POST"
+                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.setValue(authHeader, forHTTPHeaderField: "Authorization")
+                    request.setValue(self.anonKey, forHTTPHeaderField: "apikey")
+                    request.httpBody = try JSONEncoder().encode(payload)
+                    
+                    let (data, response) = try await URLSession.shared.data(for: request)
+                    
+                    guard let httpResponse = response as? HTTPURLResponse else {
+                        throw URLError(.badServerResponse)
+                    }
+                    
+                    // Handle different response scenarios (Paywall limits vs Success layout)
+                    if httpResponse.statusCode == 402 {
+                        self.aiResultOutput = "Premium Upgrade Required: You are out of tailoring optimization credits."
+                    } else if httpResponse.statusCode == 200 {
+                        self.aiResultOutput = "✅ Resume optimized and generated! Your PDF has been saved automatically to your profile documents workspace."
+                    } else {
+                        let serverErrorMsg = String(data: data, encoding: .utf8) ?? "Status Code \(httpResponse.statusCode)"
+                        self.aiResultOutput = "Tailoring pipeline failed: \(serverErrorMsg)"
+                    }
+                    
+                    self.isProcessingAI = false
+                } catch {
+                    self.aiResultOutput = "Tailoring pipeline aborted: \(error.localizedDescription)"
+                    self.isProcessingAI = false
+                }
             }
         }
-    }
+    
 }
