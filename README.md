@@ -1,4 +1,4 @@
-# ResumeGeneratorIOS 🚀
+# CVPilot
 
 An AI-powered iOS application designed to help job seekers optimize their resumes, generate tailored cover letters, and track ATS compatibility.
 
