@@ -279,7 +279,7 @@ struct CoverLetterView: View {
                                 if viewModel.isProcessingAI {
                                     ProgressView().tint(.white)
                                 } else {
-                                    Text("Draft Statements").font(.headline)
+                                    Text("Generate Cover Letter").font(.headline)
                                 }
                             }
                             .frame(maxWidth: .infinity).frame(height: 50)
