@@ -1,4 +1,4 @@
-# ResumeGeneratorIOS 🚀
+# CVPilot
 
 An AI-powered iOS application designed to help job seekers optimize their resumes, generate tailored cover letters, and track ATS compatibility.
 
@@ -34,7 +34,6 @@ ResumeAIApp/
 ├── AuthManager.swift       # Session management
 ├── AIService.swift         # OpenAI API integration logic
 ├── ATSService.swift        # ATS scoring algorithms
-├── PDFParser.swift         # PDF text extraction utilities
 ├── ResumeEditorView.swift  # Core resume editing UI
 ├── SupabaseManager.swift   # Supabase client & sync logic
 └── supabase/functions/     # Edge functions (TypeScript/Deno)
