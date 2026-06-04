@@ -12,12 +12,12 @@ An AI-powered iOS application designed to help job seekers optimize their resume
 - [License](#-license)
 
 ## ✨ Features
-- 📄 **Resume PDF Parsing**: Easily import and parse existing resumes from PDF files.
-- 🤖 **AI-Powered Tailoring**: Automatically rewrite resume bullet points and summaries to match job descriptions using OpenAI.
-- 📊 **ATS Analysis**: Get real-time feedback on your resume's ATS score and actionable improvement suggestions.
-- 👔 **Career Management**: Track multiple versions of your resume and job applications.
-- 🔐 **Secure Authentication**: Built with Supabase Auth for safe user account management.
-- 📱 **Monetization**: Integrated RevenueCat paywalls to support premium features.
+-  **Resume PDF Parsing**: Easily import and parse existing resumes from PDF files.
+-  **AI-Powered Tailoring**: Automatically rewrite resume bullet points and summaries to match job descriptions using OpenAI.
+-  **ATS Analysis**: Get real-time feedback on your resume's ATS score and actionable improvement suggestions.
+-  **Career Management**: Track multiple versions of your resume and job applications.
+-  **Secure Authentication**: Built with Supabase Auth for safe user account management.
+-  **Monetization**: Integrated RevenueCat paywalls to support premium features.
 
 ## 🛠 Tech Stack
 | Component | Technology |
